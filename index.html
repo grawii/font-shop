@@ -17,8 +17,7 @@
                     colors: {
                         cream: '#F8F4FF',
                         pinky: { light: '#E6E1FF', DEFAULT: '#C1B6FF', dark: '#A488FF' },
-                        brown: { DEFAULT: '#4A3B6B', light: '#7C6B9A', dark: '#352A50' },
-                        cat: { light: '#FDF5E6', DEFAULT: '#F5DEB3', dark: '#D2B48C' } /* ✅ สีแมวโทนเหลืองครีม/เบจ */
+                        brown: { DEFAULT: '#4A3B6B', light: '#7C6B9A', dark: '#352A50' }
                     }
                 }
             }
@@ -38,6 +37,7 @@
         @keyframes ptUp { 0% { transform: translateY(105vh); opacity: 0; } 8% { opacity: 0.45; } 100% { transform: translateY(-8vh) rotate(360deg); opacity: 0; } }
         .item-card.selected { border-color: #A488FF; background: rgba(193, 182, 255, 0.2); box-shadow: 0 0 15px rgba(164, 136, 255, 0.4); }
         .card-slider { display: flex; transition: 0.5s; width: 100%; height: 100%; aspect-ratio: 1/1; }
+        /* สไตล์พิเศษสำหรับกรอบที่ยอมให้ไอคอนล้นออกมาทับขอบ */
         .box-overlay-visible { overflow: visible !important; }
     </style>
 </head>
@@ -46,16 +46,10 @@
 <div id="pts"></div>
 
 <svg width="0" height="0" class="hidden absolute">
-    <symbol id="icon-cat" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M5 2L1 7.5L9 9L5 2Z" fill="#FDF5E6"/>
-        <path d="M19 2L23 7.5L15 9L19 2Z" fill="#FDF5E6"/>
-        <circle cx="12" cy="14" r="8" fill="#F5DEB3"/>
-        <circle cx="9" cy="13" r="1.2" fill="#4A3B6B"/>
-        <circle cx="15" cy="13" r="1.2" fill="#4A3B6B"/>
-        <path d="M11 16.5C11 16.5 11.5 17.5 12 17.5C12.5 17.5 13 16.5 13 16.5" stroke="#4A3B6B" stroke-width="1.2" stroke-linecap="round"/>
-        <path d="M5 13L9 14.5M5 15L9 15.5M5 17L9 16.5" stroke="#4A3B6B" stroke-width="0.8" stroke-linecap="round" opacity="0.6"/>
-        <path d="M19 13L15 14.5M19 15L15 15.5M19 17L15 16.5" stroke="#4A3B6B" stroke-width="0.8" stroke-linecap="round" opacity="0.6"/>
-        <ellipse cx="12" cy="20.5" rx="3.5" ry="1.5" fill="#F8F4FF"/>
+    <symbol id="icon-teddy" viewBox="0 0 24 24" fill="currentColor">
+        <circle cx="6" cy="7" r="3.5" /><circle cx="18" cy="7" r="3.5" />
+        <path d="M12 6C7 6 4 10 4 15C4 20 7 22.5 12 22.5C17 22.5 20 20 20 15C20 10 17 6 12 6Z" />
+        <ellipse cx="12" cy="16.5" rx="4" ry="3" fill="#F8F4FF" />
     </symbol>
     <symbol id="icon-button" viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="46" fill="#D1C7F0" /><circle cx="50" cy="50" r="28" fill="#F0E6FF" />
@@ -75,7 +69,7 @@
         <p class="text-[10px] tracking-widest text-pinky-dark uppercase mt-1">Handwritten Fonts</p>
     </div>
     <div class="flex flex-col p-4 space-y-2 mt-4">
-        <button onclick="navTo('home')" class="dr-item flex items-center gap-3.5 p-4.5 rounded-2xl text-brown font-medium hover:bg-pinky-light transition-all active-menu">
+        <button onclick="navTo('home')" class="dr-item flex items-center gap-3.5 p-4.5 rounded-2xl text-brown font-medium hover:bg-pinky-light transition-all">
             <i data-lucide="home" class="w-5 h-5"></i> หน้าแรก
         </button>
         <button onclick="navTo('shop')" class="dr-item flex items-center gap-3.5 p-4.5 rounded-2xl text-brown font-medium hover:bg-pinky-light transition-all">
@@ -89,10 +83,10 @@
 
 <div id="page-home" class="view-page active relative z-10">
     <header class="bg-gradient-to-r from-pinky-light to-cream pt-16 pb-10 px-6 relative rounded-b-[50px] shadow-sm border-b-4 border-white flex items-center gap-6 box-overlay-visible">
-        <div class="shrink-0 relative cursor-pointer hover:scale-105 transition-transformduration-300">
+        <div class="shrink-0 relative">
             <svg class="absolute -top-4 -left-4 w-10 h-10 opacity-40 rotate-12 z-20" viewBox="0 0 100 100"><use href="#icon-button"></use></svg>
             <div class="w-24 h-24 rounded-3xl border-[5px] border-white shadow-lg overflow-hidden bg-white flex items-center justify-center z-10 relative">
-                <img src="https://img2.pic.in.th/IMG_3671.png" alt="Cat Logo" class="w-full h-full object-cover">
+                <img src="https://img2.pic.in.th/IMG_3671.png" alt="Logo" class="w-full h-full object-cover">
             </div>
             <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md border border-pinky-light z-20">
                 <i data-lucide="heart" class="w-4 h-4 text-pinky-dark fill-pinky-dark"></i>
@@ -110,7 +104,7 @@
 
     <main class="px-6 py-10 space-y-12">
         <section class="bg-white rounded-[40px] p-8 shadow-sm border-2 border-pinky-light relative box-overlay-visible mt-5">
-            <svg class="absolute -right-6 -top-6 w-16 h-16 opacity-70 -rotate-12 z-30 drop-shadow-md" viewBox="0 0 24 24"><use href="#icon-cat"></use></svg>
+            <svg class="absolute -right-6 -top-6 w-16 h-16 text-brown-light opacity-30 -rotate-12 z-30 drop-shadow-md" viewBox="0 0 24 24"><use href="#icon-teddy"></use></svg>
             <h2 class="text-xl font-bold text-brown mb-3 flex items-center gap-2 relative z-10">
                 <i data-lucide="sparkles" class="w-5 h-5 text-pinky-dark"></i> ยินดีต้อนรับ ✨
             </h2>
@@ -125,9 +119,18 @@
         </section>
 
         <section class="w-full bg-white pt-10 pb-12 px-6 rounded-[40px] text-center border-2 border-pinky-light shadow-lg relative mt-16 box-overlay-visible">
-            <svg class="absolute -left-6 -bottom-6 w-20 h-20 opacity-40 rotate-12 z-30" viewBox="0 0 24 24"><use href="#icon-cat"></use></svg>
-            <svg class="absolute -right-5 -top-5 w-14 h-14 opacity-25 -rotate-12 z-30" viewBox="
-                <div id="page-shop" class="view-page relative z-10">
+            <svg class="absolute -left-6 -bottom-6 w-20 h-20 opacity-15 rotate-12 z-30" viewBox="0 0 24 24"><use href="#icon-teddy"></use></svg>
+            <svg class="absolute -right-5 -top-5 w-14 h-14 opacity-20 -rotate-12 z-30" viewBox="0 0 100 100"><use href="#icon-button"></use></svg>
+            <h2 class="text-[14px] font-bold mb-8 tracking-widest text-brown flex items-center justify-center gap-2 uppercase relative z-10">CONTACT US <i data-lucide="heart" class="w-4 h-4 text-pinky-dark fill-pinky-dark"></i></h2>
+            <div class="flex flex-col items-center gap-4 relative z-10">
+                <a href="https://www.facebook.com/xngunhwani" target="_blank" class="w-full max-w-[280px] bg-[#4A3B6B] text-white py-3.5 rounded-full text-[11px] font-bold tracking-wider shadow-md hover:-translate-y-1 transition-transform uppercase">FACEBOOK</a>
+                <a href="https://line.me/ti/p/@309ranuu" target="_blank" class="w-full max-w-[280px] bg-white border-2 border-[#4A3B6B] text-[#4A3B6B] py-3.5 rounded-full text-[11px] font-bold tracking-wider shadow-md hover:-translate-y-1 transition-transform uppercase">LINE</a>
+                <a href="https://www.instagram.com/graphi.rae" target="_blank" class="w-full max-w-[280px] bg-[#A488FF] text-white py-3.5 rounded-full text-[11px] font-bold tracking-wider shadow-md hover:-translate-y-1 transition-transform uppercase">INSTAGRAM</a>
+            </div>
+        </section>
+    </main>
+</div>
+<div id="page-shop" class="view-page relative z-10">
     <div class="bg-pinky p-8 text-center shadow-lg rounded-b-[40px] border-b-4 border-white">
         <h2 class="font-mitr text-2xl font-bold text-white tracking-wide">🎨 คลังฟอนต์ทั้งหมด</h2>
         <p class="text-xs text-white/80 mt-1">คัดสรรฟอนต์ลายมือน่ารักเพื่อคุณ</p>
@@ -141,18 +144,16 @@
     </div>
     <div class="px-6 py-12 flex flex-col items-center">
         <div class="bg-white rounded-[40px] p-8 shadow-sm border-2 border-pinky-light space-y-5 w-full max-w-sm relative box-overlay-visible">
-            <svg class="absolute -right-5 -top-5 w-14 h-14 opacity-60 rotate-12 z-10 drop-shadow-sm" viewBox="0 0 24 24"><use href="#icon-cat"></use></svg>
-            <svg class="absolute -left-4 -bottom-4 w-10 h-10 opacity-20 -rotate-12 z-0" viewBox="0 0 100 100"><use href="#icon-button"></use></svg>
-
-            <a href="https://www.facebook.com/xngunhwani" target="_blank" class="flex items-center gap-4 p-5 rounded-3xl bg-[#1877f2]/10 border border-[#1877f2]/20 hover:scale-[1.03] transition-transform relative z-20">
+            <svg class="absolute -right-4 -top-4 w-12 h-12 text-pinky opacity-20 rotate-12 z-0" viewBox="0 0 100 100"><use href="#icon-button"></use></svg>
+            <a href="https://www.facebook.com/xngunhwani" target="_blank" class="flex items-center gap-4 p-5 rounded-3xl bg-[#1877f2]/10 border border-[#1877f2]/20 hover:scale-[1.03] transition-transform">
                 <div class="w-14 h-14 rounded-2xl bg-[#1877f2] flex items-center justify-center text-white shadow-lg text-3xl font-bold">F</div>
                 <div><div class="font-bold text-brown text-lg">Facebook</div><div class="text-xs text-brown-light">องุ่นหวาน</div></div>
             </a>
-            <a href="https://www.instagram.com/graphi.rae" target="_blank" class="flex items-center gap-4 p-5 rounded-3xl bg-pink-500/10 border border-pink-500/20 hover:scale-[1.03] transition-transform relative z-20">
+            <a href="https://www.instagram.com/graphi.rae" target="_blank" class="flex items-center gap-4 p-5 rounded-3xl bg-pink-500/10 border border-pink-500/20 hover:scale-[1.03] transition-transform">
                 <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 flex items-center justify-center text-white shadow-lg text-3xl font-bold">I</div>
                 <div><div class="font-bold text-brown text-lg">Instagram</div><div class="text-xs text-brown-light">graphi.rae</div></div>
             </a>
-            <a href="https://line.me/ti/p/@309ranuu" target="_blank" class="flex items-center gap-4 p-5 rounded-3xl bg-green-500/10 border border-green-500/20 hover:scale-[1.03] transition-transform relative z-20">
+            <a href="https://line.me/ti/p/@309ranuu" target="_blank" class="flex items-center gap-4 p-5 rounded-3xl bg-green-500/10 border border-green-500/20 hover:scale-[1.03] transition-transform">
                 <div class="w-14 h-14 rounded-2xl bg-[#00b900] flex items-center justify-center text-white shadow-lg text-3xl font-bold">L</div>
                 <div><div class="font-bold text-brown text-lg">Line</div><div class="text-xs text-brown-light">@309ranuu</div></div>
             </a>
@@ -162,37 +163,30 @@
 
 <div id="fullPageCategory" class="fixed inset-0 bg-cream z-[2000] hidden overflow-y-auto">
     <div class="sticky top-0 bg-white p-4 flex items-center gap-4 border-b-2 border-pinky shadow-sm">
-        <button onclick="closeFullPage()" class="p-2 text-pinky-dark hover:scale-110 transition-transform"><i data-lucide="arrow-left"></i></button>
+        <button onclick="closeFullPage()" class="p-2 text-pinky-dark hover:scale-110"><i data-lucide="arrow-left"></i></button>
         <h2 id="fullPageTitle" class="font-mitr font-bold text-brown"></h2>
     </div>
     <div class="p-6 grid grid-cols-2 gap-4" id="fullPageGrid"></div>
 </div>
 
 <div id="bottomBar" class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t-4 border-pinky p-5 flex items-center justify-between shadow-2xl translate-y-full transition-all z-[3000]">
-    <div>
-        <div id="cartCount" class="text-[10px] font-bold text-pinky-dark uppercase tracking-wider">เลือก 0 รายการ</div>
-        <div class="text-2xl font-bold text-brown">฿<span id="cartTotal">0</span></div>
-    </div>
+    <div><div id="cartCount" class="text-[10px] font-bold text-pinky-dark uppercase tracking-wider">เลือก 0 รายการ</div><div class="text-2xl font-bold text-brown">฿<span id="cartTotal">0</span></div></div>
     <button onclick="openSummary()" class="bg-pinky-dark text-white px-8 py-3.5 rounded-2xl font-bold shadow-lg shadow-pinky/40 hover:scale-105 active:scale-95 transition-all">สั่งเลย ✨</button>
 </div>
 
 <div id="summaryModal" class="fixed inset-0 z-[5000] hidden items-center justify-center bg-black/70 backdrop-blur-sm p-4">
     <div class="bg-white w-full max-w-sm rounded-[40px] border-4 border-pinky shadow-2xl overflow-hidden animate-in zoom-in duration-300">
-        <div class="p-6 bg-pinky-light border-b-2 border-dashed border-pinky flex justify-between items-center text-brown relative box-overlay-visible">
-            <svg class="absolute -right-3 -top-3 w-10 h-10 opacity-80 rotate-12 z-10" viewBox="0 0 24 24"><use href="#icon-cat"></use></svg>
+        <div class="p-6 bg-pinky-light border-b-2 border-dashed border-pinky flex justify-between items-center text-brown">
             <h3 class="font-mitr font-bold">🛒 รายการที่เลือก</h3>
-            <button onclick="closeSummary()" class="text-2xl font-bold hover:text-pinky-dark">×</button>
+            <button onclick="closeSummary()" class="text-2xl font-bold">×</button>
         </div>
         <div class="p-6">
-            <div id="modalItemsList" class="space-y-3 max-h-[220px] overflow-y-auto text-sm pr-1 text-brown"></div>
+            <div id="modalItemsList" class="space-y-3 max-h-[220px] overflow-y-auto text-sm pr-1"></div>
             <div id="promoNotice" class="mt-4 p-3 bg-pinky/10 rounded-xl text-xs font-bold text-pinky-dark"></div>
             <div class="mt-4 pt-4 border-t-2 border-dashed border-pinky-light flex justify-between font-bold text-lg text-brown">
-                <span>ยอดรวม:</span>
-                <span class="text-pinky-dark text-xl">฿<span id="modalTotalPrice">0</span></span>
+                <span>ยอดรวม:</span><span class="text-pinky-dark text-xl">฿<span id="modalTotalPrice">0</span></span>
             </div>
-            <button onclick="checkout()" class="w-full mt-6 bg-[#00d300] text-white py-4 rounded-2xl font-bold shadow-lg flex justify-center gap-2 items-center hover:bg-green-600 transition-all">
-                <i data-lucide="message-circle"></i> คัดลอก & สั่งผ่าน LINE
-            </button>
+            <button onclick="checkout()" class="w-full mt-6 bg-[#00d300] text-white py-4 rounded-2xl font-bold shadow-lg flex justify-center gap-2 items-center hover:bg-green-600 transition-all"><i data-lucide="message-circle"></i> คัดลอก & สั่งผ่าน LINE</button>
         </div>
     </div>
 </div>
@@ -255,7 +249,7 @@
             { id: 'l1', name: 'Mochi Soft (LKT Mochi Soft)', price: 299, detail: 'มีคลิปสอนแต่งหัวป้ายแถมให้‼️', isPromo: false, img: ['https://img1.pic.in.th/images/-458_20260206201301.png', 'https://img1.pic.in.th/images/-258_20251226180828.png'], tags: ['เนื้อหา'] },
             { id: 'l2', name: 'Rochy (LKT Rochy)', price: 199, detail: 'มีคลิปสอนแต่งหัวป้ายแถมให้‼️', isPromo: false, img: ['https://img2.pic.in.th/-393_20260115175306.png', 'https://img1.pic.in.th/images/-393_20260115175819.png'], tags: ['โปร่ง'] },
             { id: 'l3', name: 'Feather (LKT Feather)', price: 99, oldPrice: 159, detail: 'รวมชพณ.', isPromo: false, img: 'https://img2.pic.in.th/-530_20260226002912.png', tags: ['เนื้อหา'] },
-            { id: 'l4', name: 'Bagie (LKT Bagie)', price: 79, oldPrice: 129, detail: 'มีคลิปสอนแต่งหัวป้ายแถมให้‼️<br>ราคาลงกลุ่มทักส่วนตัวเท่านั้น', isPromo: false, img: ['https://img2.pic.in.th/-587_20260310181031.png', 'https://img1.pic.in.th/images/-589_20260310175521.png'], tags: ['เนื้อหา'] }
+            { id: 'l4', name: 'Bagie (LKT Bagie)', price: 79, oldPrice: 129, detail: 'แถมคลิปสอนแต่งหัวป้ายแถมให้‼️<br>ราคาลงกลุ่มทักส่วนตัวเท่านั้น', isPromo: false, img: ['https://img2.pic.in.th/-587_20260310181031.png', 'https://img1.pic.in.th/images/-589_20260310175521.png'], tags: ['เนื้อหา'] }
         ]}
     ];
 
@@ -270,7 +264,7 @@
         if (pageId === 'shop') renderShop();
     }
 
-    // ✅ แสดงรายละเอียดสินค้า 2 บรรทัดและคุมความสูงการ์ด
+    // ✅ คืนรายละเอียด 2 บรรทัดและคุมความสูงการ์ด
     function createCardHtml(p, catName) {
         const isSel = cart.find(i => i.id === p.id) ? 'selected' : '';
         let imgHtml = Array.isArray(p.img) ? 
@@ -349,7 +343,7 @@
     }
 
     function checkout() {
-        const res = calculateTotal(); let text = "สรุปรายการสั่งซื้อ💖\n\n" + cart.map(i => `• ${i.cat}: ${i.name} (${i.price}.-)`).join('\n') + `\n\nอดสุทธิ: ${res.total} บาท\nขอบคุณที่อุดหนุนองุ่นนะคะ⭐️`;
+        const res = calculateTotal(); let text = "สรุปรายการสั่งซื้อ💖\n\n" + cart.map(i => `• ${i.cat}: ${i.name} (${i.price}.-)`).join('\n') + `\n\nยอดสุทธิ: ${res.total} บาท\nขอบคุณที่อุดหนุนองุ่นนะคะ⭐️`;
         const temp = document.createElement("textarea"); temp.value = text; document.body.appendChild(temp); temp.select(); document.execCommand("copy"); document.body.removeChild(temp);
         alert("คัดลอกรายการสั่งซื้อแล้ว! กำลังไปที่หน้า LINE..."); window.location.href = "https://line.me/ti/p/@309ranuu";
     }
@@ -366,12 +360,11 @@
     function closeFullPage() { document.getElementById('fullPageCategory').classList.add('hidden'); }
     function closeSummary() { document.getElementById('summaryModal').classList.add('hidden'); }
 
-    // Particles (ปรับโทนสีให้เข้ากับแมวครีม)
     const P = document.getElementById('pts');
-    ['★','♥','🍇','🐾'].forEach(e => {
-        for (let j = 0; j < 5; j++) {
+    ['★','♥','🍇'].forEach(e => {
+        for (let j = 0; j < 6; j++) {
             const d = document.createElement('div'); d.className = 'pt'; d.textContent = e;
-            d.style.cssText = `left:${Math.random()*100}vw;font-size:${14+Math.random()*10}px;color:#F5DEB3;animation-duration:${10+Math.random()*15}s;animation-delay:${-Math.random()*20}s;`;
+            d.style.cssText = `left:${Math.random()*100}vw;font-size:${14+Math.random()*10}px;color:#D1C7F0;animation-duration:${10+Math.random()*15}s;animation-delay:${-Math.random()*20}s;`;
             P.appendChild(d);
         }
     });
