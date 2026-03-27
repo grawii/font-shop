@@ -341,7 +341,7 @@
     }
 
     function checkout() {
-        const res = calculateTotal(); let text = "สรุปรายการสั่งซื้อ💖\n\n" + cart.map(i => `• ${i.cat}: ${i.name} (${i.price}.-)`).join('\n') + `\n\nยอดสุทธิ: ${res.total} บาท\nขอบคุณที่อุดหนุนองุ่นนะคะ⭐️`;
+        const res = calculateTotal(); let text = "สรุปรายการสั่งซื้อ💖\n\n" + cart.map(i => `• ${i.cat}: ${i.name} (${i.price}.-)`).join('\n') + `\n\nยอดสุทธิ: ${res.total} บาท\n--------------------\nขอบคุณที่มาอุดหนุนร้านองุ่นนะคะ⭐️\nรอองุ่นตอบกลับ 5-10 นาทีน้า🫶🏻☁️`;
         navigator.clipboard.writeText(text); window.location.href = "https://line.me/ti/p/@309ranuu";
     }
 
