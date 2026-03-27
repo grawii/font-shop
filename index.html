@@ -15,17 +15,9 @@
                 extend: {
                     fontFamily: { sans: ['Kanit', 'sans-serif'], mitr: ['Mitr', 'sans-serif'] },
                     colors: {
-                        cream: '#F8F4FF', /* เปลี่ยนเป็นพื้นม่วงครามแอปพาสเทลอ่อนๆ */
-                        pinky: { 
-                            light: '#E6E1FF', /* ม่วงอ่อนพาสเทล สำหรับพื้นหลังกรอบ */
-                            DEFAULT: '#C1B6FF', /* ม่วงลาเวนเดอร์หลัก */
-                            dark: '#A488FF' /* ม่วงเข้ม สำหรับจุดเน้น */
-                        },
-                        brown: { 
-                            DEFAULT: '#4A3B6B', /* น้ำตาลอมม่วงเข้ม สำหรับตัวอักษรหลัก */
-                            light: '#7C6B9A', /* น้ำตาลอมม่วงอ่อน */
-                            dark: '#352A50' /* น้ำตาลเข้มมาก */
-                        }
+                        cream: '#F8F4FF',
+                        pinky: { light: '#E6E1FF', DEFAULT: '#C1B6FF', dark: '#A488FF' },
+                        brown: { DEFAULT: '#4A3B6B', light: '#7C6B9A', dark: '#352A50' }
                     }
                 }
             }
@@ -36,24 +28,18 @@
         body { background-color: #F8F4FF; color: #4A3B6B; font-family: 'Kanit', sans-serif; overflow-x: hidden; padding-bottom: 100px; }
         .view-page { display: none; }
         .view-page.active { display: block; }
-        
-        /* Drawer & Overlay */
         .drawer { position: fixed; top: 0; left: 0; z-index: 201; width: 260px; height: 100vh; background: #F8F4FF; border-right: 4px solid #C1B6FF; transform: translateX(-100%); transition: 0.3s; }
         .drawer.open { transform: translateX(0); }
         .overlay { position: fixed; inset: 0; z-index: 200; background: rgba(53, 42, 80, 0.3); display: none; }
-        
-        /* Animations */
         @keyframes float { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-10px) rotate(5deg); } }
         .animate-float { animation: float 4s ease-in-out infinite; }
         .pt { position: absolute; animation: ptUp linear infinite; opacity: 0; }
         @keyframes ptUp { 0% { transform: translateY(105vh); opacity: 0; } 8% { opacity: 0.45; } 100% { transform: translateY(-8vh) rotate(360deg); opacity: 0; } }
-        
-        /* Custom UI */
         .item-card.selected { border-color: #A488FF; background: rgba(193, 182, 255, 0.2); box-shadow: 0 0 15px rgba(164, 136, 255, 0.4); }
-        .card-slider { display: flex; transition: 0.5s; }
+        .card-slider { display: flex; transition: 0.5s; width: 100%; height: 100%; aspect-ratio: 1/1; }
     </style>
 </head>
-<body class="antialiased selection:bg-pinky selection:text-white">
+<body class="antialiased selection:bg-pinky selection:text-white relative">
 
 <div id="pts"></div>
 
@@ -65,59 +51,59 @@
     </symbol>
     <symbol id="icon-button" viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="46" fill="#D1C7F0" /><circle cx="50" cy="50" r="28" fill="#F0E6FF" />
-        <path d="M38 39 L62 63 M62 39 L38 63" stroke="#A79ADCA" stroke-width="8" stroke-linecap="round"/>
+        <path d="M38 39 L62 63 M62 39 L38 63" stroke="#DCA2B1" stroke-width="8" stroke-linecap="round"/>
     </symbol>
 </svg>
 
-<button onclick="toggleDrawer()" class="fixed top-4 left-4 z-[150] p-3 bg-white/80 backdrop-blur-md rounded-2xl shadow-md border border-pinky-light text-pinky-dark">
+<button onclick="toggleDrawer()" class="fixed top-4 left-4 z-[150] p-3.5 bg-white/80 backdrop-blur-md rounded-full shadow-lg border border-pinky-light text-pinky-dark hover:scale-110 active:scale-95 transition-all">
     <i data-lucide="menu"></i>
 </button>
 
 <div class="overlay" id="overlay" onclick="toggleDrawer()"></div>
 <div class="drawer" id="drawer">
     <div class="p-8 text-center border-b-2 border-dashed border-pinky-light">
-        <div class="text-4xl mb-2 animate-float">🍇</div>
+        <div class="text-5xl mb-3 animate-float">🍇</div>
         <h2 class="font-mitr font-bold text-xl text-brown">องุ่นหวาน Studio</h2>
         <p class="text-[10px] tracking-widest text-pinky-dark uppercase mt-1">Handwritten Fonts</p>
     </div>
     <div class="flex flex-col p-4 space-y-2 mt-4">
-        <button onclick="navTo('home')" class="flex items-center gap-3 p-4 rounded-2xl text-brown font-medium hover:bg-pinky-light transition-all">
+        <button onclick="navTo('home')" class="dr-item flex items-center gap-3.5 p-4.5 rounded-2xl text-brown font-medium hover:bg-pinky-light transition-all">
             <i data-lucide="home" class="w-5 h-5"></i> หน้าแรก
         </button>
-        <button onclick="navTo('shop')" class="flex items-center gap-3 p-4 rounded-2xl text-brown font-medium hover:bg-pinky-light transition-all">
+        <button onclick="navTo('shop')" class="dr-item flex items-center gap-3.5 p-4.5 rounded-2xl text-brown font-medium hover:bg-pinky-light transition-all">
             <i data-lucide="shopping-bag" class="w-5 h-5"></i> สินค้าทั้งหมด
         </button>
-        <button onclick="navTo('contact')" class="flex items-center gap-3 p-4 rounded-2xl text-brown font-medium hover:bg-pinky-light transition-all">
+        <button onclick="navTo('contact')" class="dr-item flex items-center gap-3.5 p-4.5 rounded-2xl text-brown font-medium hover:bg-pinky-light transition-all">
             <i data-lucide="phone" class="w-5 h-5"></i> ติดต่อเรา
         </button>
     </div>
 </div>
 
 <div id="page-home" class="view-page active relative z-10">
-    <header class="bg-gradient-to-r from-pinky-light to-cream pt-12 pb-8 px-6 relative rounded-b-[40px] shadow-sm border-b-4 border-white flex items-center gap-5 overflow-hidden">
-        <div class="shrink-0 relative group cursor-pointer hover:scale-105 transition-transform duration-300">
-            <svg class="absolute -top-2 -left-2 w-8 h-8 opacity-40 rotate-12" viewBox="0 0 100 100"><use href="#icon-button"></use></svg>
-            <div class="w-20 h-20 rounded-2xl border-[4px] border-white shadow-md overflow-hidden bg-white flex items-center justify-center relative z-10">
-                <img src="https://img2.pic.in.th/IMG_3671.png" alt="องุ่นหวาน Studio Logo" class="w-full h-full object-cover">
+    <header class="bg-gradient-to-r from-pinky-light to-cream pt-16 pb-10 px-6 relative rounded-b-[50px] shadow-sm border-b-4 border-white flex items-center gap-6 overflow-hidden">
+        <div class="shrink-0 relative">
+            <svg class="absolute -top-3 -left-3 w-10 h-10 opacity-30 rotate-12" viewBox="0 0 100 100"><use href="#icon-button"></use></svg>
+            <div class="w-24 h-24 rounded-3xl border-[5px] border-white shadow-lg overflow-hidden bg-white flex items-center justify-center z-10 relative">
+                <img src="https://img2.pic.in.th/IMG_3671.png" alt="Logo" class="w-full h-full object-cover">
             </div>
-            <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-sm border border-pinky-light z-20">
-                <i data-lucide="heart" class="w-3 h-3 text-pinky-dark fill-pinky-dark"></i>
+            <div class="absolute -bottom-2 -right-2 w-7 h-7 bg-white rounded-full flex items-center justify-center shadow-md border border-pinky-light z-20">
+                <i data-lucide="heart" class="w-3.5 h-3.5 text-pinky-dark fill-pinky-dark"></i>
             </div>
         </div>
         <div class="flex-1 relative z-10">
-            <div class="flex items-center gap-1 mb-1 opacity-70">
-                <i data-lucide="star" class="w-3 h-3 text-pinky-dark fill-pinky-dark"></i>
-                <i data-lucide="sparkles" class="w-3 h-3 text-brown"></i>
+            <div class="flex items-center gap-1.5 mb-1.5 opacity-70">
+                <i data-lucide="star" class="w-3.5 h-3.5 text-pinky-dark fill-pinky-dark"></i>
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-brown"></i>
             </div>
-            <h1 class="text-2xl font-bold text-brown font-mitr leading-tight relative">องุ่นหวาน Studio</h1>
-            <p class="text-[10px] text-brown-light font-medium bg-white/60 inline-block px-3 py-1 rounded-full border border-pinky-light/30">จำหน่ายฟอนต์ลายมือราคาน่ารัก 🍇</p>
+            <h1 class="text-3xl font-bold text-brown font-mitr leading-tight relative">องุ่นหวาน Studio</h1>
+            <p class="text-xs text-brown-light font-medium bg-white/60 inline-block px-4 py-1 rounded-full border border-pinky-light/30">จำหน่ายฟอนต์ลายมือราคาน่ารัก 🍇</p>
         </div>
     </header>
 
-    <main class="px-6 py-8 space-y-10">
-        <section class="bg-white rounded-[35px] p-6 shadow-sm border-2 border-pinky-light relative overflow-hidden">
-            <svg class="absolute -right-3 -top-3 w-10 h-10 text-brown-light opacity-20 -rotate-12" viewBox="0 0 24 24"><use href="#icon-teddy"></use></svg>
-            <h2 class="text-lg font-bold text-brown mb-2 flex items-center gap-2 relative z-10">
+    <main class="px-6 py-10 space-y-12">
+        <section class="bg-white rounded-[40px] p-8 shadow-sm border-2 border-pinky-light relative overflow-hidden">
+            <svg class="absolute -right-4 -top-4 w-12 h-12 text-brown-light opacity-15 -rotate-12" viewBox="0 0 24 24"><use href="#icon-teddy"></use></svg>
+            <h2 class="text-xl font-bold text-brown mb-3 flex items-center gap-2 relative z-10">
                 <i data-lucide="sparkles" class="w-5 h-5 text-pinky-dark"></i> ยินดีต้อนรับ ✨
             </h2>
             <p class="text-sm leading-relaxed text-brown-light italic relative z-10">
@@ -126,91 +112,144 @@
         </section>
 
         <section>
-            <h2 class="text-xl font-bold text-brown mb-5 flex items-center gap-2 border-b-2 border-pinky-light pb-2">
-                <i data-lucide="star" class="w-5 h-5 text-pinky-dark"></i> สินค้าแนะนำ
+            <h2 class="text-2xl font-bold text-brown mb-6 flex items-center gap-2 border-b-2 border-pinky-light pb-2">
+                <i data-lucide="star" class="w-6 h-6 text-pinky-dark"></i> สินค้าแนะนำ
             </h2>
-            <div id="home-recommend" class="grid grid-cols-2 gap-4"></div>
+            <div id="home-recommend" class="grid grid-cols-2 gap-5"></div>
+        </section>
+
+        <section class="w-full bg-white pt-10 pb-12 px-6 rounded-[40px] text-center border-2 border-pinky-light shadow-lg relative overflow-hidden mt-16">
+            <svg class="absolute -left-4 -bottom-4 w-16 h-16 opacity-10" viewBox="0 0 24 24"><use href="#icon-teddy"></use></svg>
+            <svg class="absolute -right-4 -top-4 w-16 h-16 opacity-10" viewBox="0 0 100 100"><use href="#icon-button"></use></svg>
+            <h2 class="text-[14px] font-bold mb-8 tracking-widest text-brown flex items-center justify-center gap-2 uppercase relative z-10">CONTACT US <i data-lucide="heart" class="w-4 h-4 text-pinky-dark fill-pinky-dark"></i></h2>
+            <div class="flex flex-col items-center gap-4 relative z-10">
+                <a href="https://www.facebook.com/xngunhwani" target="_blank" class="w-full max-w-[280px] bg-[#4A3B6B] text-white py-3.5 rounded-full text-[11px] font-bold tracking-wider shadow-md uppercase">FACEBOOK</a>
+                <a href="https://line.me/ti/p/@309ranuu" target="_blank" class="w-full max-w-[280px] bg-white border-2 border-[#4A3B6B] text-[#4A3B6B] py-3.5 rounded-full text-[11px] font-bold tracking-wider shadow-md uppercase">LINE</a>
+                <a href="https://www.instagram.com/graphi.rae" target="_blank" class="w-full max-w-[280px] bg-[#A488FF] text-white py-3.5 rounded-full text-[11px] font-bold tracking-wider shadow-md uppercase">INSTAGRAM</a>
+            </div>
         </section>
     </main>
 </div>
 <div id="page-shop" class="view-page relative z-10">
-    <div class="bg-pinky p-6 text-center shadow-md rounded-b-[30px] border-b-4 border-white">
-        <h2 class="font-mitr text-xl font-bold text-white tracking-wide">🎨 คลังฟอนต์ทั้งหมด</h2>
+    <div class="bg-pinky p-8 text-center shadow-lg rounded-b-[40px] border-b-4 border-white">
+        <h2 class="font-mitr text-2xl font-bold text-white tracking-wide">🎨 คลังฟอนต์ทั้งหมด</h2>
+        <p class="text-xs text-white/80 mt-1">เลือกเครือที่คุณชอบได้เลย!</p>
     </div>
-    <div id="shop-content" class="px-6 py-10 space-y-12"></div>
+    <div id="shop-content" class="px-6 py-12 space-y-16"></div>
 </div>
 
 <div id="page-contact" class="view-page relative z-10">
-    <div class="bg-pinky p-6 text-center shadow-md rounded-b-[30px] border-b-4 border-white">
-        <h2 class="font-mitr text-xl font-bold text-white tracking-wide">📱 ติดต่อเรา</h2>
+    <div class="bg-pinky p-8 text-center shadow-lg rounded-b-[40px] border-b-4 border-white">
+        <h2 class="font-mitr text-2xl font-bold text-white tracking-wide">📱 ติดต่อสอบถาม</h2>
+        <p class="text-xs text-white/80 mt-1">รายละเอียดช่องทางการติดต่อ</p>
     </div>
-    
     <div class="px-6 py-12 flex flex-col items-center">
-        <footer class="w-full bg-white pt-10 pb-12 px-6 rounded-[40px] text-center border-2 border-pinky-light shadow-lg relative overflow-hidden">
-            <svg class="absolute -left-4 -bottom-4 w-16 h-16 opacity-10" viewBox="0 0 24 24"><use href="#icon-teddy"></use></svg>
-            <svg class="absolute -right-4 -top-4 w-16 h-16 opacity-10" viewBox="0 0 100 100"><use href="#icon-button"></use></svg>
-
-            <h2 class="text-[14px] font-bold mb-8 tracking-widest text-brown flex items-center justify-center gap-2 uppercase relative z-10">
-                CONTACT US <i data-lucide="heart" class="w-4 h-4 text-pinky-dark fill-pinky-dark"></i>
-            </h2>
-            
-            <div class="flex flex-col items-center gap-4 relative z-10">
-                <div class="flex justify-center gap-3 w-full max-w-[300px]">
-                    <a href="https://www.facebook.com/xngunhwani" target="_blank" class="flex-1 bg-[#4A3B6B] text-white py-3.5 rounded-full text-[11px] font-bold tracking-wider hover:-translate-y-1 transition-transform shadow-md uppercase">FACEBOOK</a>
-                    <a href="https://line.me/ti/p/@309ranuu" target="_blank" class="flex-1 bg-white border-2 border-[#4A3B6B] text-[#4A3B6B] py-3.5 rounded-full text-[11px] font-bold tracking-wider hover:-translate-y-1 transition-transform shadow-md uppercase">LINE</a>
-                </div>
-                <a href="https://www.instagram.com/graphi.rae" target="_blank" class="w-[150px] bg-[#A488FF] text-white py-3.5 rounded-full text-[11px] font-bold tracking-wider hover:-translate-y-1 transition-transform shadow-md uppercase">INSTAGRAM</a>
-            </div>
-            
-            <p class="mt-10 text-[12px] font-medium text-brown-light italic flex items-center justify-center gap-2 relative z-10">
-                ขอบคุณที่มาอุดหนุนองุ่นนะคะ <i data-lucide="star" class="w-3 h-3 text-pinky fill-pinky"></i>
-            </p>
-        </footer>
-    </div>
-</div>
-
-<div id="bottomBar" class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t-4 border-pinky p-5 flex items-center justify-between shadow-2xl translate-y-full transition-all z-[3000]">
-    <div><div id="cartCount" class="text-[10px] font-bold text-pinky-dark uppercase">เลือก 0 รายการ</div><div class="text-2xl font-bold text-brown">฿<span id="cartTotal">0</span></div></div>
-    <button onclick="openSummary()" class="bg-pinky-dark text-white px-8 py-3.5 rounded-2xl font-bold shadow-lg shadow-pinky/40 hover:scale-105 active:scale-95 transition-all">สั่งเลย ✨</button>
-</div>
-
-<div id="summaryModal" class="fixed inset-0 z-[5000] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-    <div class="bg-white w-full max-w-sm rounded-[40px] border-4 border-pinky shadow-2xl overflow-hidden animate-in zoom-in duration-300">
-        <div class="p-6 bg-pinky-light border-b border-pinky-light flex justify-between items-center">
-            <h3 class="font-mitr font-bold text-brown">🛒 รายการที่เลือก</h3>
-            <button onclick="closeSummary()" class="text-2xl text-brown">×</button>
-        </div>
-        <div class="p-6">
-            <div id="modalItemsList" class="space-y-3 max-h-[200px] overflow-y-auto text-sm text-brown"></div>
-            <div id="promoNotice" class="mt-4 text-xs font-bold text-pinky-dark"></div>
-            <div class="mt-4 pt-4 border-t-2 border-dashed border-pinky-light flex justify-between font-bold text-lg text-brown">
-                <span>ยอดรวม:</span><span class="text-pinky-dark">฿<span id="modalTotalPrice">0</span></span>
-            </div>
-            <button onclick="checkout()" class="w-full mt-6 bg-[#00d300] text-white py-4 rounded-2xl font-bold shadow-lg flex justify-center gap-2 items-center hover:bg-green-600"><i data-lucide="message-circle"></i> สั่งผ่าน LINE</button>
+        <div class="bg-white rounded-[40px] p-8 shadow-sm border-2 border-pinky-light space-y-5 w-full max-w-sm">
+            <a href="https://www.facebook.com/xngunhwani" target="_blank" class="flex items-center gap-4 p-5 rounded-3xl bg-[#1877f2]/10 border border-[#1877f2]/20 hover:scale-[1.03] transition-transform">
+                <div class="w-14 h-14 rounded-2xl bg-[#1877f2] flex items-center justify-center text-white shadow-lg text-3xl font-bold">F</div>
+                <div><div class="font-bold text-brown text-lg">Facebook</div><div class="text-xs text-brown-light">องุ่นหวาน</div></div>
+            </a>
+            <a href="https://www.instagram.com/graphi.rae" target="_blank" class="flex items-center gap-4 p-5 rounded-3xl bg-pink-500/10 border border-pink-500/20 hover:scale-[1.03] transition-transform">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 flex items-center justify-center text-white shadow-lg text-3xl font-bold">I</div>
+                <div><div class="font-bold text-brown text-lg">Instagram</div><div class="text-xs text-brown-light">graphi.rae</div></div>
+            </a>
+            <a href="https://line.me/ti/p/@309ranuu" target="_blank" class="flex items-center gap-4 p-5 rounded-3xl bg-green-500/10 border border-green-500/20 hover:scale-[1.03] transition-transform">
+                <div class="w-14 h-14 rounded-2xl bg-[#00b900] flex items-center justify-center text-white shadow-lg text-3xl font-bold">L</div>
+                <div><div class="font-bold text-brown text-lg">Line</div><div class="text-xs text-brown-light">@309ranuu</div></div>
+            </a>
         </div>
     </div>
 </div>
 
 <div id="fullPageCategory" class="fixed inset-0 bg-cream z-[2000] hidden overflow-y-auto">
-    <div class="sticky top-0 bg-white p-4 flex items-center gap-4 border-b-2 border-pinky">
+    <div class="sticky top-0 bg-white p-4 flex items-center gap-4 border-b-2 border-pinky shadow-sm">
         <button onclick="closeFullPage()" class="p-2 text-pinky-dark"><i data-lucide="arrow-left"></i></button>
         <h2 id="fullPageTitle" class="font-mitr font-bold text-brown"></h2>
     </div>
     <div class="p-6 grid grid-cols-2 gap-4" id="fullPageGrid"></div>
 </div>
 
+<div id="bottomBar" class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t-4 border-pinky p-5 flex items-center justify-between shadow-2xl translate-y-full transition-all z-[3000]">
+    <div><div id="cartCount" class="text-[10px] font-bold text-pinky-dark uppercase tracking-wider">เลือก 0 รายการ</div><div class="text-2xl font-bold text-brown">฿<span id="cartTotal">0</span></div></div>
+    <button onclick="openSummary()" class="bg-pinky-dark text-white px-8 py-3.5 rounded-2xl font-bold shadow-lg shadow-pinky/40 hover:scale-105 active:scale-95 transition-all">สั่งเลย ✨</button>
+</div>
+
+<div id="summaryModal" class="fixed inset-0 z-[5000] hidden items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+    <div class="bg-white w-full max-w-sm rounded-[40px] border-4 border-pinky shadow-2xl overflow-hidden">
+        <div class="p-6 bg-pinky-light border-b-2 border-dashed border-pinky flex justify-between items-center">
+            <h3 class="font-mitr font-bold text-brown">🛒 รายการที่เลือก</h3>
+            <button onclick="closeSummary()" class="text-2xl text-brown">×</button>
+        </div>
+        <div class="p-6">
+            <div id="modalItemsList" class="space-y-3 max-h-[220px] overflow-y-auto text-sm text-brown pr-1"></div>
+            <div id="promoNotice" class="mt-4 p-3 bg-pinky/10 rounded-xl text-xs font-bold text-pinky-dark"></div>
+            <div class="mt-4 pt-4 border-t-2 border-dashed border-pinky-light flex justify-between font-bold text-lg text-brown">
+                <span>ยอดชำระรวม:</span><span class="text-pinky-dark text-xl">฿<span id="modalTotalPrice">0</span></span>
+            </div>
+            <button onclick="checkout()" class="w-full mt-6 bg-[#00d300] text-white py-4 rounded-2xl font-bold shadow-lg flex justify-center gap-2 items-center hover:bg-green-600 active:scale-95 transition-all"><i data-lucide="message-circle"></i> คัดลอก & สั่งผ่าน LINE</button>
+        </div>
+    </div>
+</div>
 <script>
-    // ข้อมูลสินค้าเหมือนเดิม 100% (ย่อเพื่อประหยัดพื้นที่ แต่ในโค้ดจริงคุณใส่ให้ครบตามเดิม)
     const categories = [
         { id: 'cat1', name: 'ฟอนต์เครือ GRP - ดึงเมลเอง🔥', products: [
-            { id: 'g1', name: 'มนตรา (GRP Mantra)', price: 89, oldPrice: 129, detail: 'มี 3 น้ำหนัก', isPromo: false, img: 'https://img1.pic.in.th/images/IMG_4602.png', tags: ['เนื้อหา'] },
-            { id: 'g4', name: 'PuffyPop (GRP PuffyPop)', price: 99, oldPrice: 169, detail: 'มี 2 ไฟล์', isPromo: false, img: 'https://img1.pic.in.th/images/IMG_3011.jpeg', tags: ['โปร่ง'] }
+            { id: 'g1', name: 'มนตรา (GRP Mantra)', price: 89, oldPrice: 129, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://img1.pic.in.th/images/IMG_4602.png', tags: ['เนื้อหา'] },
+            { id: 'g2', name: 'ไฮสคูล (GRP High School)', price: 129, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://img2.pic.in.th/Untitled88_20260325211524.png', tags: ['เนื้อหา'] },
+            { id: 'g3', name: 'คุ๊กกี้ (GRP Cookie)', price: 39, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://img1.pic.in.th/images/Untitled89_20260325213137.png', tags: ['เนื้อหา'] },
+            { id: 'g4', name: 'PuffyPop (GRP PuffyPop)', price: 99, oldPrice: 169, detail: 'มี 2 ไฟล์ (ปกติ/โปร่ง)', isPromo: false, img: 'https://img1.pic.in.th/images/IMG_3011.jpeg', tags: ['เนื้อหา', 'โปร่ง'] },
+            { id: 'g5', name: 'โมจิปัง (GRP MochiPung)', price: 59, oldPrice: 129, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://img2.pic.in.th/IMG_4604f4cbfa878d2d0190.png', tags: ['เนื้อหา'] },
+            { id: 'g6', name: 'เล่าเรื่อง (GRP StoryTelling)', price: 59, oldPrice: 129, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://img2.pic.in.th/Untitled82_20260325195517.png', tags: ['เนื้อหา'] }
         ]},
         { id: 'cat2', name: 'ฟอนต์เครือ AM', products: [
-            { id: 'a1', name: 'บัลเดอร์ (AM Balder)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img1.pic.in.th/images/06E02B71-90EC-4ABB-B1D5-B16D571E69A1.jpeg', tags: ['เนื้อหา'] }
+            { id: 'a1', name: 'บัลเดอร์ (AM Balder)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img1.pic.in.th/images/06E02B71-90EC-4ABB-B1D5-B16D571E69A1.jpeg', tags: ['เนื้อหา'] },
+            { id: 'a2', name: 'ซันเดย์ (AM Sunday)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img2.pic.in.th/D1E3E059-CE9D-4BB4-8D44-C0FEB86C1F30.jpeg', tags: ['เนื้อหา'] },
+            { id: 'a3', name: 'เรนเจอร์ (AM Ranger)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img2.pic.in.th/CF5D39C1-27F2-40C7-A907-FFB7BAF60226.jpeg', tags: ['เนื้อหา'] },
+            { id: 'a4', name: 'วินเทอร์ (AM Winter)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img1.pic.in.th/images/1A872D06-44D6-42D9-A220-0FC54C97763B.jpeg', tags: ['เนื้อหา'] },
+            { id: 'a5', name: 'เอสเม่ (AM Esme)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img2.pic.in.th/62E2B8DA-7760-4550-A250-8110984CE2FD.jpeg', tags: ['เนื้อหา'] },
+            { id: 'a6', name: 'เทียนหอม (AM Tianhom)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img1.pic.in.th/images/2A111247-4E6E-44D7-85D7-529D69471666.jpeg', tags: ['เนื้อหา'] },
+            { id: 'a7', name: 'โอลิเวีย (AM Olivia)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img2.pic.in.th/4B64ED71-2998-458E-9EDE-9C2962DDE825.jpeg', tags: ['เนื้อหา'] }
+        ]},
+        { id: 'cat3', name: 'ฟอนต์เครือ PRN', products: [
+            { id: 'p1', name: 'มันช์กิ้น (PRN Munchkin)', price: 49, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/3E6BC611-316E-4038-8DB7-3AA058B4B2B5.jpeg', tags: ['เนื้อหา'] },
+            { id: 'p2', name: 'ซอฟท์คุกกี้ (PRN SoftCookie)', price: 69, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/7363B561-6330-4505-91B4-630C60590D78.jpeg', tags: ['เนื้อหา'] },
+            { id: 'p3', name: 'ซัมเมอร์ (PRN Summer)', price: 59, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/86EEE341-AF29-4143-9FFD-29880598C2FB.jpeg', tags: ['เนื้อหา'] },
+            { id: 'p4', name: 'บันนี่ (PRN Bunny)', price: 49, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/08374BAE-A61C-4771-8724-23240E1EDDAE.jpeg', tags: ['เนื้อหา'] },
+            { id: 'p5', name: 'เชอร์รี่ (PRN Cherry)', price: 49, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/702A4A6A-59D1-4F06-982A-5685F0679540.jpeg', tags: ['เนื้อหา'] },
+            { id: 'p6', name: 'สโนว์บอล (PRN SnowBall)', price: 39, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/3E886520-FE8D-4DA2-A27D-652D72172FA0.jpeg', tags: ['เนื้อหา'] },
+            { id: 'p7', name: 'เดซี่ (PRN Daisy)', price: 45, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/1603A0C8-F19F-494B-BEF4-A3A7064A1F12.jpeg', tags: ['เนื้อหา'] },
+            { id: 'p8', name: 'Puppy (PRN Puppy)', price: 65, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/AE0944CF-38F9-44F3-9A12-C8E36BE8F12F.jpeg', tags: ['เนื้อหา'] },
+            { id: 'p9', name: 'หมีจิ๋ว (PRN Tiny Teddies)', price: 79, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/35A6312A-9300-4330-932A-778C8168D14D.jpeg', tags: ['เนื้อหา'] },
+            { id: 'p10', name: 'สนามเด็กเล่น (PRN Playground)', price: 59, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/51F7BE76-1CD1-4741-98F4-0C8030A7DCC9.jpeg', tags: ['เนื้อหา'] },
+            { id: 'p11', name: 'Chubby Cat (PRN Chubby Cat)', price: 59, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/3E1D1962-DDE5-40E8-A8EC-40540B672F3A.jpeg', tags: ['เนื้อหา'] },
+            { id: 'p12', name: 'โคลเวอร์ (PRN Clover)', price: 75, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/FA57404D-FA08-43A8-8B82-7B73E3C6AA83.jpeg', tags: ['เนื้อหา'] }
+        ]},
+        { id: 'cat4', name: 'ฟอนต์เครือ CNJ - ดึงเมลเอง🔥', products: [
+            { id: 'c1', name: 'เมลโล่ฟลาวเวอร์ (CNJ MelloFlower)', price: 69, detail: 'โปร 2 ฟอนต์ 99.-', isPromo: true, img: 'https://img1.pic.in.th/images/9246A072-D55B-4D64-B887-2C8B38190413.jpeg', tags: ['เนื้อหา'] },
+            { id: 'c2', name: 'เมลโล่ทิวลิป (CNJ MelloTulip)', price: 69, detail: 'โปร 2 ฟอนต์ 99.-', isPromo: true, img: 'https://img2.pic.in.th/DBA1261C-4446-4780-AA8D-81C4F0554EBC.jpeg', tags: ['เนื้อหา'] },
+            { id: 'c3', name: 'เมลโล่วิสทีเรีย (CNJ MelloWisteria)', price: 69, detail: 'โปร 2 ฟอนต์ 99.-', isPromo: true, img: 'https://img1.pic.in.th/images/AE2BC29D-CFD3-4B76-8F74-3FC0A1CC296D.jpeg', tags: ['เนื้อหา'] },
+            { id: 'c4', name: 'เมลโล่คอสมอส (CNJ MelloCosmos)', price: 69, detail: 'โปร 2 ฟอนต์ 99.-', isPromo: true, img: 'https://img1.pic.in.th/images/A914C23E-2E3C-4D57-A341-73F084D36A27.jpeg', tags: ['เนื้อหา'] },
+            { id: 'c5', name: 'เมลโล่สโนว์วี่ (CNJ MelloSnowy)', price: 69, detail: 'โปร 2 ฟอนต์ 99.-', isPromo: true, img: 'https://img2.pic.in.th/E8ED39E7-E8BF-414E-A568-FC02A2CE61AD.jpeg', tags: ['เนื้อหา'] },
+            { id: 'c6', name: 'เมลโล่ลิลลี่เบล (CNJ MelloLilybell)', price: 69, detail: 'โปร 2 ฟอนต์ 99.-', isPromo: true, img: 'https://img2.pic.in.th/7F282788-E237-4D24-A5E2-FCA3D8BA37AD.jpeg', tags: ['เนื้อหา'] },
+            { id: 'c7', name: 'เมลโล่เพทูเนีย (CNJ MelloPetunia)', price: 69, detail: 'โปร 2 ฟอนต์ 99.-', isPromo: true, img: 'https://img1.pic.in.th/images/16424913-05CA-4D38-9738-A6BCB8AE39C8.jpeg', tags: ['เนื้อหา'] },
+            { id: 'c8', name: 'เมลโล่สวีทพี (CNJ MelloSweetpea)', price: 69, detail: 'โปร 2 ฟอนต์ 99.-', isPromo: true, img: 'https://img2.pic.in.th/C89673A4-594C-48BB-96FD-88DD972E23DA.jpeg', tags: ['เนื้อหา'] },
+            { id: 'c9', name: 'เมลโล่ซินเนีย (CNJ MelloZinnia)', price: 69, detail: 'โปร 2 ฟอนต์ 99.-', isPromo: true, img: 'https://img1.pic.in.th/images/DC5B2B83-3FAA-4ADB-83A8-46B88C5E4B6D.jpeg', tags: ['เนื้อหา'] },
+            { id: 'c10', name: 'เมลโล่การ์เด้น (CNJ MelloGarden)', price: 69, detail: 'โปร 2 ฟอนต์ 99.-', isPromo: true, img: 'https://img2.pic.in.th/4DA138C4-D3C6-495A-A5FB-9AABF614F038.jpeg', tags: ['เนื้อหา'] },
+            { id: 'c11', name: 'ชิบิเจลลี่ (CNJ ChibiJelly)', price: 99, detail: 'รวมชพณ.', isPromo: false, img: 'https://img2.pic.in.th/491C9B3F-5E4D-4A78-8592-6F6579303521.jpeg', tags: ['เนื้อหา'] },
+            { id: 'c12', name: 'ชิบิคุกกี้ (CNJ ChibiCookie)', price: 99, detail: 'รวมชพณ.', isPromo: false, img: 'https://img1.pic.in.th/images/4567B013-086B-4433-8B8A-A36E9F17994F.jpeg', tags: ['เนื้อหา'] },
+            { id: 'c13', name: 'ชิบิลาเต้ (CNJ ChibiLatte)', price: 99, detail: 'รวมชพณ.', isPromo: false, img: 'https://img2.pic.in.th/67F625D6-7B6E-469A-88B3-83FE2A35A8CC.jpeg', tags: ['เนื้อหา'] },
+            { id: 'c14', name: 'ชิบิซันนี่ (CNJ ChibiSunny)', price: 99, detail: 'รวมชพณ.', isPromo: false, img: 'https://img1.pic.in.th/images/5C95F42E-5CB1-4FE1-A297-F91B0A150AB1.jpeg', tags: ['เนื้อหา'] },
+            { id: 'c15', name: 'ชิบิคิ้วท์ตี้ (CNJ ChibiCutie)', price: 99, detail: 'รวมชพณ.', isPromo: false, img: 'https://img1.pic.in.th/images/73A18384-C6DD-4881-B5CE-CFB9A722572F.jpeg', tags: ['เนื้อหา'] },
+            { id: 'c16', name: 'ชิบิมัจฉะ (CNJ ChibiMatcha)', price: 99, detail: 'รวมชพณ.', isPromo: false, img: 'https://img2.pic.in.th/E246D81F-1AC1-48B0-A5C4-4CAA7E765BD1.jpeg', tags: ['เนื้อหา'] },
+            { id: 'c17', name: 'ชิบิจัสมิน (CNJ ChibiJasmine)', price: 99, detail: 'รวมชพณ.', isPromo: false, img: 'https://img2.pic.in.th/9BB3166D-B05B-4A46-9F0C-5D20AFF65F2B.jpeg', tags: ['เนื้อหา'] },
+            { id: 'c18', name: 'ชิบิโคลเวอร์ (CNJ ChibiClover)', price: 99, detail: 'รวมชพณ.', isPromo: false, img: 'https://img1.pic.in.th/images/08AC963E-864C-470B-8173-724334371A04.jpeg', tags: ['เนื้อหา'] },
+            { id: 'c19', name: 'ชิบิคอร์กี้ (CNJ ChibiCorgi)', price: 99, detail: 'รวมชพณ.', isPromo: false, img: 'https://img2.pic.in.th/2FB5FC5D-5759-46C5-998F-450F0930E6CE.jpeg', tags: ['เนื้อหา'] },
+            { id: 'c20', name: 'ชิบิโมจิ (CNJ ChibiMochi)', price: 99, detail: 'รวมชพณ.', isPromo: false, img: 'https://img1.pic.in.th/images/9E02CF98-022C-47E3-B936-C913062CD5EB.jpeg', tags: ['เนื้อหา'] }
         ]},
         { id: 'cat5', name: 'ฟอนต์เครือ LKT - ดึงเมลเอง🔥', products: [
-            { id: 'l1', name: 'Mochi Soft (LKT Mochi Soft)', price: 299, detail: 'แถมคลิปสอนแต่ง!!', isPromo: false, img: ['https://img1.pic.in.th/images/-458_20260206201301.png', 'https://img1.pic.in.th/images/-258_20251226180828.png'], tags: ['เนื้อหา'] }
+            { id: 'l1', name: 'Mochi Soft (LKT Mochi Soft)', price: 299, detail: 'มีคลิปสอนแต่งหัวป้ายแถมให้‼️', isPromo: false, img: ['https://img1.pic.in.th/images/-458_20260206201301.png', 'https://img1.pic.in.th/images/-258_20251226180828.png'], tags: ['เนื้อหา'] },
+            { id: 'l2', name: 'Rochy (LKT Rochy)', price: 199, detail: 'มีคลิปสอนแต่งหัวป้ายแถมให้‼️', isPromo: false, img: ['https://img2.pic.in.th/-393_20260115175306.png', 'https://img1.pic.in.th/images/-393_20260115175819.png'], tags: ['โปร่ง'] },
+            { id: 'l3', name: 'Feather (LKT Feather)', price: 99, oldPrice: 159, detail: 'รวมชพณ.', isPromo: false, img: 'https://img2.pic.in.th/-530_20260226002912.png', tags: ['เนื้อหา'] },
+            { id: 'l4', name: 'Bagie (LKT Bagie)', price: 79, oldPrice: 129, detail: 'มีคลิปสอนแต่งหัวป้ายแถมให้‼️<br>ราคาลงกลุ่มทักส่วนตัวเท่านั้น', isPromo: false, img: ['https://img2.pic.in.th/-587_20260310181031.png', 'https://img1.pic.in.th/images/-589_20260310175521.png'], tags: ['เนื้อหา'] }
         ]}
     ];
 
@@ -230,15 +269,10 @@
         let imgHtml = Array.isArray(p.img) ? 
             `<div class="overflow-hidden rounded-2xl aspect-square mb-3"><div class="card-slider">${p.img.map(u => `<img src="${u}" class="w-full shrink-0 object-cover">`).join('')}</div></div>` :
             `<div class="rounded-2xl aspect-square mb-3 overflow-hidden"><img src="${p.img}" class="w-full h-full object-cover"></div>`;
-
-        return `<div class="item-card bg-white p-3 rounded-[30px] border-2 border-pinky-light shadow-sm transition-all ${isSel}" data-id="${p.id}" onclick="toggleItem('${p.id}','${catName}','${p.name}',${p.price},${p.isPromo || false})">
-                    ${imgHtml}
-                    <h4 class="font-bold text-[11px] text-brown line-clamp-1">${p.name}</h4>
-                    <div class="flex items-center gap-2 mt-1 relative z-10">
-                        ${p.oldPrice ? `<span class="text-[9px] line-through text-brown-light">฿${p.oldPrice}</span>` : ''}
-                        <span class="bg-pinky-dark text-white text-[10px] px-2 py-0.5 rounded-lg font-bold relative z-10">฿${p.price}</span>
-                    </div>
-                </div>`;
+        return `<div class="item-card bg-white p-3.5 rounded-[30px] border-2 border-pinky-light shadow-sm transition-all ${isSel}" data-id="${p.id}" onclick="toggleItem('${p.id}','${catName}','${p.name}',${p.price},${p.isPromo || false})">
+                    ${imgHtml}<h4 class="font-bold text-[11px] text-brown line-clamp-1">${p.name}</h4>
+                    <div class="flex items-center gap-2 mt-1 relative z-10">${p.oldPrice ? `<span class="text-[9px] line-through text-brown-light">฿${p.oldPrice}</span>` : ''}
+                        <span class="bg-pinky-dark text-white text-[10px] px-2 py-0.5 rounded-lg font-bold">฿${p.price}</span></div></div>`;
     }
 
     function renderHome() {
@@ -253,18 +287,27 @@
     function renderShop() {
         let html = '';
         categories.forEach(cat => {
-            html += `<div class="space-y-6">
-                <div class="flex items-center gap-3"><i data-lucide="folder-heart" class="text-pinky-dark"></i><h3 class="font-mitr font-bold text-lg text-brown">${cat.name}</h3></div>`;
+            html += `<div class="space-y-6"><div class="flex items-center gap-3"><i data-lucide="folder-heart" class="text-pinky-dark"></i><h3 class="font-mitr font-bold text-lg text-brown">${cat.name}</h3></div>`;
             subCats.forEach(sub => {
                 const filtered = cat.products.filter(p => p.tags && p.tags.includes(sub));
                 if (filtered.length > 0) {
-                    html += `<div class="flex justify-between items-center"><span class="text-xs font-bold text-pinky-dark bg-white px-3 py-1 rounded-full border border-pinky-light">📂 หมวด ${sub}</span><button onclick="viewSubCategory('${cat.id}', '${sub}')" class="text-[10px] text-brown-light underline">ดูทั้งหมด</button></div>
+                    html += `<div class="flex justify-between items-center"><span class="text-xs font-bold text-pinky-dark bg-white px-3 py-1 rounded-full border border-pinky-light">📂 หมวด ${sub}</span>
+                    <button onclick="viewSubCategory('${cat.id}', '${sub}')" class="text-[10px] text-brown-light underline">ดูเพิ่มเติม</button></div>
                     <div class="grid grid-cols-2 gap-4">${filtered.slice(0, 4).map(p => createCardHtml(p, cat.name)).join('')}</div>`;
                 }
             });
             html += `</div><hr class="border-pinky-light border-dashed">`;
         });
         document.getElementById('shop-content').innerHTML = html;
+        lucide.createIcons(); initCardSliders();
+    }
+
+    function viewSubCategory(catId, subTagName) {
+        const cat = categories.find(c => c.id === catId);
+        const filtered = cat.products.filter(p => p.tags && p.tags.includes(subTagName));
+        document.getElementById('fullPageTitle').innerText = `${cat.name} - ${subTagName}`;
+        document.getElementById('fullPageGrid').innerHTML = filtered.map(p => createCardHtml(p, cat.name)).join('');
+        document.getElementById('fullPageCategory').classList.remove('hidden');
         lucide.createIcons(); initCardSliders();
     }
 
@@ -276,13 +319,8 @@
     }
 
     function updateBottomBar() {
-        const res = calculateTotal();
-        const bar = document.getElementById('bottomBar');
-        if (cart.length > 0) {
-            bar.classList.remove('translate-y-full');
-            document.getElementById('cartTotal').innerText = res.total;
-            document.getElementById('cartCount').innerText = `เลือก ${cart.length} รายการ`;
-        } else bar.classList.add('translate-y-full');
+        const res = calculateTotal(); const bar = document.getElementById('bottomBar');
+        if (cart.length > 0) { bar.classList.remove('translate-y-full'); document.getElementById('cartTotal').innerText = res.total; document.getElementById('cartCount').innerText = `เลือก ${cart.length} รายการ`; } else bar.classList.add('translate-y-full');
     }
 
     function calculateTotal() {
@@ -295,19 +333,15 @@
     }
 
     function openSummary() {
-        const res = calculateTotal(); let html = '';
-        cart.forEach(i => html += `<div class="flex justify-between"><span>• ${i.name}</span><b>฿${i.price}</b></div>`);
+        const res = calculateTotal(); let html = ''; cart.forEach(i => html += `<div class="flex justify-between"><span>• ${i.name}</span><b>฿${i.price}</b></div>`);
         document.getElementById('modalItemsList').innerHTML = html;
         document.getElementById('promoNotice').innerHTML = (res.discAM > 0 ? `✨ ส่วนลด AM: -฿${res.discAM}<br>` : "") + (res.discCNJ > 0 ? `✨ ส่วนลด CNJ: -฿${res.discCNJ}` : "");
         document.getElementById('modalTotalPrice').innerText = res.total;
-        document.getElementById('summaryModal').classList.remove('hidden');
-        document.getElementById('summaryModal').classList.add('flex');
+        document.getElementById('summaryModal').classList.remove('hidden'); document.getElementById('summaryModal').classList.add('flex');
     }
 
     function checkout() {
-        const res = calculateTotal();
-        let text = "สรุปรายการสั่งซื้อ💖\n\n" + cart.map(i => `• ${i.cat}: ${i.name} (${i.price}.-)`).join('\n');
-        text += `\n\nยอดสุทธิ: ${res.total} บาท\nขอบคุณที่มาอุดหนุนองุ่นนะคะ⭐️`;
+        const res = calculateTotal(); let text = "สรุปรายการสั่งซื้อ💖\n\n" + cart.map(i => `• ${i.cat}: ${i.name} (${i.price}.-)`).join('\n') + `\n\nยอดสุทธิ: ${res.total} บาท\nขอบคุณที่อุดหนุนองุ่นนะคะ⭐️`;
         navigator.clipboard.writeText(text); window.location.href = "https://line.me/ti/p/@309ranuu";
     }
 
@@ -323,7 +357,6 @@
     function closeFullPage() { document.getElementById('fullPageCategory').classList.add('hidden'); }
     function closeSummary() { document.getElementById('summaryModal').classList.add('hidden'); }
 
-    // Particles (ปรับเป็นสีม่วงอ่อน)
     const P = document.getElementById('pts');
     ['★','♥','🍇'].forEach(e => {
         for (let j = 0; j < 6; j++) {
