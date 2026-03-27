@@ -343,7 +343,7 @@
     }
 
     function checkout() {
-        const res = calculateTotal(); let text = "สรุปรายการสั่งซื้อ💖\n\n" + cart.map(i => `• ${i.cat}: ${i.name} (${i.price}.-)`).join('\n') + `\n\nยอดสุทธิ: ${res.total} บาท\nขอบคุณที่อุดหนุนองุ่นนะคะ⭐️`;
+        const res = calculateTotal(); let text = "สรุปรายการสั่งซื้อ💖\n\n" + cart.map(i => `• ${i.cat}: ${i.name} (${i.price}.-)`).join('\n') + `\n\nยอดสุทธิ: ${res.total} บาท\n--------------------\nขอบคุณที่อุดหนุนองุ่นนะคะ⭐️\nรอองุ่นตอบกลับ 5-10 นาทีน้าา🫶🏻☁️`;
         const temp = document.createElement("textarea"); temp.value = text; document.body.appendChild(temp); temp.select(); document.execCommand("copy"); document.body.removeChild(temp);
         alert("คัดลอกรายการสั่งซื้อแล้ว! กำลังไปที่หน้า LINE..."); window.location.href = "https://line.me/ti/p/@309ranuu";
     }
@@ -361,7 +361,7 @@
     function closeSummary() { document.getElementById('summaryModal').classList.add('hidden'); }
 
     const P = document.getElementById('pts');
-    ['★','♥','🍇'].forEach(e => {
+    ['⭔','✦','★','♥','🍇'].forEach(e => {
         for (let j = 0; j < 6; j++) {
             const d = document.createElement('div'); d.className = 'pt'; d.textContent = e;
             d.style.cssText = `left:${Math.random()*100}vw;font-size:${14+Math.random()*10}px;color:#D1C7F0;animation-duration:${10+Math.random()*15}s;animation-delay:${-Math.random()*20}s;`;
