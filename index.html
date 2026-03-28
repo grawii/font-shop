@@ -37,7 +37,6 @@
         @keyframes ptUp { 0% { transform: translateY(105vh); opacity: 0; } 8% { opacity: 0.45; } 100% { transform: translateY(-8vh) rotate(360deg); opacity: 0; } }
         .item-card.selected { border-color: #A488FF; background: rgba(193, 182, 255, 0.2); box-shadow: 0 0 15px rgba(164, 136, 255, 0.4); }
         .card-slider { display: flex; transition: 0.5s; width: 100%; height: 100%; aspect-ratio: 1/1; }
-        /* สไตล์พิเศษสำหรับกรอบที่ยอมให้ไอคอนล้นออกมาทับขอบ */
         .box-overlay-visible { overflow: visible !important; }
     </style>
 </head>
@@ -130,6 +129,7 @@
         </section>
     </main>
 </div>
+
 <div id="page-shop" class="view-page relative z-10">
     <div class="bg-pinky p-8 text-center shadow-lg rounded-b-[40px] border-b-4 border-white">
         <h2 class="font-mitr text-2xl font-bold text-white tracking-wide">🎨 คลังฟอนต์ทั้งหมด</h2>
@@ -274,7 +274,6 @@
         if (pageId === 'shop') renderShop();
     }
 
-    // ✅ คืนรายละเอียด 2 บรรทัดและคุมความสูงการ์ด
     function createCardHtml(p, catName) {
         const isSel = cart.find(i => i.id === p.id) ? 'selected' : '';
         let imgHtml = Array.isArray(p.img) ? 
@@ -352,37 +351,25 @@
         document.getElementById('summaryModal').classList.remove('hidden'); document.getElementById('summaryModal').classList.add('flex');
     }
 
+    /* แก้ไขฟังก์ชัน checkout เพื่อให้ระบุส่วนลดใน Clipboard */
     function checkout() {
-    const res = calculateTotal();
-    
-    // สร้างรายการสินค้า
-    let itemList = cart.map(i => `• ${i.cat}: ${i.name} (${i.price}.-)`).join('\n');
-    
-    // สร้างข้อความส่วนลด (ถ้ามี)
-    let discountText = "";
-    if (res.discAM > 0) discountText += `\n✨ ส่วนลดเครือ AM: -${res.discAM} บาท`;
-    if (res.discCNJ > 0) discountText += `\n✨ ส่วนลดเครือ CNJ: -${res.discCNJ} บาท`;
+        const res = calculateTotal();
+        let itemList = cart.map(i => `• ${i.cat}: ${i.name} (${i.price}.-)`).join('\n');
+        
+        let discountLines = "";
+        if (res.discAM > 0) discountLines += `\n✨ ส่วนลดเครือ AM: -${res.discAM} บาท`;
+        if (res.discCNJ > 0) discountLines += `\n✨ ส่วนลดเครือ CNJ: -${res.discCNJ} บาท`;
 
-    // รวมข้อความทั้งหมด
-    let text = "สรุปรายการสั่งซื้อ💖\n\n" + 
-               itemList + 
-               "\n" + discountText + // ใส่ข้อความส่วนลดตรงนี้
-               `\n\nยอดสุทธิ: ${res.total} บาท` +
-               `\n--------------------\n` +
-               `ขอบคุณที่อุดหนุนองุ่นนะคะ⭐️\n` +
-               `รอองุ่นตอบกลับ 5-10 นาทีน้าา🫶🏻☁️`;
+        let text = "สรุปรายการสั่งซื้อ💖\n\n" + 
+                   itemList + 
+                   (discountLines ? "\n" + discountLines : "") +
+                   `\n\nยอดสุทธิ: ${res.total} บาท\n` +
+                   `--------------------\n` +
+                   `ขอบคุณที่มาอุดหนุนร้านองุ่นนะคะ⭐️\n` +
+                   `รอองุ่นตอบกลับ 5-10 นาทีน้าา🫶🏻☁️`;
 
-    // ส่วนการคัดลอกลง Clipboard
-    const temp = document.createElement("textarea");
-    temp.value = text;
-    document.body.appendChild(temp);
-    temp.select();
-    document.execCommand("copy");
-    document.body.removeChild(temp);
-
-    alert("คัดลอกรายการสั่งซื้อแล้ว! กำลังไปที่หน้า LINE...");
-    window.location.href = "https://line.me/ti/p/@309ranuu";
-}
+        const temp = document.createElement("textarea"); temp.value = text; document.body.appendChild(temp); temp.select(); document.execCommand("copy"); document.body.removeChild(temp);
+        alert("คัดลอกรายการสั่งซื้อแล้ว! กำลังไปที่หน้า LINE..."); window.location.href = "https://line.me/ti/p/@309ranuu";
     }
 
     function initCardSliders() {
