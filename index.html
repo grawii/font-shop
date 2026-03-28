@@ -353,9 +353,36 @@
     }
 
     function checkout() {
-        const res = calculateTotal(); let text = "สรุปรายการสั่งซื้อ💖\n\n" + cart.map(i => `• ${i.cat}: ${i.name} (${i.price}.-)`).join('\n') + `\n\nยอดสุทธิ: ${res.total} บาท\n--------------------\nขอบคุณที่อุดหนุนองุ่นนะคะ⭐️\nรอองุ่นตอบกลับ 5-10 นาทีน้าา🫶🏻☁️`;
-        const temp = document.createElement("textarea"); temp.value = text; document.body.appendChild(temp); temp.select(); document.execCommand("copy"); document.body.removeChild(temp);
-        alert("คัดลอกรายการสั่งซื้อแล้ว! กำลังไปที่หน้า LINE..."); window.location.href = "https://line.me/ti/p/@309ranuu";
+    const res = calculateTotal();
+    
+    // สร้างรายการสินค้า
+    let itemList = cart.map(i => `• ${i.cat}: ${i.name} (${i.price}.-)`).join('\n');
+    
+    // สร้างข้อความส่วนลด (ถ้ามี)
+    let discountText = "";
+    if (res.discAM > 0) discountText += `\n✨ ส่วนลดเครือ AM: -${res.discAM} บาท`;
+    if (res.discCNJ > 0) discountText += `\n✨ ส่วนลดเครือ CNJ: -${res.discCNJ} บาท`;
+
+    // รวมข้อความทั้งหมด
+    let text = "สรุปรายการสั่งซื้อ💖\n\n" + 
+               itemList + 
+               "\n" + discountText + // ใส่ข้อความส่วนลดตรงนี้
+               `\n\nยอดสุทธิ: ${res.total} บาท` +
+               `\n--------------------\n` +
+               `ขอบคุณที่อุดหนุนองุ่นนะคะ⭐️\n` +
+               `รอองุ่นตอบกลับ 5-10 นาทีน้าา🫶🏻☁️`;
+
+    // ส่วนการคัดลอกลง Clipboard
+    const temp = document.createElement("textarea");
+    temp.value = text;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand("copy");
+    document.body.removeChild(temp);
+
+    alert("คัดลอกรายการสั่งซื้อแล้ว! กำลังไปที่หน้า LINE...");
+    window.location.href = "https://line.me/ti/p/@309ranuu";
+}
     }
 
     function initCardSliders() {
