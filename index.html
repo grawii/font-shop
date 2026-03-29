@@ -37,7 +37,7 @@
         .pt { position: absolute; animation: ptUp linear infinite; opacity: 0; }
         @keyframes ptUp { 0% { transform: translateY(105vh); opacity: 0; } 8% { opacity: 0.45; } 100% { transform: translateY(-8vh) rotate(360deg); opacity: 0; } }
         
-        .item-card { position: relative; overflow: hidden; transition: 0.3s; }
+        .item-card { position: relative; overflow: hidden; transition: 0.3s; border-radius: 30px; border-width: 2px; }
         .item-card.selected { border-color: #A488FF; background: rgba(193, 182, 255, 0.2); box-shadow: 0 0 15px rgba(164, 136, 255, 0.4); }
         
         .badge-custom {
@@ -54,7 +54,7 @@
         .box-overlay-visible { overflow: visible !important; }
     </style>
 </head>
-<body class="antialiased selection:bg-pinky selection:text-white relative">
+<body class="antialiased selection:bg-pinky relative">
 <div id="pts"></div>
 
 <svg width="0" height="0" class="hidden absolute">
@@ -81,13 +81,13 @@
         <p class="text-[10px] tracking-widest text-pinky-dark uppercase mt-1">Handwritten Fonts</p>
     </div>
     <div class="flex flex-col p-4 space-y-2 mt-4">
-        <button onclick="navTo('home')" class="dr-item flex items-center gap-3.5 p-4.5 rounded-2xl text-brown font-medium hover:bg-pinky-light transition-all">
+        <button onclick="navTo('home')" class="flex items-center gap-3.5 p-4.5 rounded-2xl text-brown font-medium hover:bg-pinky-light transition-all">
             <i data-lucide="home" class="w-5 h-5"></i> หน้าแรก
         </button>
-        <button onclick="navTo('shop')" class="dr-item flex items-center gap-3.5 p-4.5 rounded-2xl text-brown font-medium hover:bg-pinky-light transition-all">
+        <button onclick="navTo('shop')" class="flex items-center gap-3.5 p-4.5 rounded-2xl text-brown font-medium hover:bg-pinky-light transition-all">
             <i data-lucide="shopping-bag" class="w-5 h-5"></i> สินค้าทั้งหมด
         </button>
-        <button onclick="navTo('contact')" class="dr-item flex items-center gap-3.5 p-4.5 rounded-2xl text-brown font-medium hover:bg-pinky-light transition-all">
+        <button onclick="navTo('contact')" class="flex items-center gap-3.5 p-4.5 rounded-2xl text-brown font-medium hover:bg-pinky-light transition-all">
             <i data-lucide="phone" class="w-5 h-5"></i> ติดต่อเรา
         </button>
     </div>
@@ -119,7 +119,7 @@
             <img src="https://img2.pic.in.th/IMG_46302a10c4fa73391ddf.png" class="w-full h-full object-cover" alt="Main Banner">
         </section>
 
-        <section class="bg-white rounded-[40px] p-8 shadow-sm border-2 border-pinky-light relative box-overlay-visible mt-5">
+        <section class="bg-white rounded-[40px] p-8 shadow-sm border-2 border-pinky-light relative box-overlay-visible">
             <svg class="absolute -right-6 -top-6 w-16 h-16 text-brown-light opacity-30 -rotate-12 z-30 drop-shadow-md" viewBox="0 0 24 24"><use href="#icon-teddy"></use></svg>
             <h2 class="text-xl font-bold text-brown mb-3 flex items-center gap-2 relative z-10">
                 <i data-lucide="sparkles" class="w-5 h-5 text-pinky-dark"></i> ยินดีต้อนรับ ✨
@@ -146,10 +146,11 @@
             </div>
        </section>
 
-        <section class="relative box-overlay-visible">
+        <section class="relative box-overlay-visible pt-4">
             <h2 class="text-2xl font-bold text-brown mb-6 flex items-center gap-2 border-b-2 border-pinky-light pb-2"><i data-lucide="star" class="w-6 h-6 text-pinky-dark"></i> สินค้าแนะนำ</h2>
             <div id="home-recommend" class="grid grid-cols-2 gap-5"></div>
         </section>
+
         <section class="w-full bg-white pt-10 pb-12 px-6 rounded-[40px] text-center border-2 border-pinky-light shadow-lg relative mt-16 box-overlay-visible">
             <h2 class="text-[14px] font-bold mb-8 tracking-widest text-brown flex items-center justify-center gap-2 uppercase relative z-10">CONTACT US <i data-lucide="heart" class="w-4 h-4 text-pinky-dark fill-pinky-dark"></i></h2>
             <div class="flex flex-col items-center gap-4 relative z-10">
@@ -160,7 +161,6 @@
         </section>
     </main>
 </div>
-
 <div id="page-shop" class="view-page relative z-10">
     <div class="bg-pinky p-8 text-center shadow-lg rounded-b-[40px] border-b-4 border-white">
         <h2 class="font-mitr text-2xl font-bold text-white tracking-wide">🎨 คลังฟอนต์ทั้งหมด</h2>
@@ -220,7 +220,6 @@
         </div>
     </div>
 </div>
-
 <script>
     const categories = [
         { id: 'cat1', name: 'ฟอนต์เครือ GRP - ดึงเมลเอง🔥', products: [
@@ -284,43 +283,48 @@
         ]},
         { id: 'cat6', name: 'ฟอนต์เครือ Novels', products: [
             { id: 'nv1', name: 'ขี้เกียจมีแฟน (LB LazyRelationships)', price: 89, detail: 'รวมชพณ.', img: ['https://img2.pic.in.th/C144832B-EBB2-4DBA-AB71-2A45BA7E548D.jpeg', 'https://img2.pic.in.th/66D03369-C44F-4814-8A3E-F7776A8163FC.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'nv2', name: 'ขี้เกียจเลี้ยงหมา (LB LazytoRaiseADog)', price: 89, detail: 'รวมชพณ.', img: ['https://img1.pic.in.th/images/CAB31B27-7379-4C01-AA8E-5EB18F555EDD.jpeg', 'https://img2.pic.in.th/727261AE-03E7-4EBE-A28F-F7DD32D5CDBF.jpeg'], tags: ['เนื้อหา'] }
+            { id: 'nv2', name: 'ขี้เกียจเลี้ยงหมา (LB LazytoRaiseADog)', price: 89, detail: 'รวมชพณ.', img: ['https://img1.pic.in.th/images/CAB31B27-7379-4C01-AA8E-5EB18F555EDD.jpeg', 'https://img2.pic.in.th/727261AE-03E7-4EBE-A28F-F7DD32D5CDBF.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'nv3', name: 'ขี้เกียจอาบน้ำ (LB LazytoTakeabath)', price: 89, detail: 'รวมชพณ.', img: ['https://img1.pic.in.th/images/662EAF8C-BBD0-4C21-A102-3008F5824252.jpeg', 'https://img2.pic.in.th/DE3B223B-F7F3-4F4A-ACD7-FEE73F022A60.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'nv4', name: 'ขี้เกียจคุย (LB LazytoTalk)', price: 89, detail: 'รวมชพณ.', img: ['https://img1.pic.in.th/images/8D3C41F0-33DB-4977-BAB2-03B484217122.jpeg', 'https://img1.pic.in.th/images/B4870ED4-8B2D-475D-A81E-EF8BBC69BAEF.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'nv5', name: 'ขี้เกียจทำงาน (LB Botheredtowork)', price: 89, detail: 'รวมชพณ.', img: ['https://img2.pic.in.th/E0152B71-8EF1-449B-8955-0B36617E1DD3.jpeg', 'https://img1.pic.in.th/images/10FE1793-6273-4595-B68E-B3C3DA3E8E6F.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'nv6', name: 'ขี้เกียจเรียน (LB LazytoStudy)', price: 89, detail: 'รวมชพณ.', img: ['https://img2.pic.in.th/B71F0FE2-F415-4088-8B49-FFD1357B8F61.jpeg', 'https://img1.pic.in.th/images/9665D3C6-6C61-471D-B24A-535187910FEF.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'nv7', name: 'ขี้เกียจล้างจาน (LB LazyWashDishes)', price: 89, detail: 'รวมชพณ.', img: ['https://img2.pic.in.th/899D07DE-4AF8-4E1F-8EAF-DCF62D75C68B.jpeg', 'https://img1.pic.in.th/images/7698A7F2-4431-4395-863B-41B5D5A9580C.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'nv8', name: 'ขี้เกียจกินช้าว (LB LazytoEat)', price: 89, detail: 'รวมชพณ.', img: ['https://img2.pic.in.th/6FDAD9E2-5359-4EF1-8519-EFBE45CDA7E3.jpeg', 'https://img1.pic.in.th/images/DB8BD484-4110-43E4-A461-37B1FD15418F.jpeg'], tags: ['เนื้อหา','โปร่ง'] }
         ]},
         { id: 'cat7', name: 'ฟอนต์เครือ MNJ', products: [
-            { id: 'mnj1', name: 'เหมียวมี่ (MNJ Meawmie)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img2.pic.in.th/50A457E7-1328-4839-9765-A3455D1B2CE5.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj2', name: 'มีเทอร์ (MNJ Meeter)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img2.pic.in.th/9B97D090-FAC7-4222-B1EF-45A4FC21BC90.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj3', name: 'บราวนี่ลาวา (MNJ Brownielava)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img1.pic.in.th/images/26A483CE-E62F-4541-AA8E-EE2F8D359C98.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj4', name: 'เพทัลเบอร์รี่ (MNJ PetalBerry)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img1.pic.in.th/images/33A9742A-0FB5-46E4-B0C8-A57D33A1D0E1.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj5', name: 'บับเบิลบู (MNJ Bubbleboo)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img2.pic.in.th/2074D1FE-76C9-4C5B-9D04-CB1E0B6334DC.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj6', name: 'อามูร์ (MNJ Amour)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img1.pic.in.th/images/CE11DB00-96FE-4207-8B14-E56F160B89BB.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj7', name: 'เซลติก (MNJ Celtic)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img2.pic.in.th/41E58B39-61EA-4068-983F-D11F77715329.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj8', name: 'สวีทฮาร์ต (MNJ SweetHeart)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img1.pic.in.th/images/0EA060A8-8CF2-49F9-9C9A-40A0D0EE5B61.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj9', name: 'ชิบิปอม (MNJ ChibiPom)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img1.pic.in.th/images/649297FB-E1E8-4635-BDBA-E1D4E6632EE5.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj10', name: 'เก็นไมฉะ (MNJ Genmaicha)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img1.pic.in.th/images/CA1EF52F-9BDF-4942-9DE3-77FDCDEF5CEF.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj11', name: 'พัมกิ้นเมล่อน (MNJ PumpkinMelon)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img2.pic.in.th/8D58D9A5-0CDE-419F-AE53-24D82C78CB2C.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj12', name: 'เมเปิลครีม (MNJ MapleCream)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img1.pic.in.th/images/F46E58C6-D1AE-4CF1-A52E-98032F2823B5.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj13', name: 'กลิตเตอร์ (MNJ Glitter)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img2.pic.in.th/B97AC412-AAC5-4301-88E4-D8AF9D75CF0F.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj14', name: 'สตาร์แบร์ (MNJ StarBear)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img1.pic.in.th/images/9B5EB931-4D43-493F-AA2C-77328CF151EC.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj15', name: 'กาเล็ตต์เลม่อน (MNJ GaletteLemon)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img1.pic.in.th/images/3280861A-8325-4B09-86A2-2E707826A273.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj16', name: 'โฮมมี่ (MNJ Homie)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img2.pic.in.th/0787B3FB-6DA5-4A9D-9180-55A44D26CB13.jpeg'], tags: ['อิโมจิ'] },
-            { id: 'mnj17', name: 'คอตต้า (MNJ Cotta)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img2.pic.in.th/706D5EEB-8366-41CB-9189-537D0454369B.jpeg'], tags: ['อิโมจิ'] },
-            { id: 'mnj18', name: 'โมโมะ (MNJ Momo)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img1.pic.in.th/images/BE6D95EE-FFC0-4C81-BCF5-FC413334CAB1.jpeg'], tags: ['อิโมจิ'] },
-            { id: 'mnj19', name: 'ทริกซี่ (MNJ Trixie)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img2.pic.in.th/001A8E52-E092-4360-8116-69089A2C6437.jpeg'], tags: ['อิโมจิ'] },
-            { id: 'mnj20', name: 'นูกัต (MNJ Nougat)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img2.pic.in.th/2AC685A1-50FC-4224-A5C1-85D9D232B797.jpeg'], tags: ['อิโมจิ'] },
-            { id: 'mnj21', name: 'นาเบะ (MNJ Nabe)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img2.pic.in.th/E72A9954-3647-4B83-AC97-FDB4C8577364.jpeg'], tags: ['อิโมจิ'] },
-            { id: 'mnj22', name: 'เซเบิล (MNJ Sable)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img1.pic.in.th/images/71196040-136F-4140-8DDF-8E5241708B40.jpeg'], tags: ['อิโมจิ'] },
-            { id: 'mnj23', name: 'ฟรายเดย์ (MNJ Friday)', price: 99, detail: 'โปร 2 ฟอนต์ 149.-', isPromo: true, img: ['https://img2.pic.in.th/42BF038E-6458-4673-93F3-27091A88E20A.jpeg'], tags: ['อิโมจิ'] },
-            { id: 'mnj24', name: 'ทูมอโรว์ (MNJ Tomorrow)', price: 149, detail: 'รวมชพณ.', isPromo: false, img: ['https://img2.pic.in.th/26CA37F2-0C48-4E22-9B8D-A4F9457AE620.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj25', name: 'พาสต้ามู้ด (MNJ PastaMood)', price: 149, detail: 'รวมชพณ.', isPromo: false, img: ['https://img2.pic.in.th/9F5127D0-0DB9-452B-8588-EF233FBC1C24.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj26', name: 'ชูการ์พลัม (MNJ SugarPlum)', price: 149, detail: 'รวมชพณ.', isPromo: false, img: ['https://img2.pic.in.th/5CEE2BCA-C353-4172-8BAE-C0C0A5EECBB0.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj27', name: 'โคลเวอร์ซัง (MNJ CloverSan)', price: 149, detail: 'รวมชพณ.', isPromo: false, img: ['https://img2.pic.in.th/890E6267-B0FB-42C5-A527-9A6FDA1FDE06.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj28', name: 'มิกะครีม (MNJ MikaCream)', price: 149, detail: 'รวมชพณ.', isPromo: false, img: ['https://img1.pic.in.th/images/B1DC5E0C-18C6-4F0C-87F5-580D32E0042B.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj29', name: 'ลูน่าแบร์ (MNJ LoonaBear)', price: 149, detail: 'รวมชพณ.', isPromo: false, img: ['https://img1.pic.in.th/images/9EE2A1AB-B997-490B-B81F-3A1205CAF901.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj30', name: 'โยคังทาเนะ (MNJ Yokantane)', price: 149, detail: 'รวมชพณ.', isPromo: false, img: ['https://img1.pic.in.th/images/C8E390ED-4ED8-40EC-B3A7-C0FB7F1ABA79.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'mnj31', name: 'ครีมมอคค่า (MNJ CreamMocha)', price: 149, detail: 'รวมชพณ.', isPromo: false, img: ['https://img1.pic.in.th/images/EE2EF35A-40D9-4B17-8F3D-9037FA8534F4.jpeg'], tags: ['เนื้อหา'] }
+            { id: 'mnj1', name: 'เหมียวมี่ (MNJ Meawmie)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img2.pic.in.th/50A457E7-1328-4839-9765-A3455D1B2CE5.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj2', name: 'มีเทอร์ (MNJ Meeter)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img2.pic.in.th/9B97D090-FAC7-4222-B1EF-45A4FC21BC90.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj3', name: 'บราวนี่ลาวา (MNJ Brownielava)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img1.pic.in.th/images/26A483CE-E62F-4541-AA8E-EE2F8D359C98.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj4', name: 'เพทัลเบอร์รี่ (MNJ PetalBerry)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img1.pic.in.th/images/33A9742A-0FB5-46E4-B0C8-A57D33A1D0E1.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj5', name: 'บับเบิลบู (MNJ Bubbleboo)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img2.pic.in.th/2074D1FE-76C9-4C5B-9D04-CB1E0B6334DC.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj6', name: 'อามูร์ (MNJ Amour)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img1.pic.in.th/images/CE11DB00-96FE-4207-8B14-E56F160B89BB.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj7', name: 'เซลติก (MNJ Celtic)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img2.pic.in.th/41E58B39-61EA-4068-983F-D11F77715329.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj8', name: 'สวีทฮาร์ต (MNJ SweetHeart)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img1.pic.in.th/images/0EA060A8-8CF2-49F9-9C9A-40A0D0EE5B61.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj9', name: 'ชิบิปอม (MNJ ChibiPom)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img1.pic.in.th/images/649297FB-E1E8-4635-BDBA-E1D4E6632EE5.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj10', name: 'เก็นไมฉะ (MNJ Genmaicha)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img1.pic.in.th/images/CA1EF52F-9BDF-4942-9DE3-77FDCDEF5CEF.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj11', name: 'พัมกิ้นเมล่อน (MNJ PumpkinMelon)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img2.pic.in.th/8D58D9A5-0CDE-419F-AE53-24D82C78CB2C.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj12', name: 'เมเปิลครีม (MNJ MapleCream)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img1.pic.in.th/images/F46E58C6-D1AE-4CF1-A52E-98032F2823B5.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj13', name: 'กลิตเตอร์ (MNJ Glitter)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img2.pic.in.th/B97AC412-AAC5-4301-88E4-D8AF9D75CF0F.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj14', name: 'สตาร์แบร์ (MNJ StarBear)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img1.pic.in.th/images/9B5EB931-4D43-493F-AA2C-77328CF151EC.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj15', name: 'กาเล็ตต์เลม่อน (MNJ GaletteLemon)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img1.pic.in.th/images/3280861A-8325-4B09-86A2-2E707826A273.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj16', name: 'โฮมมี่ (MNJ Homie)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img2.pic.in.th/0787B3FB-6DA5-4A9D-9180-55A44D26CB13.jpeg'], tags: ['อิโมจิ'] },
+            { id: 'mnj17', name: 'คอตต้า (MNJ Cotta)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img2.pic.in.th/706D5EEB-8366-41CB-9189-537D0454369B.jpeg'], tags: ['อิโมจิ'] },
+            { id: 'mnj18', name: 'โมโมะ (MNJ Momo)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img1.pic.in.th/images/BE6D95EE-FFC0-4C81-BCF5-FC413334CAB1.jpeg'], tags: ['อิโมจิ'] },
+            { id: 'mnj19', name: 'ทริกซี่ (MNJ Trixie)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img2.pic.in.th/001A8E52-E092-4360-8116-69089A2C6437.jpeg'], tags: ['อิโมจิ'] },
+            { id: 'mnj20', name: 'นูกัต (MNJ Nougat)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img2.pic.in.th/2AC685A1-50FC-4224-A5C1-85D9D232B797.jpeg'], tags: ['อิโมจิ'] },
+            { id: 'mnj21', name: 'นาเบะ (MNJ Nabe)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img2.pic.in.th/E72A9954-3647-4B83-AC97-FDB4C8577364.jpeg'], tags: ['อิโมจิ'] },
+            { id: 'mnj22', name: 'เซเบิล (MNJ Sable)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img1.pic.in.th/images/71196040-136F-4140-8DDF-8E5241708B40.jpeg'], tags: ['อิโมจิ'] },
+            { id: 'mnj23', name: 'ฟรายเดย์ (MNJ Friday)', price: 99, isPromo: true, detail: 'โปร 2 ฟอนต์ 149.-', img: ['https://img2.pic.in.th/42BF038E-6458-4673-93F3-27091A88E20A.jpeg'], tags: ['อิโมจิ'] },
+            { id: 'mnj24', name: 'ทูมอโรว์ (MNJ Tomorrow)', price: 149, detail: 'รวมชพณ.', img: ['https://img2.pic.in.th/26CA37F2-0C48-4E22-9B8D-A4F9457AE620.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj25', name: 'พาสต้ามู้ด (MNJ PastaMood)', price: 149, detail: 'รวมชพณ.', img: ['https://img2.pic.in.th/9F5127D0-0DB9-452B-8588-EF233FBC1C24.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj26', name: 'ชูการ์พลัม (MNJ SugarPlum)', price: 149, detail: 'รวมชพณ.', img: ['https://img2.pic.in.th/5CEE2BCA-C353-4172-8BAE-C0C0A5EECBB0.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj27', name: 'โคลเวอร์ซัง (MNJ CloverSan)', price: 149, detail: 'รวมชพณ.', img: ['https://img2.pic.in.th/890E6267-B0FB-42C5-A527-9A6FDA1FDE06.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj28', name: 'มิกะครีม (MNJ MikaCream)', price: 149, detail: 'รวมชพณ.', img: ['https://img1.pic.in.th/images/B1DC5E0C-18C6-4F0C-87F5-580D32E0042B.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj29', name: 'ลูน่าแบร์ (MNJ LoonaBear)', price: 149, detail: 'รวมชพณ.', img: ['https://img1.pic.in.th/images/9EE2A1AB-B997-490B-B81F-3A1205CAF901.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj30', name: 'โยคังทาเนะ (MNJ Yokantane)', price: 149, detail: 'รวมชพณ.', img: ['https://img1.pic.in.th/images/C8E390ED-4ED8-40EC-B3A7-C0FB7F1ABA79.jpeg'], tags: ['เนื้อหา'] },
+            { id: 'mnj31', name: 'ครีมมอคค่า (MNJ CreamMocha)', price: 149, detail: 'รวมชพณ.', img: ['https://img1.pic.in.th/images/EE2EF35A-40D9-4B17-8F3D-9037FA8534F4.jpeg'], tags: ['เนื้อหา'] }
         ]}
     ];
-
     let cart = [];
     const subCats = ['โปร่ง', 'เนื้อหา', 'อิโมจิ'];
 
@@ -341,31 +345,26 @@
         } else {
             imgContent = `<img src="${p.img}" class="w-full h-full object-cover" draggable="false">`;
         }
-
-        return `<div class="item-card bg-white p-3.5 rounded-[30px] border-2 border-pinky-light shadow-sm transition-all ${isSel}" data-id="${p.id}" onclick="toggleItem('${p.id}','${catName}','${p.name}',${p.price},${p.isPromo || false})">
-                    ${badgeHtml}
-                    <div class="rounded-2xl aspect-square mb-3 overflow-hidden relative">${imgContent}</div>
+        return `<div class="item-card bg-white p-3.5 border-2 border-pinky-light shadow-sm transition-all ${isSel}" data-id="${p.id}" onclick="toggleItem('${p.id}','${catName}','${p.name}',${p.price},${p.isPromo || false})">
+                    ${badgeHtml}<div class="rounded-2xl aspect-square mb-3 overflow-hidden relative">${imgContent}</div>
                     <h4 class="font-bold text-[11px] text-brown line-clamp-1">${p.name}</h4>
                     <p class="text-[9px] text-brown-light mt-0.5 mb-2 line-clamp-2 min-h-[24px]">${p.detail}</p>
-                    <div class="flex items-center gap-2 mt-1 relative z-10">
-                        ${p.oldPrice ? `<span class="text-[9px] line-through text-brown-light">฿${p.oldPrice}</span>` : ''}
-                        <span class="bg-pinky-dark text-white text-[10px] px-2 py-0.5 rounded-lg font-bold">฿${p.price}</span>
-                    </div></div>`;
+                    <div class="flex items-center gap-2 mt-1 relative z-10">${p.oldPrice ? `<span class="text-[9px] line-through text-brown-light">฿${p.oldPrice}</span>` : ''}<span class="bg-pinky-dark text-white text-[10px] px-2 py-0.5 rounded-lg font-bold">฿${p.price}</span></div></div>`;
     }
 
     function enableSwipe(sliderId, isCard = false) {
         const slider = typeof sliderId === 'string' ? document.getElementById(sliderId) : sliderId;
         if (!slider) return;
         let isDragging = false, startX, currentIdx = 0;
-        const updatePos = (idx) => {
-            slider.style.transform = `translateX(-${idx * (isCard ? 100 : 88)}%)`;
-            currentIdx = idx;
+        const updatePos = (idx) => { 
+            slider.style.transform = `translateX(-${idx * (isCard ? 100 : 88)}%)`; 
+            currentIdx = idx; 
         };
         slider.addEventListener('mousedown', (e) => { isDragging = true; startX = e.pageX; });
         slider.addEventListener('touchstart', (e) => { isDragging = true; startX = e.touches[0].pageX; }, {passive: true});
         const onEnd = (e) => {
             if (!isDragging) return; isDragging = false;
-            const endX = (e.pageX || e.changedTouches ? e.changedTouches[0].pageX : e.pageX);
+            const endX = (e.pageX || (e.changedTouches ? e.changedTouches[0].pageX : e.pageX));
             const diff = startX - endX;
             if (Math.abs(diff) > 40) {
                 if (diff > 0 && currentIdx < slider.children.length - 1) currentIdx++;
@@ -385,27 +384,24 @@
         if (res.discAM > 0) dL += `\n✨ ส่วนลดเครือ AM: -${res.discAM} บาท`;
         if (res.discCNJ > 0) dL += `\n✨ ส่วนลดเครือ CNJ: -${res.discCNJ} บาท`;
         if (res.discMNJ > 0) dL += `\n✨ ส่วนลดเครือ MNJ: -${res.discMNJ} บาท`;
-        let text = "สรุปรายการสั่งซื้อ🤍\n\n" + itemList + (dL ? "\n" + dL : "") + `\n\nยอดสุทธิ: ${res.total} บาท\n--------------------\nขอบคุณที่มาอุดหนุนร้านองุ่นนะคะ⭐️\nรอองุ่นตอบกลับ 5-10 นาทีน้าา🫶🏻☁️`;
+        let text = "สรุปรายการสั่งซื้อ💖\n\n" + itemList + (dL ? "\n" + dL : "") + `\n\nอดสุทธิ: ${res.total} บาท\n--------------------\nขอบคุณที่มาอุดหนุนร้านองุ่นนะคะ⭐️\nรอองุ่นตอบกลับ 5-10 นาทีน้าา🫶🏻☁️`;
         const temp = document.createElement("textarea"); temp.value = text; document.body.appendChild(temp); temp.select(); document.execCommand("copy"); document.body.removeChild(temp);
         alert("คัดลอกรายการสั่งซื้อแล้ว! กำลังไปที่หน้า LINE..."); window.location.href = "https://line.me/ti/p/@309ranuu";
     }
 
     function calculateTotal() {
         let subtotal = cart.reduce((s, i) => s + i.price, 0);
-        let promoAM = cart.filter(i => i.cat.includes('AM') && i.isPromo).length;
-        let discAM = Math.floor(promoAM / 2) * 18;
-        let promoCNJ = cart.filter(i => i.cat.includes('CNJ') && i.isPromo).length;
-        let discCNJ = Math.floor(promoCNJ / 2) * 39;
-        let promoMNJ = cart.filter(i => i.cat.includes('MNJ') && i.isPromo).length;
-        let discMNJ = Math.floor(promoMNJ / 2) * 49;
+        let promoAM = cart.filter(i => i.cat.includes('AM') && i.isPromo).length; let discAM = Math.floor(promoAM / 2) * 18;
+        let promoCNJ = cart.filter(i => i.cat.includes('CNJ') && i.isPromo).length; let discCNJ = Math.floor(promoCNJ / 2) * 39;
+        let promoMNJ = cart.filter(i => i.cat.includes('MNJ') && i.isPromo).length; let discMNJ = Math.floor(promoMNJ / 2) * 49;
         return { total: subtotal - discAM - discCNJ - discMNJ, discAM, discCNJ, discMNJ };
     }
 
     function renderHome() {
         let items = []; categories.forEach(c => items.push(...c.products.slice(0,2)));
-        document.getElementById('home-recommend').innerHTML = items.map(p => {
-            const cat = categories.find(c => c.products.includes(p));
-            return createCardHtml(p, cat.name);
+        document.getElementById('home-recommend').innerHTML = items.map(p => { 
+            const cat = categories.find(c => c.products.includes(p)); 
+            return createCardHtml(p, cat.name); 
         }).join('');
         enableSwipe('review-slider');
         document.querySelectorAll('.card-img-swipe').forEach(s => enableSwipe(s, true));
@@ -418,9 +414,7 @@
             subCats.forEach(sub => {
                 const filtered = cat.products.filter(p => p.tags && p.tags.includes(sub));
                 if (filtered.length > 0) {
-                    html += `<div class="flex justify-between items-center"><span class="text-xs font-bold text-pinky-dark bg-white px-3 py-1 rounded-full border border-pinky-light">📂 หมวด ${sub}</span>
-                    <button onclick="viewSubCategory('${cat.id}', '${sub}')" class="text-[10px] text-brown-light underline">ดูเพิ่มเติม</button></div>
-                    <div class="grid grid-cols-2 gap-4">${filtered.slice(0, 4).map(p => createCardHtml(p, cat.name)).join('')}</div>`;
+                    html += `<div class="flex justify-between items-center"><span class="text-xs font-bold text-pinky-dark bg-white px-3 py-1 rounded-full border border-pinky-light">📂 หมวด ${sub}</span><button onclick="viewSubCategory('${cat.id}', '${sub}')" class="text-[10px] text-brown-light underline">ดูเพิ่มเติม</button></div><div class="grid grid-cols-2 gap-4">${filtered.slice(0, 4).map(p => createCardHtml(p, cat.name)).join('')}</div>`;
                 }
             });
             html += `</div><hr class="border-pinky-light border-dashed">`;
@@ -453,7 +447,9 @@
     }
 
     function openSummary() {
-        const res = calculateTotal(); let html = ''; cart.forEach(i => html += `<div class="flex justify-between"><span>• ${i.name}</span><b>฿${i.price}</b></div>`);
+        const res = calculateTotal();
+        let html = '';
+        cart.forEach(i => html += `<div class="flex justify-between"><span>• ${i.name}</span><b>฿${i.price}</b></div>`);
         document.getElementById('modalItemsList').innerHTML = html;
         let pT = "";
         if (res.discAM > 0) pT += `✨ ส่วนลด AM: -฿${res.discAM}<br>`;
