@@ -58,7 +58,7 @@
     <div class="p-8 text-center border-b-2 border-dashed border-pinky-light"><div class="text-5xl mb-3 animate-float">🍇</div><h2 class="font-mitr font-bold text-xl text-brown">องุ่นหวาน Studio</h2></div>
     <div class="flex flex-col p-4 space-y-1 mt-4">
         <button onclick="navTo('home')" class="flex items-center gap-3.5 p-4 rounded-2xl text-brown font-medium hover:bg-pinky-light transition-all text-left font-bold"><i data-lucide="home"></i> หน้าแรก</button>
-        <button onclick="navTo('shop')" class="flex items-center gap-3.5 p-4 rounded-2xl text-brown font-medium hover:bg-pinky-light transition-all text-left font-bold"><i data-lucide="shopping-bag"></i> ฟอนต์ทั้งหมด (รวมทุกเครือ)</button>
+        <button onclick="navTo('shop')" class="flex items-center gap-3.5 p-4 rounded-2xl text-brown font-medium hover:bg-pinky-light transition-all text-left font-bold"><i data-lucide="shopping-bag"></i> สินค้าทั้งหมด</button>
         <div class="flex flex-col">
             <button onclick="toggleSubmenu('font-sub')" class="flex items-center justify-between p-4 rounded-2xl text-brown font-medium hover:bg-pinky-light transition-all font-bold"><div class="flex items-center gap-3.5"><i data-lucide="type"></i> หมวดหมู่สินค้า</div><i data-lucide="chevron-down" class="menu-arrow w-4 h-4" id="font-sub-arrow"></i></button>
             <div class="submenu mb-2" id="font-sub">
@@ -187,14 +187,14 @@
 </div>
 
 <div id="page-shop" class="view-page relative z-10">
-    <div class="bg-pinky p-8 text-center shadow-lg rounded-b-[40px] border-b-4 border-white"><h2 class="font-mitr text-2xl font-bold text-white tracking-wide">🎨 คลังฟอนต์ทั้งหมด</h2></div>
+    <div class="bg-pinky p-8 text-center shadow-lg rounded-b-[40px] border-b-4 border-white"><h2 class="font-mitr text-2xl font-bold text-white tracking-wide">🎨 All Product</h2></div>
     <div id="shop-content" class="px-6 py-12 space-y-16"></div>
 </div>
 
 <div id="fullPageCategory">
     <div class="full-page-header">
         <button onclick="closeFullPage()" class="p-2 text-pinky-dark bg-cream rounded-full mr-3"><i data-lucide="arrow-left"></i></button>
-        <h2 id="fullPageTitle" class="font-mitr font-bold text-brown text-sm uppercase"></h2>
+	<h2 id="fullPageTitle" class="font-mitr font-bold text-brown text-xl"></h2>
     </div>
     <div class="p-6 grid grid-cols-2 gap-4 pb-32" id="fullPageGrid"></div>
 </div>
@@ -435,9 +435,9 @@
             products: [ 
                 { 
                     id: 'stk_01', 
-                    name: 'สตกหัวใจฟุ้งฟิ้ง', 
+                    name: 'สติ๊กเกอร์พี่จ่าง 01', 
                     price: 59, 
-                    img: 'https://...', 
+                    img: 'https://img2.pic.in.th/c468559163858e02c5d7de1a0e345dec.jpeg', 
                     tags: ['อื่น ๆ'] 
                 }
             ] 
@@ -472,7 +472,7 @@
         } // <--- ปิดเครือสุดท้าย
 
     ]; // <--- ปิดตัวแปร categories
-    let cart = []; const subCats = ['หัวข้อ', 'เนื้อหา', 'อิโมจิ'];
+    let cart = []; const subCats = ['หัวข้อ', 'เนื้อหา', 'อิโมจิ','ลายน้ำ','BG','ของตกแต่ง','อื่น ๆ'];
     function lockScroll(isLocked) { if (isLocked) document.body.classList.add('modal-open'); else document.body.classList.remove('modal-open'); }
     function toggleDrawer() { 
         const d = document.getElementById('drawer'); const o = document.getElementById('overlay');
@@ -487,7 +487,7 @@
         const isSel = cart.find(i => i.id === p.id) ? 'selected' : ''; 
         let badgeHtml = p.badge ? `<div class="badge-custom badge-red">${p.badge.text}</div>` : ''; 
         let imgContent = Array.isArray(p.img) ? `<div class="snap-slider card-snap-slider h-full w-full">${p.img.map(u => `<div class="snap-item w-full h-full shrink-0"><img src="${u}" class="w-full h-full object-cover"></div>`).join('')}</div>` : `<img src="${p.img}" class="w-full h-full object-cover">`; 
-        return `<div class="item-card bg-white p-3.5 border-2 border-pinky-light shadow-sm transition-all ${isSel}" data-id="${p.id}" onclick="toggleItem('${p.id}','${catName}','${p.name}',${p.price},${p.isPromo || false})">${badgeHtml}<div class="rounded-2xl aspect-square mb-3 overflow-hidden relative">${imgContent}</div><h4 class="font-bold text-[11px] text-brown line-clamp-1 font-mitr">${p.name}</h4><p class="text-[9px] text-brown-light mt-0.5 mb-2 line-clamp-2 leading-tight">${p.detail || ''}</p><div class="flex items-center gap-2 mt-1">${p.oldPrice ? `<span class="text-[9px] line-through text-brown-light">฿${p.oldPrice}</span>` : ''}<span class="bg-pinky-dark text-white text-[10px] px-2 py-0.5 rounded-lg font-bold">฿${p.price}</span></div></div>`; 
+        return `<div class="item-card bg-white p-3.5 border-2 border-pinky-light shadow-sm transition-all ${isSel}" data-id="${p.id}" onclick="toggleItem('${p.id}','${catName}','${p.name}',${p.price},${p.isPromo || false})">${badgeHtml}<div class="rounded-2xl aspect-square mb-3 overflow-hidden relative">${imgContent}</div><h4 class="font-bold text-[14px] text-brown line-clamp-1 font-mitr">${p.name}</h4><p class="text-[9px] text-brown-light mt-0.5 mb-2 line-clamp-2 leading-tight">${p.detail || ''}</p><div class="flex items-center gap-2 mt-1">${p.oldPrice ? `<span class="text-[11px] line-through text-brown-light">฿${p.oldPrice}</span>` : ''}<span class="bg-pinky-dark text-white text-[12px] px-2 py-0.5 rounded-lg font-bold">฿${p.price}</span></div></div>`; 
     }
 
 function viewCategoryByTag(mainTag, subTag = null) {
@@ -513,10 +513,18 @@ function viewCategoryByTag(mainTag, subTag = null) {
         if (allMatch.length > 0) {
             foundAny = true; 
             // เปลี่ยน text-sm เป็น text-lg ตรงบรรทัดด้านล่างนี้ครับ
-resultsHtml += `<div class="col-span-2 mt-8 mb-2 flex justify-between items-center border-l-4 border-pinky-dark pl-3 font-bold text-brown text-lg"><span class="font-mitr">${cat.name}</span><button onclick="viewSubCategory('${cat.id}', '${subTag || ''}')" class="text-[10px] text-pinky-dark underline font-bold">ดูเพิ่มเติม</button></div><div class="grid grid-cols-2 gap-4 col-span-2">${allMatch.slice(0, 4).map(p => createCardHtml(p, cat.name)).join('')}</div>`;
+
+	resultsHtml += `<div class="col-span-2 mt-10 mb-4 flex flex-wrap justify-between items-center border-l-4 border-pinky-dark pl-3 font-bold text-brown">
+    <span class="font-mitr text-2xl leading-tight mb-1 pr-2 flex-1 min-w-[200px]">${cat.name}</span>
+    <button onclick="viewSubCategory('${cat.id}', '${subTag || ''}')" 
+        class="text-[13px] text-pinky-dark border-2 border-pinky-dark px-3 py-1 rounded-full font-bold hover:bg-pinky-dark hover:text-white transition-all whitespace-nowrap mb-1">
+        ดูเพิ่มเติม ✨
+    </button>
+</div>
+<div class="grid grid-cols-2 gap-4 col-span-2">${allMatch.slice(0, 4).map(p => createCardHtml(p, cat.name)).join('')}</div>`;
+
         }
     });
-
     document.getElementById('fullPageTitle').innerText = subTag ? `${subTag}` : (mainTag === 'Recommend' ? 'สินค้าแนะนำ' : mainTag);
     document.getElementById('fullPageGrid').innerHTML = foundAny ? resultsHtml : '<div class="col-span-2 text-center py-20 font-bold text-brown-light">ยังไม่มีสินค้าในหมวดนี้ค่ะ 🍇</div>';
     
@@ -543,15 +551,37 @@ resultsHtml += `<div class="col-span-2 mt-8 mb-2 flex justify-between items-cent
     }
 
     function renderShop() { 
-        let html = ''; categories.forEach(cat => { 
-            html += `<div class="space-y-6"><div class="flex items-center gap-3"><i data-lucide="folder-heart" class="text-pinky-dark"></i><h3 class="font-mitr font-bold text-lg text-brown">${cat.name}</h3></div>`; 
+        let html = ''; 
+        categories.forEach(cat => { 
+            // 1. ส่วนหัวเครือ (เอาปุ่ม "ดูเพิ่มเติม ✨" ออกแล้วค่ะ)
+            html += `<div class="space-y-6">
+                <div class="mb-4 border-l-4 border-pinky-dark pl-3">
+                    <h3 class="font-mitr font-bold text-2xl text-brown leading-tight">${cat.name}</h3>
+                </div>`; 
+
+            // 2. วนลูปแสดงสินค้าตามหมวดย่อย (มีปุ่มดูเพิ่มเติมแค่ตรงนี้)
             subCats.forEach(sub => { 
                 const filtered = cat.products.filter(p => p.tags && p.tags.includes(sub)); 
-                if (filtered.length > 0) html += `<div class="flex justify-between items-center"><span class="text-xs font-bold text-pinky-dark bg-white px-3 py-1 rounded-full border border-pinky-light">📂 หมวด ${sub}</span><button onclick="viewSubCategory('${cat.id}', '${sub}')" class="text-[10px] text-brown-light underline font-bold">ดูเพิ่มเติม</button></div><div class="grid grid-cols-2 gap-4">${filtered.slice(0, 4).map(p => createCardHtml(p, cat.name)).join('')}</div>`; 
+                if (filtered.length > 0) {
+                    html += `<div class="flex justify-between items-center mt-8 mb-3">
+                        <span class="text-s font-bold text-pinky-dark bg-white px-3 py-1 rounded-full border border-pinky-light">📂 หมวด ${sub}</span>
+                        
+                        <button onclick="viewSubCategory('${cat.id}', '${sub}')" 
+                            class="text-[12px] text-pinky-dark border-2 border-pinky-dark px-3 py-1 rounded-full font-bold hover:bg-pinky-dark hover:text-white transition-all whitespace-nowrap">
+                            ดูเพิ่มเติม ✨
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        ${filtered.slice(0, 4).map(p => createCardHtml(p, cat.name)).join('')}
+                    </div>`; 
+                }
             }); 
-            html += `</div><hr class="border-pinky-light border-dashed">`; 
+
+            html += `</div><hr class="my-12 border-pinky-light border-dashed">`; 
         }); 
-        document.getElementById('shop-content').innerHTML = html; lucide.createIcons(); 
+
+        document.getElementById('shop-content').innerHTML = html; 
+        lucide.createIcons(); 
     }
 
     function calculateTotal() { 
