@@ -28,6 +28,7 @@
     <symbol id="icon-teddy" viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="7" r="3.5" /><circle cx="18" cy="7" r="3.5" /><path d="M12 6C7 6 4 10 4 15C4 20 7 22.5 12 22.5C17 22.5 20 20 20 15C20 10 17 6 12 6Z" /><ellipse cx="12" cy="16.5" rx="4" ry="3" fill="#F8F4FF" /></symbol>
     <symbol id="icon-button" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#D1C7F0" /><circle cx="50" cy="50" r="28" fill="#F0E6FF" /><path d="M38 39 L62 63 M62 39 L38 63" stroke="#DCA2B1" stroke-width="8" stroke-linecap="round"/></symbol>
 </svg>
+
 <button onclick="toggleDrawer()" class="fixed top-5 left-5 z-[1100] rounded-full transition-all">
     <i data-lucide="menu"></i>
 </button>
@@ -71,10 +72,11 @@
             <h2 class="text-xl font-bold text-brown mb-3 flex items-center gap-2 relative z-10"><i data-lucide="sparkles" class="text-pinky-dark"></i> ยินดีต้อนรับ🪽</h2>
             <p class="text-sm leading-relaxed text-brown-light italic relative z-10">ร้านองุ่นหวาน จำหน่ายฟอนต์ลายมือหลากหลายเครือ ราคาน่ารักสบายกระเป๋า เริ่มต้นเพียง 39.-<br>มองหาฟอนต์ราคาดีๆ ใช้งานได้จริง แวะมาเลือกชมสินค้ากันก่อนได้เลย องุ่นยินดีให้บริการค่า✨</p>
         </section>
-<section class="space-y-4">
+        
+        <section class="space-y-4">
             <div class="flex items-center gap-2 px-2 font-bold text-brown text-2xl mb-6 border-b-2 border-pinky-light pb-2">
-    <i data-lucide="layout-grid" class="text-pinky-dark"></i> เลือกช้อปตามหมวดหมู่ 🎨
-</div>
+                <i data-lucide="layout-grid" class="text-pinky-dark"></i> เลือกช้อปตามหมวดหมู่ 🎨
+            </div>
             <div class="grid grid-cols-2 gap-3">
                 <button onclick="navTo('sub-font')" class="flex items-center justify-between p-4 rounded-[25px] bg-white border-2 border-pinky-light shadow-sm"><div class="w-10 h-10 rounded-xl bg-pinky-light flex items-center justify-center text-pinky-dark"><i data-lucide="type"></i></div><div class="font-bold text-sm text-brown">ฟอนต์</div><i data-lucide="chevron-right" class="text-pinky-dark w-4 h-4"></i></button>
                 <button onclick="viewCategoryByTag('ลายน้ำ')" class="flex items-center justify-between p-4 rounded-[25px] bg-white border-2 border-pinky-light shadow-sm"><div class="w-10 h-10 rounded-xl bg-[#FFE6F0] flex items-center justify-center text-[#FF85B2]"><i data-lucide="droplet"></i></div><div class="font-bold text-sm text-brown">ลายน้ำ</div><i data-lucide="chevron-right" class="text-[#FF85B2] w-4 h-4"></i></button>
@@ -86,8 +88,8 @@
 
         <section class="space-y-4">
            <div class="flex items-center gap-2 px-2 font-bold text-brown text-2xl mb-6 border-b-2 border-pinky-light pb-2">
-    <i data-lucide="image" class="text-pinky-dark"></i> 🔥 Promotion
-</div>
+                <i data-lucide="image" class="text-pinky-dark"></i> 🔥 Promotion
+            </div>
             <div class="relative overflow-hidden rounded-[40px] border-2 border-pinky-light bg-white p-3 shadow-inner">
                <div id="review-slider" class="snap-slider rounded-[30px]"><div class="snap-item"><img src="https://img2.pic.in.th/IMG_463117d9e236d6e75cfd.jpeg" class="w-full h-full object-cover"></div><div class="snap-item"><img src="https://img1.pic.in.th/images/IMG_4632.jpeg" class="w-full h-full object-cover"></div></div>
             </div>
@@ -102,8 +104,8 @@
         <section class="w-full bg-white pt-10 pb-12 px-6 rounded-[40px] text-center border-2 border-pinky-light shadow-lg mt-16 relative overflow-visible">
             <svg class="absolute -top-5 -right-5 w-12 h-12 opacity-50 rotate-12 z-20" viewBox="0 0 100 100"><use href="#icon-button"></use></svg>
             <h2 class="text-xl font-bold text-brown mb-8 flex items-center justify-center gap-2 border-b-2 border-pinky-light pb-4 uppercase">
-    <i data-lucide="phone" class="text-pinky-dark w-6 h-6"></i> CONTACT US ❤️
-</h2>
+                <i data-lucide="phone" class="text-pinky-dark w-6 h-6"></i> CONTACT US ❤️
+            </h2>
             <div class="flex flex-col items-center gap-4">
                 <a href="https://www.facebook.com/xngunhwani" target="_blank" class="w-full max-w-[280px] bg-[#4A3B6B] text-white py-3.5 rounded-full text-[11px] font-bold uppercase shadow-md font-mitr">FACEBOOK</a>
                 <a href="https://line.me/ti/p/@309ranuu" target="_blank" class="w-full max-w-[280px] bg-white border-2 border-[#4A3B6B] text-[#4A3B6B] py-3.5 rounded-full text-[11px] font-bold uppercase shadow-md font-mitr">LINE OFFICIAL</a>
@@ -112,12 +114,13 @@
         </section>
     </main>
 </div>
+
 <div id="page-sub-font" class="view-page relative z-10">
     <div class="bg-pinky p-8 text-center shadow-lg rounded-b-[40px] border-b-4 border-white relative">
-        <button onclick="navTo('home')" class="absolute left-6 top-1/2 -translate-y-1/2 text-white">
+        <button onclick="navTo('home')" class="absolute left-6 top-1/2 -translate-y-1/2 text-brown">
             <i data-lucide="arrow-left"></i>
         </button>
-        <h2 class="font-mitr text-2xl font-bold text-white tracking-wide">เลือกประเภทฟอนต์</h2>
+        <h2 class="font-mitr text-2xl font-bold text-brown tracking-wide">เลือกประเภทฟอนต์</h2>
     </div>
     
     <div class="px-6 py-10 space-y-4">
@@ -157,7 +160,12 @@
 </div>
 
 <div id="page-contact" class="view-page relative z-10">
-    <div class="bg-pinky p-8 text-center shadow-lg rounded-b-[40px] border-b-4 border-white relative"><button onclick="navTo('home')" class="absolute left-6 top-1/2 -translate-y-1/2 text-white"><i data-lucide="arrow-left"></i></button><h2 class="font-mitr text-2xl font-bold text-brown tracking-wide">📱 ติดต่อเรา</h2></div>
+    <div class="bg-pinky p-8 text-center shadow-lg rounded-b-[40px] border-b-4 border-white relative">
+        <button onclick="navTo('home')" class="absolute left-6 top-1/2 -translate-y-1/2 text-brown">
+            <i data-lucide="arrow-left"></i>
+        </button>
+        <h2 class="font-mitr text-2xl font-bold text-brown tracking-wide">📱 ติดต่อเรา</h2>
+    </div>
     <div class="px-6 py-12 flex flex-col items-center gap-5">
         <a href="https://www.facebook.com/xngunhwani" target="_blank" class="flex items-center gap-4 p-5 rounded-3xl bg-white border-2 border-pinky-light w-full shadow-sm"><div class="w-14 h-14 rounded-2xl bg-[#4A3B6B] flex items-center justify-center text-white text-2xl">🪼</div><div><div class="font-bold text-brown font-mitr">Facebook</div><div class="text-xs text-brown-light italic">องุ่นหวาน</div></div></a>
         <a href="https://line.me/ti/p/@309ranuu" target="_blank" class="flex items-center gap-4 p-5 rounded-3xl bg-white border-2 border-pinky-light w-full shadow-sm"><div class="w-14 h-14 rounded-2xl bg-[#00b900] flex items-center justify-center text-white text-2xl">🍀</div><div><div class="font-bold text-brown font-mitr">Line Official</div><div class="text-xs text-brown-light italic">@309ranuu</div></div></a>
@@ -166,7 +174,9 @@
 </div>
 
 <div id="page-shop" class="view-page relative z-10">
-    <div class="bg-pinky p-8 text-center shadow-lg rounded-b-[40px] border-b-4 border-white"><h2 class="font-mitr text-2xl font-bold text-brown tracking-wide">🎨 All Product</h2>
+    <div class="bg-pinky p-8 text-center shadow-lg rounded-b-[40px] border-b-4 border-white">
+        <h2 class="font-mitr text-2xl font-bold text-brown tracking-wide">🎨 All Product</h2>
+    </div>
     <div id="shop-content" class="px-6 py-12 space-y-16"></div>
 </div>
 
