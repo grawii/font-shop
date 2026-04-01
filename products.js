@@ -3,7 +3,7 @@
             { id: 'g1', name: 'มนตรา (GRP Mantra)', price: 89, oldPrice: 129, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isRecommend : true, badge: {text: 'Recommend', type: 'red'}, img: 'https://img1.pic.in.th/images/IMG_4602.png', tags: ['เนื้อหา'] },
             { id: 'g2', name: 'ไฮสคูล (GRP High School)', price: 129, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', img: 'https://img2.pic.in.th/Untitled88_20260325211524.png', tags: ['เนื้อหา'] },
             { id: 'g3', name: 'คุ๊กกี้ (GRP Cookie)', price: 39, oldPrice: 59, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', img: 'https://img1.pic.in.th/images/Untitled89_20260325213137.png', tags: ['เนื้อหา'] },
-            { id: 'g4', name: 'PuffyPop (GRP PuffyPop)', price: 99, oldPrice: 169, detail: 'มี 2 ไฟล์ (ปกติ/โปร่ง)', img: 'https://img1.pic.in.th/images/IMG_3011.jpeg', tags: ['เนื้อหา', 'หัวข้อ'] },
+            { id: 'g4', name: 'PuffyPop (GRP PuffyPop)', price: 99, oldPrice: 169, detail: 'มี 2 ไฟล์ (ปกติ/โปร่ง)', img: 'https://img1.pic.in.th/images/IMG_3011.jpeg', tags: ['เนื้อหา', 'ฟอนต์หัวข้อ'] },
             { id: 'g5', name: 'โมจิปัง (GRP MochiPung)', price: 59, oldPrice: 129, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', img: 'https://img2.pic.in.th/IMG_4604f4cbfa878d2d0190.png', tags: ['เนื้อหา'] },
             { id: 'g6', name: 'เล่าเรื่อง (GRP StoryTelling)', price: 59, oldPrice: 129, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)',badge: {text: 'New', type: 'red'}, img: 'https://img2.pic.in.th/Untitled82_20260325195517.png', tags: ['เนื้อหา'] }
         ]},
@@ -54,7 +54,7 @@
         ]},
         { id: 'cat5', name: 'ฟอนต์เครือ LKT - ดึงเมลเอง🔥', products: [
             { id: 'l1', name: 'Mochi Soft (LKT Mochi Soft)', price: 299, detail: 'มีคลิปสอนแต่งหัวป้ายแถมให้‼️', img: ['https://img1.pic.in.th/images/-458_20260206201301.png', 'https://img1.pic.in.th/images/-258_20251226180828.png'], tags: ['เนื้อหา'] },
-            { id: 'l2', name: 'Rochy (LKT Rochy)', price: 199, detail: 'มีคลิปสอนแต่งหัวป้ายแถมให้‼️', isRecommend : true, badge: {text: 'Recommend', type: 'red'}, img: ['https://img2.pic.in.th/-393_20260115175306.png', 'https://img1.pic.in.th/images/-393_20260115175819.png'], tags: ['หัวข้อ'] },
+            { id: 'l2', name: 'Rochy (LKT Rochy)', price: 199, detail: 'มีคลิปสอนแต่งหัวป้ายแถมให้‼️', isRecommend : true, badge: {text: 'Recommend', type: 'red'}, img: ['https://img2.pic.in.th/-393_20260115175306.png', 'https://img1.pic.in.th/images/-393_20260115175819.png'], tags: ['ฟอนต์หัวข้อ'] },
             { id: 'l3', name: 'Feather (LKT Feather)', price: 99, oldPrice: 159, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/-530_20260226002912.png', tags: ['เนื้อหา'] },
             { id: 'l4', name: 'Bagie (LKT Bagie)', price: 79, oldPrice: 129, detail: 'แถมคลิปสอนแต่งหัวป้ายแถมให้‼️', img: ['https://img2.pic.in.th/-587_20260310181031.png', 'https://img1.pic.in.th/images/-589_20260310175521.png'], tags: ['เนื้อหา'] }
         ]},
@@ -66,7 +66,7 @@
             { id: 'nv5', name: 'ขี้เกียจทำงาน (LB Botheredtowork)', price: 89, detail: 'รวมชพณ.', img: ['https://img2.pic.in.th/E0152B71-8EF1-449B-8955-0B36617E1DD3.jpeg', 'https://img1.pic.in.th/images/10FE1793-6273-4595-B68E-B3C3DA3E8E6F.jpeg'], tags: ['เนื้อหา'] },
             { id: 'nv6', name: 'ขี้เกียจเรียน (LB LazytoStudy)', price: 89, detail: 'รวมชพณ.', img: ['https://img2.pic.in.th/B71F0FE2-F415-4088-8B49-FFD1357B8F61.jpeg', 'https://img1.pic.in.th/images/9665D3C6-6C61-471D-B24A-535187910FEF.jpeg'], tags: ['เนื้อหา'] },
             { id: 'nv7', name: 'ขี้เกียจล้างจาน (LB LazyWashDishes)', price: 89, detail: 'รวมชพณ.', img: ['https://img2.pic.in.th/899D07DE-4AF8-4E1F-8EAF-DCF62D75C68B.jpeg', 'https://img1.pic.in.th/images/7698A7F2-4431-4395-863B-41B5D5A9580C.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'nv8', name: 'ขี้เกียจกินช้าว (LB LazytoEat)', price: 89, detail: 'รวมชพณ.', img: ['https://img2.pic.in.th/6FDAD9E2-5359-4EF1-8519-EFBE45CDA7E3.jpeg', 'https://img1.pic.in.th/images/DB8BD484-4110-43E4-A461-37B1FD15418F.jpeg','https://img2.pic.in.th/B3B5C958-F71C-440B-BFB9-CE6B20EB601A.jpeg','https://img1.pic.in.th/images/98C2B168-B307-4EA4-8A86-BB99F6547337.jpeg'], tags: ['เนื้อหา','หัวข้อ'] }
+            { id: 'nv8', name: 'ขี้เกียจกินช้าว (LB LazytoEat)', price: 89, detail: 'รวมชพณ.', img: ['https://img2.pic.in.th/6FDAD9E2-5359-4EF1-8519-EFBE45CDA7E3.jpeg', 'https://img1.pic.in.th/images/DB8BD484-4110-43E4-A461-37B1FD15418F.jpeg','https://img2.pic.in.th/B3B5C958-F71C-440B-BFB9-CE6B20EB601A.jpeg','https://img1.pic.in.th/images/98C2B168-B307-4EA4-8A86-BB99F6547337.jpeg'], tags: ['เนื้อหา','ฟอนต์หัวข้อ'] }
         ]},
         { id: 'cat7', name: 'ฟอนต์เครือ MNJ', products: [
             { id: 'mnj1', name: 'เหมียวมี่ (MNJ Meawmie)', price: 149, isPromo: true, detail: 'รวมชพณ.', img: ['https://img2.pic.in.th/50A457E7-1328-4839-9765-A3455D1B2CE5.jpeg'], tags: ['เนื้อหา'] },
@@ -103,7 +103,7 @@
         ]},
         { id: 'cat8', name: 'ฟอนต์เครือ Littlehouse', products: [
             { id: 'lt1', name: 'Mochi Soft (LKT Mochi Soft)', price: 299, detail: 'มีคลิปสอนแต่งหัวป้ายแถมให้‼️', img: ['https://img1.pic.in.th/images/-458_20260206201301.png', 'https://img1.pic.in.th/images/-258_20251226180828.png'], tags: ['เนื้อหา'] },
-            { id: 'lt2', name: 'Rochy (LKT Rochy)', price: 199, detail: 'มีคลิปสอนแต่งหัวป้ายแถมให้‼️', badge: {text: 'Recommend', type: 'red'}, img: ['https://img2.pic.in.th/-393_20260115175306.png', 'https://img1.pic.in.th/images/-393_20260115175819.png'], tags: ['หัวข้อ'] },
+            { id: 'lt2', name: 'Rochy (LKT Rochy)', price: 199, detail: 'มีคลิปสอนแต่งหัวป้ายแถมให้‼️', badge: {text: 'Recommend', type: 'red'}, img: ['https://img2.pic.in.th/-393_20260115175306.png', 'https://img1.pic.in.th/images/-393_20260115175819.png'], tags: ['ฟอนต์หัวข้อ'] },
             { id: 'lt3', name: 'Feather (LKT Feather)', price: 99, oldPrice: 159, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/-530_20260226002912.png', tags: ['เนื้อหา'] },
             { id: 'lt4', name: 'Bagie (LKT Bagie)', price: 79, oldPrice: 129, detail: 'แถมคลิปสอนแต่งหัวป้ายแถมให้‼️', img: ['https://img2.pic.in.th/-587_20260310181031.png', 'https://img1.pic.in.th/images/-589_20260310175521.png'], tags: ['เนื้อหา'] }
         ]},
@@ -118,7 +118,7 @@
             { id: 'gmc8', name: 'ฮายมิลค์กี้ (GMC HiMilky)', price: 89, oldPrice: 199, detail: 'รวมชพณ.', img: ['https://img2.pic.in.th/E17FE0C7-ADFE-46A1-A48C-FCD7A7733A9A.jpeg'], tags: ['เนื้อหา'] },
             { id: 'gmc9', name: 'ฮายซันนี่ (GMC HiSunny)', price: 89, oldPrice: 199, detail: 'รวมชพณ.', img: ['https://img2.pic.in.th/DB5FDF5F-5296-4D97-B498-24B636055D0E.jpeg'], tags: ['เนื้อหา'] },
             { id: 'gmc10', name: 'ฮายเลิฟลี่ (GMC HiLovely)', price: 89, oldPrice: 199, detail: 'รวมชพณ.', img: ['https://img1.pic.in.th/images/A78798E4-3103-4348-BE2D-1F5369C5CEBE.jpeg'], tags: ['เนื้อหา'] },
-            { id: 'gmc11', name: 'ฮายเพอร่า (GMC HiPerra)', price: 89, oldPrice: 199, detail: 'รวมชพณ.', img: ['https://img2.pic.in.th/186D1697-BC78-4B4D-BA03-E4F506764A71.jpeg'], tags: ['หัวข้อ'] }
+            { id: 'gmc11', name: 'ฮายเพอร่า (GMC HiPerra)', price: 89, oldPrice: 199, detail: 'รวมชพณ.', img: ['https://img2.pic.in.th/186D1697-BC78-4B4D-BA03-E4F506764A71.jpeg'], tags: ['ฟอนต์หัวข้อ'] }
         ]},
         { id: 'cat10', name: 'ฟอนต์เครือ KT', products: [
             { id: 'kt1', name: 'บัลเดอร์ (AM Balder)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img1.pic.in.th/images/06E02B71-90EC-4ABB-B1D5-B16D571E69A1.jpeg', tags: ['เนื้อหา'] },
@@ -158,12 +158,12 @@
         ]},
         { id: 'cat14', name: 'ฟอนต์เครือ MysissHouse', products: [
             { id: 'ms1', name: 'Mochi Soft (LKT Mochi Soft)', price: 299, detail: 'มีคลิปสอนแต่งหัวป้ายแถมให้‼️', img: ['https://img1.pic.in.th/images/-458_20260206201301.png', 'https://img1.pic.in.th/images/-258_20251226180828.png'], tags: ['เนื้อหา'] },
-            { id: 'ms2', name: 'Rochy (LKT Rochy)', price: 199, detail: 'มีคลิปสอนแต่งหัวป้ายแถมให้‼️', badge: {text: 'Recommend', type: 'red'}, img: ['https://img2.pic.in.th/-393_20260115175306.png', 'https://img1.pic.in.th/images/-393_20260115175819.png'], tags: ['หัวข้อ'] },
+            { id: 'ms2', name: 'Rochy (LKT Rochy)', price: 199, detail: 'มีคลิปสอนแต่งหัวป้ายแถมให้‼️', badge: {text: 'Recommend', type: 'red'}, img: ['https://img2.pic.in.th/-393_20260115175306.png', 'https://img1.pic.in.th/images/-393_20260115175819.png'], tags: ['ฟอนต์หัวข้อ'] },
             { id: 'ms3', name: 'Feather (LKT Feather)', price: 99, oldPrice: 159, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/-530_20260226002912.png', tags: ['เนื้อหา'] },
             { id: 'ms4', name: 'Bagie (LKT Bagie)', price: 79, oldPrice: 129, detail: 'แถมคลิปสอนแต่งหัวป้ายแถมให้‼️', img: ['https://img2.pic.in.th/-587_20260310181031.png', 'https://img1.pic.in.th/images/-589_20260310175521.png'], tags: ['เนื้อหา'] }
         ]}, // <--- องุ่นใส่ปีกกาปิดเครือที่ 14 ให้แล้ว
 
-        { id: 'cat_watermark', name: '🎨 หมวดลายน้ำองุ่นหวาน', products: [
+        { id: 'cat_watermark', name: '🎨 รวมลายน้ำ', products: [
             { 
                 id: 'wm_01', 
                 name: 'Set ลายน้ำมินิมอล 01', 
