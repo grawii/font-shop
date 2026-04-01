@@ -1,10 +1,23 @@
     let cart = []; 
     function lockScroll(isLocked) { if (isLocked) document.body.classList.add('modal-open'); else document.body.classList.remove('modal-open'); }
     function toggleDrawer() { 
-        const d = document.getElementById('drawer'); const o = document.getElementById('overlay');
-        if(d.classList.contains('open')) { d.classList.remove('open'); o.style.display = 'none'; lockScroll(false); }
-        else { d.classList.add('open'); o.style.display = 'block'; lockScroll(true); }
-    }
+    const d = document.getElementById('drawer'); 
+    const o = document.getElementById('overlay');
+    
+    // เปลี่ยนจาก .open เป็น .active ให้ตรงกับ CSS
+    d.classList.toggle('active');
+    o.classList.toggle('active');
+    
+    // เช็คว่าเปิดอยู่ไหมเพื่อล็อคหน้าจอไม่ให้เลื่อน
+    lockScroll(d.classList.contains('active'));
+}
+
+// และอย่าลืมแก้ตรง closeDrawer ด้วยนะคะ
+function closeDrawer() { 
+    document.getElementById('drawer').classList.remove('active'); 
+    document.getElementById('overlay').classList.remove('active'); 
+    lockScroll(false); 
+}
     function closeDrawer() { document.getElementById('drawer').classList.remove('open'); document.getElementById('overlay').style.display = 'none'; lockScroll(false); }
     function toggleSubmenu(id) { const s = document.getElementById(id); const a = document.getElementById(id + '-arrow'); if(s) s.classList.toggle('open'); if(a) a.classList.toggle('rotate'); }
     function navTo(pageId) { document.querySelectorAll('.view-page').forEach(p => p.classList.remove('active')); const t = document.getElementById('page-' + pageId); if(t) t.classList.add('active'); closeDrawer(); closeFullPage(); window.scrollTo({ top: 0, behavior: 'smooth' }); if (pageId === 'home') renderHome(); if (pageId === 'shop') renderShop(); }
