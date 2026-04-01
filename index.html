@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>องุ่นหวาน Studio⭐️</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Mitr:wght@400;600;700&display=swap" rel="stylesheet">
-	
-<link rel="stylesheet" href="style.css">
-	
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
@@ -28,7 +26,8 @@
     <symbol id="icon-teddy" viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="7" r="3.5" /><circle cx="18" cy="7" r="3.5" /><path d="M12 6C7 6 4 10 4 15C4 20 7 22.5 12 22.5C17 22.5 20 20 20 15C20 10 17 6 12 6Z" /><ellipse cx="12" cy="16.5" rx="4" ry="3" fill="#F8F4FF" /></symbol>
     <symbol id="icon-button" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#D1C7F0" /><circle cx="50" cy="50" r="28" fill="#F0E6FF" /><path d="M38 39 L62 63 M62 39 L38 63" stroke="#DCA2B1" stroke-width="8" stroke-linecap="round"/></symbol>
 </svg>
-<button onclick="toggleDrawer()" class="fixed top-4 left-4 z-[1100] p-3.5 bg-white/80 backdrop-blur-md rounded-full shadow-lg border border-pinky-light text-pinky-dark"><i data-lucide="menu"></i></button>
+
+<button onclick="toggleDrawer()" class="fixed top-4 left-4 z-[9999] p-3.5 bg-white/80 backdrop-blur-md rounded-full shadow-lg border border-pinky-light text-pinky-dark"><i data-lucide="menu"></i></button>
 <div class="overlay" id="overlay" onclick="toggleDrawer()"></div>
 
 <div class="drawer" id="drawer">
@@ -51,7 +50,6 @@
         <button onclick="navTo('contact')" class="flex items-center gap-3.5 p-4 rounded-2xl text-brown font-medium hover:bg-pinky-light transition-all text-left font-bold"><i data-lucide="phone"></i> ติดต่อเรา</button>
     </div>
 </div>
-
 <div id="page-home" class="view-page active relative z-10">
     <header class="bg-gradient-to-r from-pinky-light to-cream pt-16 pb-10 px-6 relative rounded-b-[50px] shadow-sm flex items-center gap-6">
         <div class="shrink-0 relative">
@@ -69,25 +67,15 @@
             <h2 class="text-xl font-bold text-brown mb-3 flex items-center gap-2 relative z-10"><i data-lucide="sparkles" class="text-pinky-dark"></i> ยินดีต้อนรับ🪽</h2>
             <p class="text-sm leading-relaxed text-brown-light italic relative z-10">ร้านองุ่นหวาน จำหน่ายฟอนต์ลายมือหลากหลายเครือ ราคาน่ารักสบายกระเป๋า เริ่มต้นเพียง 39.-<br>มองหาฟอนต์ราคาดีๆ ใช้งานได้จริง แวะมาเลือกชมสินค้ากันก่อนได้เลย องุ่นยินดีให้บริการค่า✨</p>
         </section>
-<section class="space-y-4">
-            <div class="flex items-center gap-2 px-2 font-bold text-brown text-2xl mb-6 border-b-2 border-pinky-light pb-2">
-    <i data-lucide="layout-grid" class="text-pinky-dark"></i> เลือกช้อปตามหมวดหมู่ 🎨
-</div>
+
+        <section class="space-y-4">
+            <div class="flex items-center gap-2 px-2 font-bold text-brown text-2xl mb-6 border-b-2 border-pinky-light pb-2"><i data-lucide="layout-grid" class="text-pinky-dark"></i> เลือกช้อปตามหมวดหมู่ 🎨</div>
             <div class="grid grid-cols-2 gap-3">
                 <button onclick="navTo('sub-font')" class="flex items-center justify-between p-4 rounded-[25px] bg-white border-2 border-pinky-light shadow-sm"><div class="w-10 h-10 rounded-xl bg-pinky-light flex items-center justify-center text-pinky-dark"><i data-lucide="type"></i></div><div class="font-bold text-sm text-brown">ฟอนต์</div><i data-lucide="chevron-right" class="text-pinky-dark w-4 h-4"></i></button>
                 <button onclick="viewCategoryByTag('ลายน้ำ')" class="flex items-center justify-between p-4 rounded-[25px] bg-white border-2 border-pinky-light shadow-sm"><div class="w-10 h-10 rounded-xl bg-[#FFE6F0] flex items-center justify-center text-[#FF85B2]"><i data-lucide="droplet"></i></div><div class="font-bold text-sm text-brown">ลายน้ำ</div><i data-lucide="chevron-right" class="text-[#FF85B2] w-4 h-4"></i></button>
                 <button onclick="viewCategoryByTag('BG')" class="flex items-center justify-between p-4 rounded-[25px] bg-white border-2 border-pinky-light shadow-sm"><div class="w-10 h-10 rounded-xl bg-[#E6F9FF] flex items-center justify-center text-[#4AD3FF]"><i data-lucide="image"></i></div><div class="font-bold text-sm text-brown">BG</div><i data-lucide="chevron-right" class="text-[#4AD3FF] w-4 h-4"></i></button>
                 <button onclick="viewCategoryByTag('ของตกแต่ง')" class="flex items-center justify-between p-4 rounded-[25px] bg-white border-2 border-pinky-light shadow-sm"><div class="w-10 h-10 rounded-xl bg-[#FFF9E6] flex items-center justify-center text-[#FFCC00]"><i data-lucide="sparkles"></i></div><div class="font-bold text-sm text-brown">ไฟล์ตกแต่ง</div><i data-lucide="chevron-right" class="text-[#FFCC00] w-4 h-4"></i></button>
-                <div class="col-span-2 flex justify-center"><button onclick="viewCategoryByTag('อื่น ๆ')" class="flex items-center justify-between p-4 rounded-[25px] bg-white border-2 border-pinky-light shadow-sm w-full max-w-[180px]"><div class="w-10 h-10 rounded-xl bg-[#F0FFE6] flex items-center justify-center text-[#7ED321]"><i data-lucide="paintbrush"></i></div><div class="font-bold text-sm text-brown">อื่นๆ (บรัช,<br>สติ๊กเกอร์แชท,<br>etc.)</div><i data-lucide="chevron-right" class="text-[#7ED321] w-4 h-4"></i></button></div>
-            </div>
-        </section>
-
-        <section class="space-y-4">
-           <div class="flex items-center gap-2 px-2 font-bold text-brown text-2xl mb-6 border-b-2 border-pinky-light pb-2">
-    <i data-lucide="image" class="text-pinky-dark"></i> 🔥 Promotion
-</div>
-            <div class="relative overflow-hidden rounded-[40px] border-2 border-pinky-light bg-white p-3 shadow-inner">
-               <div id="review-slider" class="snap-slider rounded-[30px]"><div class="snap-item"><img src="https://img2.pic.in.th/IMG_463117d9e236d6e75cfd.jpeg" class="w-full h-full object-cover"></div><div class="snap-item"><img src="https://img1.pic.in.th/images/IMG_4632.jpeg" class="w-full h-full object-cover"></div></div>
+                <div class="col-span-2 flex justify-center"><button onclick="viewCategoryByTag('อื่น ๆ')" class="flex items-center justify-between p-4 rounded-[25px] bg-white border-2 border-pinky-light shadow-sm w-full max-w-[180px]"><div class="w-10 h-10 rounded-xl bg-[#F0FFE6] flex items-center justify-center text-[#7ED321]"><i data-lucide="paintbrush"></i></div><div class="font-bold text-sm text-brown">อื่นๆ (บรัช,<br>สติ๊กเกอร์แชท,etc.)</div><i data-lucide="chevron-right" class="text-[#7ED321] w-4 h-4"></i></button></div>
             </div>
         </section>
 
@@ -96,115 +84,49 @@
             <div id="home-recommend" class="grid grid-cols-2 gap-5"></div>
             <div id="recommend-more-btn" class="flex justify-center mt-8 hidden"><button onclick="viewCategoryByTag('Recommend')" class="bg-pinky-dark text-white px-10 py-3 rounded-full text-sm font-bold shadow-lg">ดูเพิ่มเติม ✨</button></div>
         </section>
-
-        <section class="w-full bg-white pt-10 pb-12 px-6 rounded-[40px] text-center border-2 border-pinky-light shadow-lg mt-16 relative overflow-visible">
-            <svg class="absolute -top-5 -right-5 w-12 h-12 opacity-50 rotate-12 z-20" viewBox="0 0 100 100"><use href="#icon-button"></use></svg>
-            <h2 class="text-xl font-bold text-brown mb-8 flex items-center justify-center gap-2 border-b-2 border-pinky-light pb-4 uppercase">
-    <i data-lucide="phone" class="text-pinky-dark w-6 h-6"></i> CONTACT US ❤️
-</h2>
-            <div class="flex flex-col items-center gap-4">
-                <a href="https://www.facebook.com/xngunhwani" target="_blank" class="w-full max-w-[280px] bg-[#4A3B6B] text-white py-3.5 rounded-full text-[11px] font-bold uppercase shadow-md font-mitr">FACEBOOK</a>
-                <a href="https://line.me/ti/p/@309ranuu" target="_blank" class="w-full max-w-[280px] bg-white border-2 border-[#4A3B6B] text-[#4A3B6B] py-3.5 rounded-full text-[11px] font-bold uppercase shadow-md font-mitr">LINE OFFICIAL</a>
-                <a href="https://www.instagram.com/graphi.rae" target="_blank" class="w-full max-w-[280px] bg-[#A488FF] text-white py-3.5 rounded-full text-[11px] font-bold uppercase shadow-md font-mitr">INSTAGRAM</a>
-            </div>
-        </section>
     </main>
 </div>
-<div id="page-sub-font" class="view-page relative z-10">
-    <div class="bg-pinky p-8 text-center shadow-lg rounded-b-[40px] border-b-4 border-white relative">
-        <button onclick="navTo('home')" class="absolute left-6 top-1/2 -translate-y-1/2 text-white">
-            <i data-lucide="arrow-left"></i>
-        </button>
-        <h2 class="font-mitr text-2xl font-bold text-white tracking-wide">เลือกประเภทฟอนต์</h2>
-    </div>
-    
-    <div class="px-6 py-10 space-y-4">
-        <button onclick="viewCategoryByTag('ฟอนต์', 'หัวข้อ')" class="w-full flex items-center justify-between p-6 rounded-[30px] bg-white border-2 border-pinky-light shadow-sm active:scale-95 transition-transform">
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 rounded-2xl bg-pinky-light flex items-center justify-center text-pinky-dark"><i data-lucide="layers"></i></div>
-                <div class="text-left">
-                    <div class="font-bold text-lg text-brown">ฟอนต์หัวข้อ</div>
-                    <div class="text-xs text-brown-light">ฟอนต์แบบเส้นขอบ เน้นใช้ทำหัวป้าย</div>
-                </div>
-            </div>
-            <i data-lucide="chevron-right" class="text-pinky-dark"></i>
-        </button>
-
-        <button onclick="viewCategoryByTag('ฟอนต์', 'เนื้อหา')" class="w-full flex items-center justify-between p-6 rounded-[30px] bg-white border-2 border-pinky-light shadow-sm active:scale-95 transition-transform">
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 rounded-2xl bg-[#E6F9FF] flex items-center justify-center text-[#4AD3FF]"><i data-lucide="align-left"></i></div>
-                <div class="text-left">
-                    <div class="font-bold text-lg text-brown">ฟอนต์เนื้อหา</div>
-                    <div class="text-xs text-brown-light">เน้นอ่านง่าย จดสรุป พิมพ์งาน</div>
-                </div>
-            </div>
-            <i data-lucide="chevron-right" class="text-[#4AD3FF]"></i>
-        </button>
-
-        <button onclick="viewCategoryByTag('ฟอนต์', 'อิโมจิ')" class="w-full flex items-center justify-between p-6 rounded-[30px] bg-white border-2 border-pinky-light shadow-sm active:scale-95 transition-transform">
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 rounded-2xl bg-[#FFF9E6] flex items-center justify-center text-[#FFCC00]"><i data-lucide="smile"></i></div>
-                <div class="text-left">
-                    <div class="font-bold text-lg text-brown">ฟอนต์อิโมจิ</div>
-                    <div class="text-xs text-brown-light">ฟอนต์สัญลักษณ์และตัวการ์ตูน</div>
-                </div>
-            </div>
-            <i data-lucide="chevron-right" class="text-[#FFCC00]"></i>
-        </button>
-    </div>
-</div>
-
-<div id="page-contact" class="view-page relative z-10">
-    <div class="bg-pinky p-8 text-center shadow-lg rounded-b-[40px] border-b-4 border-white relative"><button onclick="navTo('home')" class="absolute left-6 top-1/2 -translate-y-1/2 text-white"><i data-lucide="arrow-left"></i></button><h2 class="font-mitr text-2xl font-bold text-white tracking-wide">📱 ติดต่อเรา</h2></div>
-    <div class="px-6 py-12 flex flex-col items-center gap-5">
-        <a href="https://www.facebook.com/xngunhwani" target="_blank" class="flex items-center gap-4 p-5 rounded-3xl bg-white border-2 border-pinky-light w-full shadow-sm"><div class="w-14 h-14 rounded-2xl bg-[#4A3B6B] flex items-center justify-center text-white text-2xl">🪼</div><div><div class="font-bold text-brown font-mitr">Facebook</div><div class="text-xs text-brown-light italic">องุ่นหวาน</div></div></a>
-        <a href="https://line.me/ti/p/@309ranuu" target="_blank" class="flex items-center gap-4 p-5 rounded-3xl bg-white border-2 border-pinky-light w-full shadow-sm"><div class="w-14 h-14 rounded-2xl bg-[#00b900] flex items-center justify-center text-white text-2xl">🍀</div><div><div class="font-bold text-brown font-mitr">Line Official</div><div class="text-xs text-brown-light italic">@309ranuu</div></div></a>
-        <a href="https://www.instagram.com/graphi.rae" target="_blank" class="flex items-center gap-4 p-5 rounded-3xl bg-white border-2 border-pinky-light w-full shadow-sm"><div class="w-14 h-14 rounded-2xl bg-[#A488FF] flex items-center justify-center text-white text-2xl">📸</div><div><div class="font-bold text-brown font-mitr">Instagram</div><div class="text-xs text-brown-light italic">@graphi.rae</div></div></a>
-    </div>
-</div>
-
-<div id="page-shop" class="view-page relative z-10">
+<div id="page-sub-font" class="view-page relative z-[5000]">
     <div class="full-page-header">
-        <button onclick="toggleDrawer()" class="p-2 text-pinky-dark bg-pinky-light rounded-full">
-            <i data-lucide="menu"></i>
-        </button>
+        <button onclick="toggleDrawer()" class="p-2 text-pinky-dark bg-pinky-light rounded-full"><i data-lucide="menu"></i></button>
+        <h2 class="font-mitr text-2xl font-bold text-brown">เลือกประเภทฟอนต์</h2>
+        <button onclick="navTo('home')" class="p-2 text-pinky-dark bg-pinky-light rounded-full"><i data-lucide="arrow-left"></i></button>
+    </div>
+    <div class="px-6 py-10 space-y-4">
+        <button onclick="viewCategoryByTag('ฟอนต์', 'หัวข้อ')" class="w-full flex items-center justify-between p-6 rounded-[30px] bg-white border-2 border-pinky-light shadow-sm"><div class="flex items-center gap-4"><div class="w-12 h-12 rounded-2xl bg-pinky-light flex items-center justify-center text-pinky-dark"><i data-lucide="layers"></i></div><div><div class="font-bold text-lg text-brown">ฟอนต์หัวข้อ</div><div class="text-xs text-brown-light">ฟอนต์แบบเส้นขอบ</div></div></div><i data-lucide="chevron-right" class="text-pinky-dark"></i></button>
+        <button onclick="viewCategoryByTag('ฟอนต์', 'เนื้อหา')" class="w-full flex items-center justify-between p-6 rounded-[30px] bg-white border-2 border-pinky-light shadow-sm"><div class="flex items-center gap-4"><div class="w-12 h-12 rounded-2xl bg-[#E6F9FF] flex items-center justify-center text-[#4AD3FF]"><i data-lucide="align-left"></i></div><div><div class="font-bold text-lg text-brown">ฟอนต์เนื้อหา</div><div class="text-xs text-brown-light">เน้นอ่านง่าย</div></div></div><i data-lucide="chevron-right" class="text-[#4AD3FF]"></i></button>
+    </div>
+</div>
+
+<div id="page-shop" class="view-page relative z-[5000]">
+    <div class="full-page-header">
+        <button onclick="toggleDrawer()" class="p-2 text-pinky-dark bg-pinky-light rounded-full"><i data-lucide="menu"></i></button>
         <h2 class="flex-1 text-center font-mitr font-bold text-brown text-xl">สินค้าทั้งหมด</h2>
-        <button onclick="navTo('home')" class="p-2 text-pinky-dark bg-pinky-light rounded-full">
-            <i data-lucide="arrow-left"></i>
-        </button>
+        <button onclick="navTo('home')" class="p-2 text-pinky-dark bg-pinky-light rounded-full"><i data-lucide="arrow-left"></i></button>
     </div>
     <div id="shop-content" class="px-6 py-12 space-y-16"></div>
 </div>
 
-<div id="fullPageCategory">
-<div class="full-page-header">
-    <button onclick="toggleDrawer()" class="p-2 text-pinky-dark bg-pinky-light rounded-full shadow-sm">
-        <i data-lucide="menu"></i>
-    </button>
-</div>
+<div id="fullPageCategory" class="view-page relative z-[5000]">
+    <div class="full-page-header">
+        <button onclick="toggleDrawer()" class="p-2 text-pinky-dark bg-pinky-light rounded-full"><i data-lucide="menu"></i></button>
         <h2 id="fullPageTitle" class="flex-1 text-center font-mitr font-bold text-brown text-xl"></h2>
-        <button onclick="closeFullPage()" class="p-2 text-pinky-dark bg-pinky-light rounded-full">
-            <i data-lucide="arrow-left"></i>
-        </button>
+        <button onclick="closeFullPage()" class="p-2 text-pinky-dark bg-pinky-light rounded-full"><i data-lucide="arrow-left"></i></button>
     </div>
     <div class="p-6 grid grid-cols-2 gap-4 pb-32" id="fullPageGrid"></div>
 </div>
 
-<div id="bottomBar" class="fixed bottom-0 left-0 right-0 bg-white/95 border-t-4 border-pinky p-5 flex items-center justify-between translate-y-full transition-all z-[3000]">
+<div id="bottomBar" class="fixed bottom-0 left-0 right-0 bg-white border-t-4 border-pinky p-5 flex items-center justify-between translate-y-full transition-all z-[9998]">
     <div><div id="cartCount" class="text-[10px] font-bold text-pinky-dark uppercase">เลือก 0 รายการ</div><div class="text-2xl font-bold text-brown">฿<span id="cartTotal">0</span></div></div>
-    <button onclick="openSummary()" class="bg-pinky-dark text-white px-8 py-3.5 rounded-2xl font-bold">สั่งเลย ✨</button>
+    <button onclick="openSummary()" class="bg-pinky-dark text-white px-8 py-3.5 rounded-2xl font-bold shadow-md">สั่งเลย ✨</button>
 </div>
 
-<div id="summaryModal" class="fixed inset-0 z-[5000] hidden items-center justify-center bg-black/70 p-4">
-    <div class="bg-white w-full max-w-sm rounded-[40px] border-4 border-pinky shadow-2xl overflow-hidden">
-<div class="p-6 bg-pinky-light flex justify-between items-center text-brown border-b-2 border-dashed border-pinky font-mitr font-bold">
-    🛒 รายการที่เลือก 
-    <button onclick="closeSummary()" class="text-3xl font-bold leading-none p-2">&times;</button>
-</div>
-
+<div id="summaryModal" class="fixed inset-0 z-[10000] hidden items-center justify-center bg-black/70 p-4">
+    <div class="bg-white w-full max-w-sm rounded-[40px] border-4 border-pinky shadow-2xl overflow-hidden relative">
+        <div class="p-6 bg-pinky-light flex justify-between items-center text-brown border-b-2 border-dashed border-pinky font-mitr font-bold">🛒 รายการที่เลือก <button onclick="closeSummary()" class="text-3xl font-bold leading-none p-2">&times;</button></div>
         <div class="p-6">
             <div id="modalItemsList" class="space-y-3 max-h-[220px] overflow-y-auto pr-1"></div>
-            <div id="promoNotice" class="mt-4 p-3 bg-pinky/10 rounded-xl text-[11px] font-bold text-pinky-dark leading-relaxed"></div>
+            <div id="promoNotice" class="mt-4 p-3 bg-pinky/10 rounded-xl text-[11px] font-bold text-pinky-dark leading-relaxed hidden"></div>
             <div class="mt-4 pt-4 border-t-2 border-dashed border-pinky-light flex justify-between font-bold text-lg text-brown"><span>ยอดรวม:</span><span>฿<span id="modalTotalPrice">0</span></span></div>
             <button onclick="checkout()" class="w-full mt-6 bg-[#00d300] text-white py-4 rounded-2xl font-bold shadow-lg font-mitr">คัดลอก & ส่ง LINE</button>
         </div>
