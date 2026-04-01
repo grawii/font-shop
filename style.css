@@ -68,3 +68,40 @@
     text-align: center;
 }
         body.modal-open { overflow: hidden; position: fixed; width: 100%; }
+/* --- แถบยอดรวมด้านล่าง (โชว์ในทุกหน้าเมื่อมีสินค้า) --- */
+#bottomBar {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 90px; /* ความสูงของแถบ */
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px); /* ทำพื้นหลังเบลอนิดๆ ให้ดูแพง */
+    border-top: 4px solid #C1B6FF !important; /* เส้นขอบม่วงด้านบน */
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    
+    /* แก้จุดสำคัญ: ดันให้ลอยทับหน้า 'ดูเพิ่มเติม' และ 'หมวดหมู่ย่อย' */
+    z-index: 6000 !important; 
+    
+    /* เริ่มต้นให้ซ่อนลงไปใต้จอ */
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* เมื่อเลือกสินค้าแล้ว ให้เลื่อนขึ้นมา (ใช้คลาส .show) */
+#bottomBar.show {
+    transform: translateY(0) !important;
+}
+
+/* แต่งปุ่ม "สั่งเลย" ในแถบยอดรวมให้สวยเหมือนเดิม */
+#bottomBar button {
+    background-color: #A488FF;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 20px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(164, 136, 255, 0.3);
+}
