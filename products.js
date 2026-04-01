@@ -228,6 +228,13 @@
                     price: 59, 
                     img: 'https://img1.pic.in.th/images/c6a681ee24e2fee4839a5bd04d17fd79.jpeg', 
                     tags: ['อื่น ๆ'] 
+                },
+				{ 
+                    id: 'stk_03', 
+                    name: 'สติ๊กเกอร์พี่จ่าง 03', 
+                    price: 59, 
+                    img: ['https://img2.pic.in.th/a799182e121ef3d2b3af2dab163352eb.jpeg','https://img1.pic.in.th/images/522d3ca24054361fa370034de121784e.jpeg'], 
+                    tags: ['อื่น ๆ'] 
                 }
             ] 
         }, // <--- ต้องปิดก้ามปู ปิดปีกกา และใส่คอมม่าตรงนี้ก่อนเริ่มเครือใหม่!
