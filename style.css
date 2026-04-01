@@ -149,3 +149,26 @@
 #fullPageCategory.active, #page-shop.active, #page-sub-font.active {
     display: block !important;
 }
+/* ดันปุ่ม Hamburger ให้อยู่เหนือทุกเลเยอร์ */
+button[onclick="toggleDrawer()"] {
+    z-index: 9999 !important; 
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+/* เช็กให้แน่ใจว่าหน้าแยกไม่สูงจนเกินไป */
+#page-shop, #fullPageCategory, #page-sub-font {
+    z-index: 5000 !important; /* ให้ต่ำกว่าปุ่มเมนู (9999) และ Bottom Bar */
+}
+
+/* ส่วนของ Header ในหน้าแยก ต้องกดปุ่มข้างในได้ */
+.full-page-header {
+    z-index: 5100 !important;
+    pointer-events: auto !important;
+}
+
+.full-page-header button {
+    position: relative;
+    z-index: 5101 !important;
+    pointer-events: auto !important;
+}
