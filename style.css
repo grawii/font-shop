@@ -1,48 +1,88 @@
-/* พื้นฐานหน้าเว็บ */
-body, html { margin: 0 !important; padding: 0 !important; overflow-x: hidden; background-color: #F8F4FF; color: #4A3B6B; font-family: 'Kanit', sans-serif; }
+/* --- ส่วนพื้นฐานหน้าเว็บ --- */
+body, html { 
+    margin: 0 !important; 
+    padding: 0 !important; 
+    overflow-x: hidden; 
+    background-color: #F8F4FF; 
+    color: #4A3B6B; 
+    font-family: 'Kanit', sans-serif; 
+}
 body { padding-bottom: 100px; }
 .view-page { display: none; }
 .view-page.active { display: block; }
 
-/* 1. ส่วนหัว (Header) ให้เต็มจอ */
-header, #page-shop > div:first-child, #page-sub-font > div:first-child, #page-contact > div:first-child {
-    width: 100% !important; margin: 0 !important; padding: 60px 1.5rem 40px !important;
-    border-radius: 0 0 40px 40px !important; box-sizing: border-box;
+/* --- 1. ส่วนหัว (Header) ให้เต็มจอชิดขอบบน --- */
+header, 
+#page-shop > div:first-child, 
+#page-sub-font > div:first-child, 
+#page-contact > div:first-child {
+    width: 100% !important; 
+    margin: 0 !important; 
+    padding: 60px 1.5rem 40px !important;
+    border-radius: 0 0 40px 40px !important; 
+    box-sizing: border-box;
+    position: relative;
 }
 
-/* 2. ส่วนเนื้อหาให้ขอบเท่ากัน */
+/* --- 2. ส่วนเนื้อหาให้ขอบเท่ากัน --- */
 main, #shop-content, #page-sub-font > div:nth-child(2), #page-contact > div:nth-child(2) {
-    padding: 20px 1.5rem !important; width: 100%; box-sizing: border-box;
+    padding: 20px 1.5rem !important; 
+    width: 100%; 
+    box-sizing: border-box;
 }
 
-/* 3. เมนู Drawer (ซ่อนไว้ก่อน) */
+/* --- 3. เมนู Drawer (สั่งให้แอบไปนอกจอทางซ้าย) --- */
 .drawer {
-    position: fixed !important; top: 0 !important; left: -300px !important; /* ดีดออกไปซ้าย */
-    width: 300px !important; height: 100% !important; background: white !important;
-    z-index: 3000 !important; transition: left 0.3s ease !important;
-    border-right: 2px solid #C1B6FF; overflow-y: auto;
+    position: fixed !important; 
+    top: 0 !important; 
+    left: -320px !important; /* ดีดออกไปไกลๆ นอกจอ */
+    width: 300px !important; 
+    height: 100% !important; 
+    background: white !important;
+    z-index: 3000 !important; 
+    transition: 0.3s ease-out !important;
+    border-right: 2px solid #C1B6FF; 
+    overflow-y: auto;
+    display: block !important;
 }
-.drawer.active { left: 0 !important; } /* โผล่เมื่อมีคลาส active */
 
-/* 4. ฉากหลังดำ (Overlay) */
+/* เมื่อมีคลาส active ให้เลื่อนเข้ามา */
+.drawer.active { 
+    left: 0 !important; 
+}
+
+/* --- 4. ฉากหลังดำ (Overlay) --- */
 .overlay {
-    position: fixed; inset: 0; z-index: 2500; background: rgba(0,0,0,0.5);
+    position: fixed; 
+    inset: 0; 
+    z-index: 2500; 
+    background: rgba(0,0,0,0.5);
     display: none;
 }
-.overlay.active { display: block !important; }
+.overlay.active { 
+    display: block !important; 
+}
 
-/* 5. ปุ่ม Hamburger เมนู */
+/* --- 5. ปุ่ม Hamburger เมนู (แบบใหม่ที่เห็นขีดชัด) --- */
 .fixed.top-5.left-5 {
-    top: 20px !important; left: 20px !important; width: 50px !important; height: 50px !important;
-    background: rgba(255, 255, 255, 0.6) !important; backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.4) !important; display: flex !important;
-    align-items: center; justify-content: center; color: #4A3B6B !important; 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important; z-index: 2000 !important;
+    top: 20px !important; 
+    left: 20px !important; 
+    width: 50px !important; 
+    height: 50px !important;
+    background: rgba(255, 255, 255, 0.7) !important; 
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4) !important; 
+    display: flex !important;
+    align-items: center; 
+    justify-content: center; 
+    color: #4A3B6B !important; /* สีขีดม่วงเข้ม */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important; 
+    z-index: 2000 !important;
     border-radius: 50%;
 }
 .fixed.top-5.left-5 i { width: 26px !important; height: 26px !important; }
 
-/* --- โค้ดส่วนอื่นๆ ที่เหลือ (Snap slider, Badge, Animation) --- */
+/* --- ส่วนเสริมอื่นๆ (Slider, Badge, Animation) --- */
 .snap-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; }
 .snap-slider::-webkit-scrollbar { display: none; }
 .snap-item { min-width: 100%; scroll-snap-align: start; aspect-ratio: 1 / 1; }
@@ -50,7 +90,5 @@ main, #shop-content, #page-sub-font > div:nth-child(2), #page-contact > div:nth-
 .item-card.selected { border-color: #A488FF; background: rgba(193, 182, 255, 0.2); }
 .badge-custom { position: absolute; top: 12px; left: -28px; color: white; padding: 2px 30px; font-size: 8px; font-weight: bold; transform: rotate(-45deg); z-index: 40; }
 .badge-red { background: #FF4D4D; }
-.submenu { display: none; flex-direction: column; padding-left: 2rem; background: rgba(193, 182, 255, 0.1); }
-.submenu.active { display: flex; } /* เปลี่ยนเป็น active ตามสคริปต์ */
-.animate-float { animation: float 4s ease-in-out infinite; }
-@keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+.submenu { display: none; flex-direction: column; padding-left: 2rem; }
+.submenu.open { display: flex; }
