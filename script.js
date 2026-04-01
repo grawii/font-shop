@@ -119,23 +119,45 @@ function renderHome() {
 }
 
 function renderShop() { 
-    let html = ''; 
+    // 1. สร้างส่วนหัว (Header) ใหม่ที่มี Gradient และปุ่มย้อนกลับทางขวา
+    let html = `
+        <div class="header-gradient-custom mb-8">
+            <h2 class="font-mitr text-2xl font-bold text-brown tracking-wide">🎨 สินค้าทั้งหมด</h2>
+            <div onclick="navTo('home')" class="btn-back-circle">
+                <i data-lucide="x"></i> 
+            </div>
+        </div>
+        <div class="px-6 pb-20">`; // เริ่มต้นพื้นที่เนื้อหาด้านล่าง header
+
+    // 2. วนลูปดึงข้อมูลสินค้าจากหมวดหมู่ต่างๆ มาแสดง
     categories.forEach(cat => { 
-        html += `<div class="space-y-6"><div class="mb-4 border-l-4 border-pinky-dark pl-3"><h3 class="font-mitr font-bold text-2xl text-brown leading-tight">${cat.name}</h3></div>`; 
+        html += `
+            <div class="space-y-6 mb-12">
+                <div class="mb-4 border-l-4 border-pinky-dark pl-3">
+                    <h3 class="font-mitr font-bold text-2xl text-brown leading-tight">${cat.name}</h3>
+                </div>`; 
+        
+        // วนลูปหมวดหมู่ย่อย (เช่น หัวข้อ, เนื้อหา)
         subCats.forEach(sub => { 
             const filtered = cat.products.filter(p => p.tags && p.tags.includes(sub)); 
             if (filtered.length > 0) {
                 html += `
                 <div class="flex justify-between items-center mt-8 mb-3">
-                    <span class="text-s font-bold text-pinky-dark bg-white px-3 py-1 rounded-full border border-pinky-light">📂 หมวด ${sub}</span>
-                    <button onclick="viewSubCategory('${cat.id}', '${sub}')" class="text-[12px] text-pinky-dark border-2 border-pinky-dark px-3 py-1 rounded-full font-bold hover:bg-pinky-dark hover:text-white transition-all whitespace-nowrap">ดูเพิ่มเติม ✨</button>
+                    <span class="text-[13px] font-bold text-pinky-dark bg-white px-3 py-1 rounded-full border border-pinky-light shadow-sm">📂 หมวด ${sub}</span>
+                    <button onclick="viewSubCategory('${cat.id}', '${sub}')" class="text-[12px] text-pinky-dark border-2 border-pinky-dark px-3 py-1 rounded-full font-bold hover:bg-pinky-dark hover:text-white transition-all">ดูเพิ่มเติม ✨</button>
                 </div>
                 <div class="grid grid-cols-2 gap-4">${filtered.slice(0, 4).map(p => createCardHtml(p, cat.name)).join('')}</div>`; 
             }
         }); 
-        html += `</div><hr class="my-12 border-pinky-light border-dashed">`; 
+        html += `</div><hr class="my-10 border-pinky-light border-dashed">`; 
     }); 
+
+    html += `</div>`; // ปิด div เนื้อหา
+    
+    // 3. นำ HTML ทั้งหมดไปใส่ใน Element ที่มี id ว่า shop-content
     document.getElementById('shop-content').innerHTML = html; 
+    
+    // 4. สั่งให้ไอคอน Lucide ทำงาน (สำคัญมาก ไม่งั้นปุ่ม x จะไม่ขึ้น)
     lucide.createIcons(); 
 }
 
