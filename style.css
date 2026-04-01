@@ -19,9 +19,18 @@
         @keyframes ptUp { 0% { transform: translateY(105vh); opacity: 0; } 8% { opacity: 0.45; } 100% { transform: translateY(-8vh) rotate(360deg); opacity: 0; } }
         .pt { position: absolute; animation: ptUp linear infinite; opacity: 0; }
 
-#fullPageCategory, #page-shop, #page-sub-font {
-    padding-top: 95px !important; /* ดันเนื้อหาลงมาให้พ้นแถบ 75px + ระยะเว้น */
-    box-sizing: border-box;
+#fullPageCategory { 
+    position: fixed !important; 
+    inset: 0 !important; 
+    background: #F8F4FF !important; 
+    z-index: 5500 !important; /* ดันให้สูงกว่าหน้าแรก */
+    overflow-y: auto !important; 
+    display: none; /* *** จุดสำคัญ: ต้องซ่อนไว้ก่อน ห้ามลบคำนี้เด็ดขาด *** */
+    padding-top: 100px !important; 
+    -webkit-overflow-scrolling: touch; 
+}
+#fullPageCategory.active { 
+    display: block !important; 
 }
 .full-page-header {
     position: fixed;
@@ -40,6 +49,10 @@
     border-radius: 0 0 35px 35px; 
     border-bottom: 2px solid #FFFFFF;
     box-shadow: 0 4px 15px rgba(164, 136, 255, 0.2);
+}
+/* บังคับให้แถบม่วงโชว์เฉพาะในหน้าแยกเท่านั้น */
+#fullPageCategory.active .full-page-header {
+    display: flex !important;
 }
 /* --- จุดที่ 3: แก้ไขชื่อเครือยาวให้ตัดบรรทัดใหม่ --- */
 .col-span-2 h3, #shop-content h3, #fullPageTitle {
