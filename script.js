@@ -68,8 +68,20 @@ function createCardHtml(p, catName) {
 // ฟังก์ชันดูสินค้าตามหมวดหมู่ (หน้า Full Page)
 function viewCategoryByTag(mainTag, subTag = null) {
     let resultsHtml = ''; 
-    let foundAny = false;
+    // --- 1. เพิ่มส่วน Header ใหม่ตรงนี้ ---
+    const displayTitle = subTag || (mainTag === 'Recommend' ? 'สินค้าแนะนำ' : mainTag);
     
+    resultsHtml += `
+        <div class="header-gradient-custom mb-6">
+            <h2 class="font-mitr text-xl font-bold text-brown tracking-wide">${displayTitle}</h2>
+            <div onclick="closeFullPage()" class="btn-back-circle">
+                <i data-lucide="x"></i>
+            </div>
+        </div>
+        <div class="px-6 grid grid-cols-2 gap-4 pb-32">`; // เริ่มต้น Grid สินค้า
+
+    // --- 2. ส่วนดึงข้อมูลสินค้า (เหมือนเดิม) ---
+    let foundAny = false;
     categories.forEach(cat => {
         const allMatch = cat.products.filter(p => { 
             let matchMain = (mainTag === 'Recommend') ? p.isRecommend : (mainTag === 'ฟอนต์' ? true : (p.tags && p.tags.some(t => t.includes(mainTag))));
@@ -80,20 +92,27 @@ function viewCategoryByTag(mainTag, subTag = null) {
         if (allMatch.length > 0) {
             foundAny = true; 
             resultsHtml += `
-            <div class="col-span-2 mt-10 mb-4 flex flex-wrap justify-between items-center border-l-4 border-pinky-dark pl-3 font-bold text-brown">
-                <span class="font-mitr text-2xl leading-tight mb-1 pr-2 flex-1 min-w-[200px]">${cat.name}</span>
-                <button onclick="viewSubCategory('${cat.id}', '${subTag || ''}')" class="text-[13px] text-pinky-dark border-2 border-pinky-dark px-3 py-1 rounded-full font-bold hover:bg-pinky-dark hover:text-white transition-all whitespace-nowrap mb-1">ดูเพิ่มเติม ✨</button>
+            <div class="col-span-2 mt-6 mb-4 flex justify-between items-center border-l-4 border-pinky-dark pl-3 font-bold text-brown">
+                <span class="font-mitr text-lg">${cat.name}</span>
             </div>
-            <div class="grid grid-cols-2 gap-4 col-span-2">${allMatch.slice(0, 4).map(p => createCardHtml(p, cat.name)).join('')}</div>`;
+            ${allMatch.map(p => createCardHtml(p, cat.name)).join('')}`;
         }
     });
 
-    document.getElementById('fullPageTitle').innerText = subTag || (mainTag === 'Recommend' ? 'สินค้าแนะนำ' : mainTag);
-    document.getElementById('fullPageGrid').innerHTML = foundAny ? resultsHtml : '<div class="col-span-2 text-center py-20 font-bold text-brown-light">ยังไม่มีสินค้าในหมวดนี้ค่ะ 🍇</div>';
+    if (!foundAny) {
+        resultsHtml += '<div class="col-span-2 text-center py-20 font-bold text-brown-light">ยังไม่มีสินค้าในหมวดนี้ค่ะ 🍇</div>';
+    }
+
+    resultsHtml += `</div>`; // ปิด div Grid
+
+    // --- 3. แสดงผลหน้า Full Page ---
+    const fp = document.getElementById('fullPageCategory');
+    // เปลี่ยนจากใส่แค่ Grid มาเป็นใส่ resultsHtml ทั้งหมด (ที่มี Header แล้ว)
+    fp.innerHTML = resultsHtml; 
     
-    const fp = document.getElementById('fullPageCategory'); 
-    if(fp) { fp.style.display = 'block'; fp.scrollTo(0, 0); lockScroll(true); } 
-    closeDrawer(); 
+    fp.style.display = 'block'; 
+    fp.scrollTo(0, 0); 
+    lockScroll(true); 
     lucide.createIcons();
 }
 
