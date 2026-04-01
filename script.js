@@ -3,13 +3,15 @@
     function toggleDrawer() { 
     const d = document.getElementById('drawer'); 
     const o = document.getElementById('overlay');
-    
-    // เปลี่ยนจาก .open เป็น .active ให้ตรงกับ CSS
     d.classList.toggle('active');
     o.classList.toggle('active');
-    
-    // เช็คว่าเปิดอยู่ไหมเพื่อล็อคหน้าจอไม่ให้เลื่อน
     lockScroll(d.classList.contains('active'));
+}
+
+function closeDrawer() { 
+    document.getElementById('drawer').classList.remove('active'); 
+    document.getElementById('overlay').classList.remove('active'); 
+    lockScroll(false); 
 }
 
 // และอย่าลืมแก้ตรง closeDrawer ด้วยนะคะ
