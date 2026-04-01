@@ -196,7 +196,11 @@
 
 <div id="summaryModal" class="fixed inset-0 z-[5000] hidden items-center justify-center bg-black/70 p-4">
     <div class="bg-white w-full max-w-sm rounded-[40px] border-4 border-pinky shadow-2xl overflow-hidden">
-        <div class="p-6 bg-pinky-light flex justify-between items-center text-brown border-b-2 border-dashed border-pinky font-mitr font-bold">🛒 รายการที่เลือก <button onclick="closeSummary()" class="text-2xl">×</button></div>
+<div class="p-6 bg-pinky-light flex justify-between items-center text-brown border-b-2 border-dashed border-pinky font-mitr font-bold">
+    🛒 รายการที่เลือก 
+    <button onclick="closeSummary()" class="text-3xl font-bold leading-none p-2">&times;</button>
+</div>
+
         <div class="p-6">
             <div id="modalItemsList" class="space-y-3 max-h-[220px] overflow-y-auto pr-1"></div>
             <div id="promoNotice" class="mt-4 p-3 bg-pinky/10 rounded-xl text-[11px] font-bold text-pinky-dark leading-relaxed"></div>
