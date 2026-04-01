@@ -68,40 +68,43 @@
     text-align: center;
 }
         body.modal-open { overflow: hidden; position: fixed; width: 100%; }
-/* --- แถบยอดรวมด้านล่าง (โชว์ในทุกหน้าเมื่อมีสินค้า) --- */
+/* --- ส่วนแก้ไข: แถบยอดรวม Bottom Bar (ลอยทับทุกหน้า) --- */
 #bottomBar {
     position: fixed !important;
     bottom: 0 !important;
     left: 0 !important;
     right: 0 !important;
-    height: 90px; /* ความสูงของแถบ */
-    background: rgba(255, 255, 255, 0.95) !important;
-    backdrop-filter: blur(10px); /* ทำพื้นหลังเบลอนิดๆ ให้ดูแพง */
-    border-top: 4px solid #C1B6FF !important; /* เส้นขอบม่วงด้านบน */
+    z-index: 9999 !important; /* ดันให้ลอยทับหน้า 'ดูเพิ่มเติม' และหน้าแยกทุกหน้า */
+    background: rgba(255, 255, 255, 0.98) !important;
+    border-top: 4px solid #C1B6FF !important;
+    padding: 15px 25px !important;
     display: flex !important;
     align-items: center;
     justify-content: space-between;
-    padding: 0 25px;
-    
-    /* แก้จุดสำคัญ: ดันให้ลอยทับหน้า 'ดูเพิ่มเติม' และ 'หมวดหมู่ย่อย' */
-    z-index: 6000 !important; 
-    
-    /* เริ่มต้นให้ซ่อนลงไปใต้จอ */
-    transform: translateY(100%);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 -5px 20px rgba(164, 136, 255, 0.15);
 }
 
-/* เมื่อเลือกสินค้าแล้ว ให้เลื่อนขึ้นมา (ใช้คลาส .show) */
-#bottomBar.show {
+/* คำสั่งซ่อน/โชว์ (อิงตามคลาส Tailwind ที่ใช้ในระบบเดิม) */
+.translate-y-full {
+    transform: translateY(100%) !important;
+}
+
+#bottomBar:not(.translate-y-full) {
     transform: translateY(0) !important;
 }
 
-/* แต่งปุ่ม "สั่งเลย" ในแถบยอดรวมให้สวยเหมือนเดิม */
-#bottomBar button {
-    background-color: #A488FF;
-    color: white;
-    padding: 12px 30px;
-    border-radius: 20px;
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(164, 136, 255, 0.3);
+/* หน้าดูเพิ่มเติมและหมวดหมู่แยก (ซ่อนไว้ก่อน และดันระยะไม่ให้โดนแถบบนทับ) */
+#fullPageCategory, #page-shop, #page-sub-font {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 5500 !important; /* อยู่สูงกว่าหน้าแรก แต่ต่ำกว่า Bottom Bar */
+    background: #F8F4FF !important;
+    padding-top: 100px !important; 
+    overflow-y: auto !important;
+    display: none;
+}
+
+#fullPageCategory.active, #page-shop.active, #page-sub-font.active {
+    display: block !important;
 }
