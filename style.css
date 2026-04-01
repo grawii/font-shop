@@ -5,27 +5,26 @@ body { padding-bottom: 120px; }
 .view-page { display: none; width: 100%; position: relative; z-index: 10; }
 .view-page.active { display: block !important; }
 
-/* --- 2. ระบบอิโมจิลอยกระจาย (คืนค่าเดิม 100% ตามไฟล์แรก) --- */
-/* --- 2. ระบบอิโมจิลอยกระจาย (คืนค่าเดิม 100% ตามไฟล์แรก) --- */
+/* --- 2. ระบบอิโมจิลอยกระจาย (คืนค่าเดิม 100% - ปรับความเร็วและเลเยอร์) --- */
 .pt { 
-    position: fixed !important; /* บังคับให้เกาะหน้าจอ ไม่เลื่อนตามการ Scroll */
+    position: fixed !important; 
     top: 0 !important; 
     left: 0 !important; 
     width: 100% !important; 
     height: 100% !important;
-    pointer-events: none !important; /* ยอมให้คลิกทะลุไปกดสินค้าได้ */
-    z-index: 0 !important; /* อยู่หลังเนื้อหาหลัก (10) และ Header (5100) */
+    pointer-events: none !important; /* ให้กดทะลุอิโมจิไปกดสินค้าได้ */
+    z-index: -1 !important; /* บังคับให้อยู่หลัง Background (กันโดนพื้นหลังทับ) */
     display: block !important;
 }
 
-/* แอนิเมชั่นที่ทำให้มัน "ลอย" จากล่างขึ้นบน */
+/* แอนิเมชั่นลอยจากล่างขึ้นบนแบบนุ่มนวล */
 @keyframes ptUp { 
     0% { 
         transform: translateY(110vh) rotate(0deg); 
         opacity: 0; 
     } 
-    10% { 
-        opacity: 0.6; 
+    15% { 
+        opacity: 0.5; /* ค่อยๆ ปรากฏตัว */
     } 
     100% { 
         transform: translateY(-20vh) rotate(360deg); 
@@ -33,9 +32,9 @@ body { padding-bottom: 120px; }
     } 
 }
 
-/* เรียกใช้งานแอนิเมชั่น */
 .pt { 
-    animation: ptUp 8s linear infinite !important; 
+    /* ปรับจาก 8s เป็น 15s เพื่อให้ลอยช้าลงและดูละมุนขึ้น */
+    animation: ptUp 15s linear infinite !important; 
 }
 
 /* --- 3. Header ดีไซน์เดิม --- */
