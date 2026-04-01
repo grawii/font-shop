@@ -1,30 +1,13 @@
-/* --- 1. โครงสร้างพื้นฐาน (ห้ามตัด) --- */
+/* --- 1. Base Setup & Layering (ห้ามตัด) --- */
 body, html { 
     margin: 0 !important; padding: 0 !important; overflow-x: hidden; 
     background-color: #F8F4FF; color: #4A3B6B; font-family: 'Kanit', sans-serif; 
 }
-body { padding-bottom: 140px; } /* เผื่อที่ให้แถบสรุปยอดด้านล่างสุดไม่ทับสินค้า */
-
-/* คืนค่าการแยกหน้าให้เด็ดขาด (แก้จุดหน้าแรกโดนทับ) */
+/* แยกหน้า View Page ให้เด็ดขาด ห้ามกองรวมกัน */
 .view-page { display: none; width: 100%; position: relative; z-index: 10; }
 .view-page.active { display: block !important; }
 
-/* --- 2. 🔥 แก้ปัญหาแถบสรุปยอดเงิน (Cart) ลอยกลางจอ --- */
-#cart-overlay, .cart-summary-fixed, [id*="cart"] {
-    position: fixed !important;
-    bottom: 25px !important; /* บังคับอยู่ล่างสุดของจอ */
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: 90% !important;
-    max-width: 420px;
-    z-index: 9999 !important; /* อยู่หน้าสุดเหนือทุก Layer */
-    display: flex !important;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 25px;
-    box-shadow: 0 10px 25px rgba(164, 136, 255, 0.4);
-}
-/* --- 3. Header ทุกหน้า (เพรียว + ขอบขาว) --- */
+/* --- 2. Header (เพรียว + ขอบขาว) --- */
 header, .full-page-header, .view-page > div:first-child {
     width: 100% !important; margin: 0 !important;
     padding: 25px 1.5rem !important;
@@ -36,44 +19,18 @@ header, .full-page-header, .view-page > div:first-child {
     border-bottom: 2px solid #FFFFFF !important; 
 }
 
-/* ปุ่มย้อนกลับ (ลูกศร) บังคับอยู่ขวาสุดทุกหน้า หลบปุ่ม 3 ขีด */
-header button, .full-page-header button, .view-page > div:first-child button {
-    position: absolute !important; 
-    right: 20px !important; 
-    left: auto !important;
-    top: 50% !important; transform: translateY(-50%) !important;
-    width: 42px; height: 42px; border-radius: 50%; z-index: 5200 !important;
-    background: rgba(255, 255, 255, 0.6) !important;
+/* คืนค่าหน้าแรก (Home) ห้ามโดน Header ทับแบนเนอร์ */
+#page-home header { 
+    position: relative !important; 
+    padding: 60px 1.5rem 30px !important; 
+    background: transparent !important; border: none !important; box-shadow: none !important;
 }
-
-/* หน้าแรก (Home) คืนค่าให้แบนเนอร์ไม่โดนทับ */
-#page-home header { position: relative !important; padding: 60px 1.5rem 30px !important; background: transparent !important; border: none !important; box-shadow: none !important; }
-#page-home main { padding-top: 10px !important; }
-/* --- 4. แก้จุดหน้าแยก (ดูเพิ่มเติม) และติดต่อเรา โดน Header ทับ --- */
-#fullPageGrid, #page-sub-font, #page-shop, #page-contact {
-    padding-top: 100px !important; /* ดันสินค้าลงมาให้พ้นแถบ Header */
-    box-sizing: border-box !important;
-}
-
-/* --- 5. 🔥 ลบขีดซ้ำหน้าชื่อเครือ (ที่วงกลมสีแดงมา) --- */
-/* ลบขีดม่วงอันนอกที่ติดกับตัว Container */
-.col-span-2, [class*="col-span"] { border-left: none !important; }
-
-/* ชื่อเครือ h3: มีขีดอันเดียว + ตัดบรรทัดใหม่สวยๆ (แก้จุดชื่อ GRP ยาว) --- */
-.col-span-2 h3, #shop-content h3, .full-page-header h1 {
-    display: block !important;
-    border-left: 5px solid #A488FF !important; /* เหลือขีดเดียวหน้าข้อความ */
-    padding-left: 12px !important;
-    margin: 15px 0 !important;
-    word-break: break-word !important; 
-    line-height: 1.4 !important;
-    padding-right: 65px !important; /* เว้นที่ให้ลูกศร */
-}
-/* --- 6. 🔥 แก้ปัญหาระบบอิโมจิลอย (ห้ามกองอยู่ข้างบน) --- */
+#page-home main { padding-top: 10px !important; position: relative; z-index: 10; }
+/* --- 3. แก้ระบบอิโมจิลอย (ห้ามกองรวมกันที่มุม) --- */
 .pt { 
     position: fixed !important; top: 0; left: 0;
     pointer-events: none !important; 
-    z-index: 1 !important; /* ลอยอยู่ข้างหลังเนื้อหา */
+    z-index: 1 !important; 
     display: block !important;
 }
 @keyframes ptUp { 
@@ -83,32 +40,70 @@ header button, .full-page-header button, .view-page > div:first-child button {
 }
 .pt { animation: ptUp linear infinite !important; }
 
-/* --- 7. คืนค่าสไลเดอร์รูปสินค้า (ห้ามแยกรูปออกจากกัน) --- */
-.snap-slider { display: flex !important; overflow-x: auto !important; scroll-snap-type: x mandatory !important; }
+/* --- 4. คืนค่าสไลเดอร์รูปสินค้า (Snap Slider 100%) --- */
+.snap-slider { 
+    display: flex !important; 
+    overflow-x: auto !important; 
+    scroll-snap-type: x mandatory !important; 
+    -webkit-overflow-scrolling: touch;
+}
 .snap-slider::-webkit-scrollbar { display: none; }
-.snap-item { min-width: 100% !important; scroll-snap-align: start !important; aspect-ratio: 1 / 1 !important; }
-/* --- 8. คืนดีไซน์ปุ่ม "ดูเพิ่มเติม" และ หมวดหมู่แถวเดียว --- */
-button[onclick*="showFullPage"] {
-    all: unset !important;
-    display: inline-flex !important;
-    background: linear-gradient(135deg, #A488FF, #C1B6FF) !important;
-    color: white !important; padding: 8px 22px !important;
-    border-radius: 20px !important; font-weight: bold !important;
-    box-shadow: 0 4px 10px rgba(164, 136, 255, 0.3) !important;
-    cursor: pointer;
+.snap-item { 
+    min-width: 100% !important; 
+    scroll-snap-align: start !important; 
+    aspect-ratio: 1 / 1 !important; 
+}
+/* --- 5. แก้ระยะห่างหน้าย่อย (หน้าแยกหมวด) --- */
+#fullPageGrid, #page-sub-font, #page-shop, #page-contact {
+    padding-top: 100px !important; /* ดันเนื้อหาลงมาพ้น Header */
+    box-sizing: border-box;
 }
 
+/* --- 6. ลบขีดซ้ำหน้าชื่อเครือ (All Product) --- */
+.col-span-2, [class*="col-span"] { border-left: none !important; }
+
+.col-span-2 h3, #shop-content h3, .full-page-header h1 {
+    display: block !important;
+    border-left: 5px solid #A488FF !important; /* เหลือขีดเดียวหน้าชื่อ */
+    padding-left: 12px !important;
+    margin: 15px 0 !important;
+    word-break: break-word !important; 
+    white-space: normal !important;
+    line-height: 1.4 !important;
+    padding-right: 60px !important; /* เว้นที่ให้ลูกศรย้อนกลับ */
+}
+/* --- 7. แถบสรุปยอดเงิน (Cart) ต้องอยู่ล่างสุดหน้าจอเท่านั้น --- */
+#cart-overlay, .cart-summary-fixed, [id*="cart"] {
+    position: fixed !important;
+    bottom: 20px !important; /* บังคับอยู่ล่างสุดของจอ */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 9999 !important; 
+    display: flex !important;
+    width: 90% !important;
+    max-width: 400px;
+}
+
+/* ย้ายปุ่มย้อนกลับ (ลูกศร) ไปขวาทุกหน้า เพื่อหลบเมนู 3 ขีด */
+header button, .full-page-header button, .view-page > div:first-child button {
+    position: absolute !important; right: 20px !important; left: auto !important;
+    top: 50% !important; transform: translateY(-50%) !important;
+    width: 40px; height: 40px; border-radius: 50%; z-index: 5200 !important;
+}
+/* --- 8. คืนค่าหมวดหมู่ย่อย (Drawer) เรียงแถวเดียว --- */
 #font-sub { display: none; flex-direction: column !important; padding: 5px 0; }
 #font-sub.open { display: flex !important; }
 
-/* 🚩 ลาเบลแดงคาดมุม (ห้ามหายเด็ดขาด) */
-.badge-custom, .badge-red, .promo-badge { 
-    position: absolute !important; top: 12px !important; left: -28px !important; 
-    background: #FF4D4D !important; color: white !important;
-    padding: 2px 30px !important; transform: rotate(-45deg) !important; 
-    z-index: 40 !important; display: block !important;
+/* คืนชีพปุ่ม "ดูเพิ่มเติม" โค้งมน Gradient */
+button[onclick*="showFullPage"] {
+    all: unset !important;
+    display: inline-flex !important;
+    align-items: center !important; justify-content: center !important;
+    background: linear-gradient(135deg, #A488FF, #C1B6FF) !important;
+    color: white !important; padding: 10px 24px !important;
+    border-radius: 25px !important; font-weight: bold !important;
+    box-shadow: 0 4px 12px rgba(164, 136, 255, 0.3) !important;
 }
 
-/* การ์ดสินค้าดั้งเดิม */
-.item-card { position: relative !important; overflow: hidden !important; border-radius: 30px !important; border: 2px solid #E6E1FF !important; background: white !important; }
-.item-card.selected { border-color: #A488FF !important; background: rgba(193, 182, 255, 0.1) !important; }
+/* ลาเบลแดงห้ามหาย */
+.badge-custom, .badge-red { position: absolute !important; top: 12px !important; left: -28px !important; background: #FF4D4D !important; transform: rotate(-45deg) !important; z-index: 40 !important; }
