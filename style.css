@@ -3,25 +3,26 @@ body { background-color: #F8F4FF; color: #4A3B6B; font-family: 'Kanit', sans-ser
 .view-page { display: none; width: 100%; position: relative; z-index: 10; }
 .view-page.active { display: block; }
 
-/* --- 2. 🎈 ระบบอิโมจิลอยกระจาย (คืนค่าเดิมเป๊ะๆ - จุดที่ซ่อม) --- */
+/* --- 2. 🎈 ระบบอิโมจิลอยกระจาย (คืนค่าเดิม - แก้ปัญหากองเป็นแถวเดียว) --- */
 .pt { 
     position: fixed !important; 
     pointer-events: none !important; 
-    z-index: 0 !important; /* อยู่หลังสุด */
+    z-index: 0 !important; /* อยู่หลังเนื้อหาหลัก */
     display: block !important;
+    opacity: 0;
 }
 
-/* คำสั่งแอนิเมชั่นดั้งเดิมที่ลอยขึ้นตรงๆ (Center) และกระจายตัวตาม HTML */
+/* แอนิเมชั่นเดิมที่ลอยขึ้นตรงๆ ไม่เบี้ยวข้าง */
 @keyframes ptUp { 
-    0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 
-    10% { opacity: 0.6; } 
-    100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; } 
+    0% { transform: translateY(110vh); opacity: 0; } 
+    8% { opacity: 0.45; } 
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } 
 }
 
 .pt { 
-    animation: ptUp 10s linear infinite !important; /* ความเร็วปานกลาง พริ้วสวย */
+    animation: ptUp 10s linear infinite !important; 
 }
-/* --- 3. Header ดีไซน์เดิม --- */
+/* --- 3. Header & Full Page Layout (แก้ปัญหาหน้าทับกัน) --- */
 header, .full-page-header, .view-page > div:first-child {
     width: 100%; padding: 25px 1.5rem; border-radius: 0 0 40px 40px; 
     display: flex; align-items: center; justify-content: center; min-height: 65px;
@@ -29,19 +30,26 @@ header, .full-page-header, .view-page > div:first-child {
     position: fixed; top: 0; left: 0; z-index: 5100; border-bottom: 2px solid #FFFFFF; 
 }
 
-/* หน้าแรกห้ามโดนแถบทับ (คืนค่า position relative) */
+/* หน้าแรกห้ามโดนทับ */
 #page-home header { position: relative !important; z-index: 5101 !important; }
 
-/* แก้จุดที่แถบทับชื่อเครือฟอนต์ในหน้า All Product และหน้าย่อย */
+/* หน้าดูเพิ่มเติม/หน้าแยก (ซ่อนไว้ก่อนจนกว่าจะ active และดันระยะไม่ให้ทับชื่อ) */
 #page-shop, #page-sub-font, #fullPageCategory {
+    position: fixed !important; inset: 0 !important;
+    z-index: 5500 !important; /* อยู่สูงกว่าหน้าแรก */
     padding-top: 100px !important; 
-    box-sizing: border-box;
+    background: #F8F4FF !important;
+    display: none; 
+    overflow-y: auto;
 }
-/* --- 4. แก้จุดแถบยอดรวมเปลี่ยนไป (คืนดีไซน์เดิม 100% - ลอยทับหน้าดูเพิ่มเติม) --- */
+#page-shop.active, #page-sub-font.active, #fullPageCategory.active { 
+    display: block !important; 
+}
+/* --- 4. แถบยอดรวม (คืนดีไซน์เดิม 100% - ลอยทับหน้าดูเพิ่มเติม) --- */
 #cart-overlay, .cart-summary-fixed, [id*="cart"] {
     position: fixed !important; bottom: 25px !important; left: 50% !important;
     transform: translateX(-50%) !important; width: 90% !important; max-width: 420px;
-    z-index: 9999 !important; /* ดันให้สูงที่สุดเหนือหน้าดูเพิ่มเติม */
+    z-index: 9999 !important; /* สูงที่สุด */
     display: flex !important;
     
     /* ดีไซน์ม่วงจาง ขอบโค้งมนตามเรฟเดิม */
@@ -54,13 +62,11 @@ header, .full-page-header, .view-page > div:first-child {
 .col-span-2, [class*="col-span"], #shop-content .border-l-4 { border-left: none !important; }
 .col-span-2 h3, #shop-content h3 { border-left: 5px solid #A488FF; padding-left: 12px; margin: 15px 0; }
 
-/* --- 6. Label แดงคาดมุมสินค้า (ของเดิมห้ามหาย) --- */
+/* --- 6. Label แดงคาดมุมสินค้า (ดั้งเดิม) --- */
 .badge-custom, .badge-red { position: absolute !important; top: 12px !important; left: -28px !important; background: #FF4D4D !important; transform: rotate(-45deg) !important; z-index: 40 !important; padding: 2px 30px; font-size: 10px !important; font-weight: bold; color: white; display: block !important; }
 
-/* ปุ่ม Hamburger, ย้อนกลับ และสไลเดอร์ (ของเดิม) */
+/* ปุ่ม Hamburger และสไลเดอร์ (ของเดิม) */
 .fixed.top-5.left-5 { top: 15px; left: 15px; z-index: 9000; position: fixed; }
 header button, .full-page-header button { position: absolute; right: 20px; z-index: 5200; }
-.drawer { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: white; z-index: 7000; transition: 0.3s; border-right: 2px solid #C1B6FF; overflow-y: auto; }
-.drawer.active { left: 0; }
 .snap-slider { display: flex !important; overflow-x: auto !important; scroll-snap-type: x mandatory !important; }
 .snap-item { min-width: 100% !important; scroll-snap-align: start !important; aspect-ratio: 1 / 1 !important; }
