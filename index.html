@@ -177,15 +177,20 @@
     <div id="shop-content"></div>
 </div>
 
-<div id="fullPageCategory">
-    <div class="flex flex-col h-full">
-    <div class="flex justify-center items-center py-4 px-6 relative border-b border-gray-100">
-        <h2 id="fullPageTitle" class="font-mitr font-bold text-[#4A3F6B] text-xl">หัวข้อ</h2>
-        <button onclick="closeFullPage()" class="absolute right-6 bg-white p-2 rounded-full shadow-md text-[#4A3F6B]">
-            <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
+<div id="fullPageCategory" class="fixed inset-0 z-[2000] hidden flex items-end justify-center bg-black/50 transition-all">
+    <div class="bg-[#F8F4FF] w-full rounded-t-[40px] shadow-2xl relative flex flex-col max-h-[85vh]">
+        
+        <div class="flex justify-center items-center p-6 relative">
+            <h2 id="fullPageTitle" class="font-mitr font-bold text-[#4A3B6B] text-xl">หัวข้อ</h2>
+            <button onclick="closeFullPage()" class="absolute right-6 bg-white w-10 h-10 rounded-full shadow-md text-[#4A3B6B] flex items-center justify-center">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <div class="p-6 grid grid-cols-2 gap-4 pb-32 overflow-y-auto" id="fullPageGrid">
+            </div>
+
     </div>
-    <div class="p-6 grid grid-cols-2 gap-4 pb-20 overflow-y-auto" id="fullPageGrid"></div>
 </div>
 
 <div id="bottomBar" class="fixed bottom-0 left-0 right-0 bg-white/95 border-t-4 border-pinky p-5 flex items-center justify-between translate-y-full transition-all z-[3000]">
