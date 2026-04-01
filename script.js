@@ -135,22 +135,25 @@ function viewCategoryByTag(mainTag, subTag = null) {
     function toggleItem(id, cat, name, price, isP) { const idx = cart.findIndex(i => i.id === id); if(idx > -1) cart.splice(idx, 1); else cart.push({id, cat, name, price, isPromo: isP}); document.querySelectorAll(`[data-id="${id}"]`).forEach(el => el.classList.toggle('selected')); updateBottomBar(); }
 // ตัวอย่าง: ใส่ไว้ในฟังก์ชันอัปเดตยอดเงิน
 function updateBottomBar() {
-    const r = calculateTotal();
+    const r = calculateTotal(); // อิงจากฟังก์ชันคำนวณเดิมที่มีส่วนลด
     const b = document.getElementById('bottomBar');
-    
+    const cartCountElem = document.getElementById('cartCount');
+    const cartTotalElem = document.getElementById('cartTotal');
+
     if (cart.length > 0) {
-        // ถ้ามีสินค้า: เอาคลาสที่สั่งให้มันมุดลงดินออก (เพื่อให้มันเด้งขึ้นมา)
-        b.classList.remove('translate-y-full');
+        b.classList.remove('translate-y-full'); // โชว์แถบ
         
-        // อัปเดตตัวเลขยอดเงินและจำนวนรายการ
-        document.getElementById('cartTotal').innerText = r.total;
-        document.getElementById('cartCount').innerText = `เลือก ${cart.length} รายการ`;
-        
-        // บังคับให้มันอยู่บนสุด (กันเหนียว)
-        b.style.zIndex = "9999"; 
+        // แสดงยอดรวมสุทธิ (ที่หักส่วนลดแล้ว)
+        cartTotalElem.innerText = r.total;
+
+        // แสดงจำนวนรายการ + ข้อความส่วนลดสีแดง (ถ้ามี)
+        if (r.discount > 0) {
+            cartCountElem.innerHTML = `เลือก ${cart.length} รายการ <span style="color: #FF4D4D; margin-left: 4px;">(ลด ฿${r.discount})</span>`;
+        } else {
+            cartCountElem.innerText = `เลือก ${cart.length} รายการ`;
+        }
     } else {
-        // ถ้าไม่มีสินค้า: สั่งให้มันมุดลงไปใต้จอเหมือนเดิม
-        b.classList.add('translate-y-full');
+        b.classList.add('translate-y-full'); // ซ่อนแถบถ้าไม่มีสินค้า
     }
 }
     
