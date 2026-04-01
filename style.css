@@ -1,4 +1,4 @@
-/* --- 1. การตั้งค่าพื้นฐานและล้างขอบขาว --- */
+/* --- 1. การตั้งค่าพื้นฐาน (Base) --- */
 body, html { 
     margin: 0 !important; 
     padding: 0 !important; 
@@ -12,7 +12,7 @@ body { padding-bottom: 100px; }
 .view-page { display: none; }
 .view-page.active { display: block; }
 
-/* --- 2. ส่วนหัว (Header) หน้าแรก (Home) - ให้สูงปกติเพราะมีรูปโปรไฟล์ --- */
+/* --- 2. ส่วนหัว (Header) หน้าแรก Home (สูงปกติ) --- */
 #page-home header {
     width: 100% !important; 
     margin: 0 !important; 
@@ -22,35 +22,49 @@ body { padding-bottom: 100px; }
     display: flex;
     align-items: center;
     background: linear-gradient(to right, #E6E1FF, #F8F4FF);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-/* --- 3. ส่วนหัว (Header) หน้าอื่นๆ - ปรับให้สั้นลงและตัวหนังสืออยู่กลางเป๊ะ --- */
+/* --- 3. ส่วนหัว (Header) หน้าอื่นๆ (เพรียวบาง + Gradient) --- */
 #page-shop > div:first-child, 
 #page-sub-font > div:first-child, 
 #page-contact > div:first-child,
 .full-page-header {
     width: 100% !important; 
     margin: 0 !important; 
-    /* ⚠️ ปรับความสูงตรงนี้ (35px คือความห่างบน-ล่าง) */
-    padding: 35px 1.5rem !important; 
+    /* ⚠️ ปรับความเพรียวที่นี่ (30px คือระยะบน-ล่าง) */
+    padding: 30px 1.5rem !important; 
     border-radius: 0 0 40px 40px !important; 
     box-sizing: border-box;
     display: flex !important;
     align-items: center !important;    /* จัดกลางแนวตั้ง */
     justify-content: center !important; /* จัดกลางแนวนอน */
-    min-height: 70px !important;       /* คุมความสูงขั้นต่ำ */
-    background: #C1B6FF !important;    /* สีม่วงหลัก */
+    min-height: 60px !important;
+    background: linear-gradient(to right, #E6E1FF, #F8F4FF) !important; 
     position: relative;
+    border-bottom: 1px solid rgba(193, 182, 255, 0.5);
 }
 
-/* --- 4. ส่วนเนื้อหา (Main Content) ให้ขอบเท่ากันทุกหน้า --- */
-main, #shop-content, #page-sub-font > div:nth-child(2), #page-contact > div:nth-child(2) {
-    padding: 20px 1.5rem !important; 
-    width: 100%; 
-    box-sizing: border-box;
+/* --- 4. ปุ่มเมนู Hamburger --- */
+.fixed.top-5.left-5 {
+    top: 15px !important; 
+    left: 15px !important; 
+    width: 48px !important; 
+    height: 48px !important;
+    background: rgba(255, 255, 255, 0.85) !important; 
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(193, 182, 255, 0.4) !important; 
+    display: flex !important;
+    align-items: center; 
+    justify-content: center; 
+    color: #4A3B6B !important; 
+    z-index: 5000 !important;
+    border-radius: 50% !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
 }
+.fixed.top-5.left-5 i { width: 24px !important; height: 24px !important; }
 
-/* --- 5. เมนูข้าง (Drawer) และฉากหลังดำ (Overlay) --- */
+/* --- 5. เมนูข้าง (Drawer) และ Overlay --- */
 .drawer {
     position: fixed !important; 
     top: 0 !important; 
@@ -58,44 +72,28 @@ main, #shop-content, #page-sub-font > div:nth-child(2), #page-contact > div:nth-
     width: 300px !important; 
     height: 100% !important; 
     background: white !important;
-    z-index: 4000 !important; 
+    z-index: 5500 !important; 
     transition: left 0.3s ease-out !important;
     border-right: 2px solid #C1B6FF; 
     overflow-y: auto;
-    display: block !important;
 }
 .drawer.active { left: 0 !important; }
 
 .overlay {
-    position: fixed; 
-    inset: 0; 
-    z-index: 3500; 
-    background: rgba(53, 42, 80, 0.4);
-    display: none;
-    backdrop-filter: blur(2px);
+    position: fixed; inset: 0; z-index: 5400; 
+    background: rgba(53, 42, 80, 0.35);
+    display: none; backdrop-filter: blur(2px);
 }
 .overlay.active { display: block !important; }
 
-/* --- 6. ปุ่ม Hamburger เมนู (แบบชัดเจนและสวยงาม) --- */
-.fixed.top-5.left-5 {
-    top: 15px !important; 
-    left: 15px !important; 
-    width: 48px !important; 
-    height: 48px !important;
-    background: rgba(255, 255, 255, 0.9) !important; 
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(193, 182, 255, 0.5) !important; 
-    display: flex !important;
-    align-items: center; 
-    justify-content: center; 
-    color: #4A3B6B !important; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important; 
-    z-index: 5000 !important; /* ให้อยู่เหนือทุกอย่าง */
-    border-radius: 50% !important;
+/* --- 6. เนื้อหาหลัก (Main Content) --- */
+main, #shop-content, #page-sub-font > div:nth-child(2), #page-contact > div:nth-child(2) {
+    padding: 20px 1.5rem !important; 
+    width: 100%; 
+    box-sizing: border-box;
 }
-.fixed.top-5.left-5 i { width: 24px !important; height: 24px !important; }
 
-/* --- 7. การ์ดสินค้าและ Badge --- */
+/* --- 7. การ์ดสินค้า (Item Card) --- */
 .item-card { 
     position: relative; 
     overflow: hidden; 
@@ -106,47 +104,41 @@ main, #shop-content, #page-sub-font > div:nth-child(2), #page-contact > div:nth-
 }
 .item-card.selected { 
     border-color: #A488FF; 
-    background: rgba(193, 182, 255, 0.2); 
-    box-shadow: 0 0 15px rgba(164, 136, 255, 0.4); 
+    background: rgba(193, 182, 255, 0.15); 
+    box-shadow: 0 0 15px rgba(164, 136, 255, 0.3); 
 }
+
+/* --- 8. ป้าย Badge และ สไลเดอร์สินค้า --- */
 .badge-custom { 
-    position: absolute; 
-    top: 12px; 
-    left: -28px; 
-    color: white; 
-    padding: 2px 30px; 
-    font-size: 8px; 
-    font-weight: bold; 
-    transform: rotate(-45deg); 
-    z-index: 40; 
-    text-transform: uppercase; 
+    position: absolute; top: 12px; left: -28px; color: white; padding: 2px 30px; 
+    font-size: 8px; font-weight: bold; transform: rotate(-45deg); z-index: 40; 
 }
 .badge-red { background: #FF4D4D; }
 
-/* --- 8. สไลเดอร์และแอนิเมชั่น --- */
 .snap-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; }
 .snap-slider::-webkit-scrollbar { display: none; }
 .snap-item { min-width: 100%; scroll-snap-align: start; aspect-ratio: 1 / 1; }
 
+/* --- 9. เมนูย่อย (Submenu) --- */
 .submenu { display: none; flex-direction: column; padding-left: 1rem; background: rgba(193, 182, 255, 0.05); }
 .submenu.open { display: flex; }
 .menu-arrow { transition: 0.3s; }
 .menu-arrow.rotate { transform: rotate(180deg); }
 
+/* --- 10. แอนิเมชั่น (ลอยตัว และ ดาววิ่ง) --- */
 @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
 .animate-float { animation: float 4s ease-in-out infinite; }
 
-@keyframes ptUp { 0% { transform: translateY(105vh); opacity: 0; } 8% { opacity: 0.45; } 100% { transform: translateY(-8vh) rotate(360deg); opacity: 0; } }
-.pt { position: absolute; animation: ptUp linear infinite; opacity: 0; pointer-events: none; }
+@keyframes ptUp { 
+    0% { transform: translateY(105vh); opacity: 0; } 
+    8% { opacity: 0.45; } 
+    100% { transform: translateY(-8vh) rotate(360deg); opacity: 0; } 
+}
+.pt { position: absolute; animation: ptUp linear infinite; opacity: 0; pointer-events: none; z-index: 0; }
 
-/* --- 9. หน้าหมวดหมู่แบบเต็มจอ (Full Page Category) --- */
+/* --- 11. หน้าหมวดหมู่เต็มจอ (Full Page Category) --- */
 #fullPageCategory { 
-    position: fixed; 
-    inset: 0; 
-    background: #F8F4FF; 
-    z-index: 6000; 
-    overflow-y: auto; 
-    display: none; 
-    padding-top: 80px; 
+    position: fixed; inset: 0; background: #F8F4FF; z-index: 6000; 
+    overflow-y: auto; display: none; padding-top: 80px; 
 }
 body.modal-open { overflow: hidden; position: fixed; width: 100%; }
