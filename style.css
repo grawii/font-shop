@@ -74,14 +74,22 @@
     background: #F8F4FF !important;
 }
 
-/* แก้ไขจุด "กดสั่งเลย" ไม่ติด (Z-index ของ Modal) */
+/* ส่วนของหน้าจอสรุปรายการ (Modal) */
 #summaryModal {
-    z-index: 10000 !important; /* ต้องสูงกว่า Bottom Bar (9999) */
-    display: none; /* ซ่อนไว้ก่อน */
+    z-index: 10001 !important; /* ต้องสูงกว่าทุกอย่างในเว็บ รวมถึง Bottom Bar */
+    pointer-events: auto !important; /* บังคับให้รับแรงกดได้ */
 }
 
-#summaryModal.flex {
-    display: flex !important;
+/* ตัวกล่องสีขาวข้างใน Modal */
+#summaryModal > div {
+    position: relative;
+    z-index: 10002;
+}
+
+/* ปุ่มกากบาท (X) */
+#summaryModal button {
+    cursor: pointer;
+    z-index: 10003;
 }
 /* บังคับให้แถบม่วงโชว์เฉพาะในหน้าแยกเท่านั้น */
 #fullPageCategory.active .full-page-header {
