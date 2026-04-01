@@ -170,8 +170,16 @@
 
 <div id="fullPageCategory">
     <div class="full-page-header">
-        <button onclick="closeFullPage()" class="p-2 text-pinky-dark bg-cream rounded-full mr-3"><i data-lucide="arrow-left"></i></button>
-	<h2 id="fullPageTitle" class="font-mitr font-bold text-brown text-xl"></h2>
+        <button onclick="toggleDrawer()" class="p-2 text-pinky-dark bg-cream rounded-full">
+            <i data-lucide="menu"></i>
+        </button>
+        
+        <h2 id="fullPageTitle" class="flex-1 text-center font-mitr font-bold text-brown text-xl">
+            </h2>
+
+        <button onclick="closeFullPage()" class="p-2 text-pinky-dark bg-cream rounded-full">
+            <i data-lucide="arrow-left"></i>
+        </button>
     </div>
     <div class="p-6 grid grid-cols-2 gap-4 pb-32" id="fullPageGrid"></div>
 </div>
