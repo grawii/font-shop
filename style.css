@@ -1,4 +1,4 @@
-/* --- พื้นฐานหน้าเว็บ --- */
+/* --- 1. การตั้งค่าพื้นฐานและล้างขอบขาว (Reset & Base) --- */
 body, html { 
     margin: 0 !important; 
     padding: 0 !important; 
@@ -6,12 +6,13 @@ body, html {
     background-color: #F8F4FF; 
     color: #4A3B6B; 
     font-family: 'Kanit', sans-serif; 
+    -webkit-tap-highlight-color: transparent;
 }
 body { padding-bottom: 100px; }
 .view-page { display: none; }
 .view-page.active { display: block; }
 
-/* --- 1. ส่วนหัว (Header) ให้กางเต็มจอ --- */
+/* --- 2. ส่วนหัว (Header) และเนื้อหา (Content) ให้เต็มจอขอบเป๊ะ --- */
 header, 
 #page-shop > div:first-child, 
 #page-sub-font > div:first-child, 
@@ -21,50 +22,51 @@ header,
     padding: 60px 1.5rem 40px !important;
     border-radius: 0 0 40px 40px !important; 
     box-sizing: border-box;
+    position: relative;
+    background: linear-gradient(to right, #E6E1FF, #F8F4FF); /* Gradient พื้นหลังหัวเว็บ */
 }
 
-/* --- 2. ส่วนเนื้อหาให้ขอบเท่ากันทุกหน้า --- */
 main, #shop-content, #page-sub-font > div:nth-child(2), #page-contact > div:nth-child(2) {
     padding: 20px 1.5rem !important; 
     width: 100%; 
     box-sizing: border-box;
 }
 
-/* --- 3. เมนู Drawer (สั่งให้แอบไปนอกจอ) --- */
+/* --- 3. เมนูข้าง (Drawer) และฉากหลังดำ (Overlay) --- */
 .drawer {
     position: fixed !important; 
     top: 0 !important; 
-    left: -320px !important; /* ดีดออกไปนอกจอทางซ้าย */
+    left: -320px !important; /* ซ่อนไว้ทางซ้าย */
     width: 300px !important; 
     height: 100% !important; 
     background: white !important;
-    z-index: 3000 !important; 
-    transition: 0.3s ease-out !important;
+    z-index: 4000 !important; 
+    transition: left 0.3s ease-out !important;
     border-right: 2px solid #C1B6FF; 
     overflow-y: auto;
     display: block !important;
 }
-.drawer.active { left: 0 !important; } /* เลื่อนมาเมื่อเปิด */
+.drawer.active { left: 0 !important; } /* เลื่อนออกมาเมื่อกด */
 
-/* --- 4. ฉากหลังดำ (Overlay) --- */
 .overlay {
     position: fixed; 
     inset: 0; 
-    z-index: 2500; 
-    background: rgba(0,0,0,0.5);
+    z-index: 3500; 
+    background: rgba(53, 42, 80, 0.4);
     display: none;
+    backdrop-filter: blur(2px);
 }
 .overlay.active { display: block !important; }
 
-/* --- 5. ปุ่ม Hamburger เมนู --- */
+/* --- 4. ปุ่ม Hamburger เมนู (แบบใหม่ ชัดและกดง่าย) --- */
 .fixed.top-5.left-5 {
     top: 20px !important; 
     left: 20px !important; 
     width: 52px !important; 
     height: 52px !important;
-    background: rgba(255, 255, 255, 0.8) !important; 
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.4) !important; 
+    background: rgba(255, 255, 255, 0.85) !important; 
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(193, 182, 255, 0.5) !important; 
     display: flex !important;
     align-items: center; 
     justify-content: center; 
@@ -72,18 +74,75 @@ main, #shop-content, #page-sub-font > div:nth-child(2), #page-contact > div:nth-
     box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important; 
     z-index: 2000 !important;
     border-radius: 50% !important;
+    cursor: pointer;
 }
 .fixed.top-5.left-5 i { width: 28px !important; height: 28px !important; }
 
-/* --- ส่วนอื่นๆ (Slider, Badge, Animation) --- */
+/* --- 5. การ์ดสินค้าและ Badge --- */
+.item-card { 
+    position: relative; 
+    overflow: hidden; 
+    transition: 0.3s; 
+    border-radius: 30px; 
+    border: 2px solid #E6E1FF; 
+    background: white; 
+}
+.item-card.selected { 
+    border-color: #A488FF; 
+    background: rgba(193, 182, 255, 0.2); 
+    box-shadow: 0 0 15px rgba(164, 136, 255, 0.4); 
+}
+.badge-custom { 
+    position: absolute; 
+    top: 12px; 
+    left: -28px; 
+    color: white; 
+    padding: 2px 30px; 
+    font-size: 8px; 
+    font-weight: bold; 
+    transform: rotate(-45deg); 
+    z-index: 40; 
+    text-transform: uppercase; 
+}
+.badge-red { background: #FF4D4D; }
+
+/* --- 6. สไลเดอร์และแอนิเมชั่น --- */
 .snap-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; }
 .snap-slider::-webkit-scrollbar { display: none; }
 .snap-item { min-width: 100%; scroll-snap-align: start; aspect-ratio: 1 / 1; }
-.item-card { position: relative; overflow: hidden; transition: 0.3s; border-radius: 30px; border: 2px solid #E6E1FF; background: white; }
-.item-card.selected { border-color: #A488FF; background: rgba(193, 182, 255, 0.2); }
-.badge-custom { position: absolute; top: 12px; left: -28px; color: white; padding: 2px 30px; font-size: 8px; font-weight: bold; transform: rotate(-45deg); z-index: 40; }
-.badge-red { background: #FF4D4D; }
-.submenu { display: none; flex-direction: column; padding-left: 1rem; }
+
+.submenu { display: none; flex-direction: column; padding-left: 1rem; background: rgba(193, 182, 255, 0.05); }
 .submenu.open { display: flex; }
-.animate-float { animation: float 4s ease-in-out infinite; }
+.menu-arrow { transition: 0.3s; }
+.menu-arrow.rotate { transform: rotate(180deg); }
+
 @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+.animate-float { animation: float 4s ease-in-out infinite; }
+
+@keyframes ptUp { 0% { transform: translateY(105vh); opacity: 0; } 8% { opacity: 0.45; } 100% { transform: translateY(-8vh) rotate(360deg); opacity: 0; } }
+.pt { position: absolute; animation: ptUp linear infinite; opacity: 0; pointer-events: none; }
+
+/* --- 7. หน้าหมวดหมู่แบบเต็มจอ (Full Page Category) --- */
+#fullPageCategory { 
+    position: fixed; 
+    inset: 0; 
+    background: #F8F4FF; 
+    z-index: 5000; 
+    overflow-y: auto; 
+    display: none; 
+    padding-top: 80px; 
+}
+.full-page-header { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    height: 70px; 
+    background: white; 
+    display: flex; 
+    align-items: center; 
+    padding: 0 20px; 
+    z-index: 5100; 
+    border-bottom: 2px solid #C1B6FF; 
+}
+body.modal-open { overflow: hidden; position: fixed; width: 100%; }
