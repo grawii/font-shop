@@ -11,16 +11,16 @@ function toggleDrawer() {
     const d = document.getElementById('drawer'); 
     const o = document.getElementById('overlay');
     if (!d || !o) return;
-    d.classList.toggle('active');
-    o.classList.toggle('active');
-    lockScroll(d.classList.contains('active'));
+    d.classList.toggle('open');
+    o.classList.toggle('open');
+    lockScroll(d.classList.contains('opens'));
 }
 
 function closeDrawer() { 
     const d = document.getElementById('drawer'); 
     const o = document.getElementById('overlay');
-    if(d) d.classList.remove('active'); 
-    if(o) o.classList.remove('active'); 
+    if(d) d.classList.remove('open'); 
+    if(o) o.classList.remove('open'); 
     lockScroll(false); 
 }
 
