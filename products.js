@@ -246,7 +246,7 @@
 				{ 
                     id: 'stk_05', 
                     name: 'สติ๊กเกอร์พี่จ่าง 05', 
-                    price: 59, 
+                    price: 39, 
                     img: ['https://img2.pic.in.th/a799182e121ef3d2b3af2dab163352eb.jpeg','https://img1.pic.in.th/images/f37dd0d811bddce1ea4fc3598bb70406.jpeg'], 
                     tags: ['อื่น ๆ'] 
                 }
