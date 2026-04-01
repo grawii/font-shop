@@ -32,23 +32,37 @@
 #fullPageCategory.active { 
     display: block !important; 
 }
+/* แต่ง Header ให้สวยตามรูปที่วงไว้ */
 .full-page-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    position: fixed !important;
+    top: 0; left: 0; right: 0;
     height: 75px;
-    /* แก้เป็นสีม่วงไล่เฉดตามรูป */
     background: linear-gradient(to right, #E6E1FF, #F8F4FF) !important;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
-    z-index: 2100;
-    /* ทำขอบล่างให้โค้งมนตามรูปที่วงสีแดง */
-    border-radius: 0 0 35px 35px; 
+    z-index: 5600 !important; /* ต้องสูงกว่าหน้าเนื้อหา */
+    border-radius: 0 0 35px 35px;
     border-bottom: 2px solid #FFFFFF;
     box-shadow: 0 4px 15px rgba(164, 136, 255, 0.2);
+    pointer-events: auto !important; /* สำคัญ: เพื่อให้กดปุ่มย้อนกลับติด */
+}
+
+/* แก้ไขระยะห่างเนื้อหาไม่ให้โดนทับ */
+#page-shop, #fullPageCategory {
+    padding-top: 95px !important;
+    background: #F8F4FF !important;
+}
+
+/* แก้ไขจุด "กดสั่งเลย" ไม่ติด (Z-index ของ Modal) */
+#summaryModal {
+    z-index: 10000 !important; /* ต้องสูงกว่า Bottom Bar (9999) */
+    display: none; /* ซ่อนไว้ก่อน */
+}
+
+#summaryModal.flex {
+    display: flex !important;
 }
 /* บังคับให้แถบม่วงโชว์เฉพาะในหน้าแยกเท่านั้น */
 #fullPageCategory.active .full-page-header {
