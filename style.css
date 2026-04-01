@@ -1,20 +1,17 @@
-/* --- 1. การตั้งค่าพื้นฐาน (ห้ามตัด) --- */
+/* --- 1. Base Setup (ห้ามตัด) --- */
 body, html { 
     margin: 0 !important; padding: 0 !important; overflow-x: hidden; 
     background-color: #F8F4FF; color: #4A3B6B; font-family: 'Kanit', sans-serif; 
-    -webkit-tap-highlight-color: transparent;
 }
 body { padding-bottom: 100px; }
 .view-page { display: none; }
 .view-page.active { display: block; }
 
-/* --- 2. ส่วนหัว (Header) ฉบับปรับปรุง: เพรียวบาง + ขอบขาว + ครบทุกหน้า --- */
+/* --- 2. Header ทุกหน้า: เพรียวบาง + ขอบขาว + จัดกึ่งกลาง --- */
 header, 
 .view-page > div:first-child, 
 .full-page-header,
-#fullPageCategory > div:first-child,
-#page-sub-font > div:first-child,
-#page-contact > div:first-child {
+#fullPageCategory > div:first-child {
     width: 100% !important; margin: 0 !important;
     padding: 25px 1.5rem !important;
     border-radius: 0 0 40px 40px !important; 
@@ -27,89 +24,94 @@ header,
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-/* หน้าแรก Home ให้สูงปกติและชิดซ้ายตามเดิม */
+/* หน้าแรก Home ให้เหมือนเดิม ไม่ติดหนึบ */
 #page-home header {
     padding: 60px 1.5rem 40px !important;
     justify-content: flex-start !important; 
     position: relative !important; border-bottom: none !important;
     box-shadow: none !important;
 }
-/* --- 3. ปุ่ม Hamburger (3 ขีด) อยู่ซ้ายเหมือนเดิม --- */
-.fixed.top-5.left-5 {
+
+/* --- 3. จัดตำแหน่งปุ่ม: 3 ขีดอยู่ซ้าย / ย้อนกลับอยู่ขวา (ห้ามกองรวมกัน) --- */
+.fixed.top-5.left-5 { /* ปุ่ม Hamburger */
     top: 15px !important; left: 15px !important; width: 45px !important; height: 45px !important;
     background: rgba(255, 255, 255, 0.8) !important; backdrop-filter: blur(8px);
-    border: 1px solid rgba(193, 182, 255, 0.4) !important; 
-    display: flex !important; align-items: center; justify-content: center; 
-    color: #4A3B6B !important; z-index: 6000 !important; border-radius: 50% !important;
+    z-index: 6000 !important; border-radius: 50% !important;
+    display: flex !important; align-items: center; justify-content: center;
 }
 
-/* --- 4. ปุ่มย้อนกลับ (ลูกศร): ย้ายไปฝั่งขวาทุกหน้า เพื่อหลบ 3 ขีด --- */
+/* ปุ่มย้อนกลับทุกลูกศร ให้ไปอยู่ขวาให้หมด */
 header button, 
 .view-page > div:first-child button, 
 .full-page-header button,
-#page-sub-font button,
-#page-contact button {
+#fullPageCategory button {
     position: absolute !important;
-    right: 20px !important; 
-    left: auto !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    background: rgba(255, 255, 255, 0.7) !important;
+    right: 20px !important; left: auto !important;
+    top: 50% !important; transform: translateY(-50%) !important;
     width: 40px; height: 40px; border-radius: 50%;
     display: flex !important; align-items: center; justify-content: center;
-    z-index: 5200 !important;
-    color: #4A3B6B !important; border: 1px solid white !important;
+    z-index: 5200 !important; background: rgba(255, 255, 255, 0.5) !important;
 }
-/* --- 5. แก้ความชิด: ดันเนื้อหาลงมา 120px ให้เท่ากันทุกหน้า --- */
+/* --- 4. ระยะห่างเนื้อหาทุกหน้าให้เท่ากันและมองสบายตา --- */
 main, 
 .view-page > div:nth-child(2), 
 #shop-content, 
-#fullPageGrid {
-    padding: 120px 1.5rem 20px !important; 
+#fullPageGrid,
+#page-sub-font .px-6 {
+    padding: 120px 1.5rem 20px !important; /* ดันลงมาพ้น Header ทุกหน้า */
     width: 100%; box-sizing: border-box;
-    position: relative; z-index: 10;
 }
 #page-home main { padding-top: 20px !important; }
 
-/* แก้ชื่อเครือฟอนต์ที่ยาวให้อ่านง่าย ไม่ล้น */
-#fullPageGrid .col-span-2 h3, #shop-content h3 {
-    word-break: break-word !important; line-height: 1.4 !important;
-    border-left: 4px solid #A488FF !important; padding-left: 10px !important;
+/* --- 5. แก้ไขชื่อเครือ: เอาขีดที่เกินออก + จัดชื่อยาวให้อ่านง่าย --- */
+/* ลบ Border-left ที่ซ้อนกัน 2 ขีดออก */
+#shop-content .border-l-4, #fullPageGrid .border-l-4, .border-l-4 {
+    border-left: none !important; 
 }
 
-/* --- 6. เมนูข้าง (Drawer) คืนค่าเรียงแถวเดียวแนวดิ่ง --- */
-.drawer { 
-    position: fixed !important; top: 0 !important; left: -320px !important; 
-    width: 300px !important; height: 100% !important; background: white !important;
-    z-index: 7000 !important; transition: 0.3s; border-right: 2px solid #C1B6FF; overflow-y: auto;
+/* สร้างขีดหน้าชื่อเครือแค่อันเดียวแบบเป๊ะๆ */
+h3.text-xl, h3.font-bold {
+    display: flex !important;
+    border-left: 5px solid #A488FF !important; 
+    padding-left: 12px !important;
+    margin: 25px 0 15px 0 !important;
+    word-break: break-word !important;
+    line-height: 1.4 !important;
 }
-.drawer.active { left: 0 !important; }
-#font-sub { display: none; flex-direction: column; padding: 5px 0; }
-#font-sub.open { display: flex; }
-.drawer button { width: 100%; display: flex !important; align-items: center; text-align: left; padding: 15px 20px; font-weight: bold; }
-
-.overlay { position: fixed; inset: 0; z-index: 6500; background: rgba(53, 42, 80, 0.3); display: none; backdrop-filter: blur(2px); }
-.overlay.active { display: block !important; }
-/* --- 7. การ์ดสินค้า (Item Card) & สไลเดอร์ --- */
-.item-card { position: relative; overflow: hidden; transition: 0.3s; border-radius: 30px; border: 2px solid #E6E1FF !important; background: white !important; }
-.item-card.selected { border-color: #A488FF !important; background: rgba(193, 182, 255, 0.1) !important; }
-.snap-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; }
-.snap-item { min-width: 100%; scroll-snap-align: start; aspect-ratio: 1 / 1; }
-.badge-custom { position: absolute; top: 12px; left: -28px; color: white; padding: 2px 30px; font-size: 8px; font-weight: bold; transform: rotate(-45deg); z-index: 40; }
-.badge-red { background: #FF4D4D; }
-
-/* --- 8. 🎈 ระบบอิโมจิลอย: โชว์ทุกหน้า (คืนชีพ 100%) --- */
-.pt { position: fixed !important; pointer-events: none; z-index: 1 !important; }
+/* --- 6. 🎈 ระบบอิโมจิลอย: บังคับให้โชว์ทุกหน้า (Fixed Layer) --- */
+.pt { 
+    position: fixed !important; 
+    pointer-events: none; 
+    z-index: 1 !important; /* อยู่หลังเนื้อหาแต่หน้าพื้นหลัง */
+    opacity: 0.6;
+}
 @keyframes ptUp { 
     0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 
-    10% { opacity: 0.6; } 100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } 
+    10% { opacity: 1; } 
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } 
 }
 .pt { animation: ptUp linear infinite; }
 
-/* --- 9. แอนิเมชั่นและอื่นๆ --- */
+/* แอนิเมชั่นลอยตัวอื่นๆ */
 @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
 .animate-float { animation: float 4s ease-in-out infinite; }
+/* --- 7. การ์ดสินค้า & สไลเดอร์ --- */
+.item-card { border-radius: 30px; border: 2px solid #E6E1FF !important; background: white !important; position: relative; overflow: hidden; }
+.item-card.selected { border-color: #A488FF !important; background: rgba(193, 182, 255, 0.1) !important; }
+.snap-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; }
+.snap-item { min-width: 100%; scroll-snap-align: start; aspect-ratio: 1 / 1; }
+
+/* --- 8. ระบบเมนู Drawer (แถวเดียว) --- */
+.drawer { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: white; z-index: 7000; transition: 0.3s; border-right: 2px solid #C1B6FF; overflow-y: auto; }
+.drawer.active { left: 0; }
+#font-sub { display: none; flex-direction: column; padding: 5px 0; }
+#font-sub.open { display: flex; }
+.drawer button { width: 100%; display: flex !important; align-items: center; text-align: left; padding: 15px 20px; }
+
+/* --- 9. หน้า Full Page & Overlay --- */
 #fullPageCategory { position: fixed; inset: 0; background: #F8F4FF; z-index: 5500; overflow-y: auto; display: none; }
+.overlay { position: fixed; inset: 0; z-index: 6500; background: rgba(53, 42, 80, 0.3); display: none; backdrop-filter: blur(2px); }
+.overlay.active { display: block !important; }
 body.modal-open { overflow: hidden; position: fixed; width: 100%; }
-.menu-arrow { transition: 0.3s; }
-.menu-arrow.rotate { transform: rotate(180deg); }
+.badge-custom { position: absolute; top: 12px; left: -28px; color: white; padding: 2px 30px; font-size: 8px; font-weight: bold; transform: rotate(-45deg); z-index: 40; }
+.badge-red { background: #FF4D4D; }
