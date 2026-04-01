@@ -29,25 +29,33 @@ body, html {
     overflow-x: hidden;
 }
 
-/* 1. แก้แถบสีม่วง/Header ให้กว้างเต็มจอและชิดขอบบน */
+/* 1. บังคับล้างขอบขาวรอบตัวเว็บ */
+body, html {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden;
+}
+
+/* 2. จัดการ Header ให้เต็มจอและชิดขอบบน */
 header, 
 #page-shop > div:first-child, 
 #page-sub-font > div:first-child, 
 #page-contact > div:first-child {
     width: 100% !important;
-    margin-top: 0 !important;
-    border-radius: 0 0 40px 40px !important; /* โค้งแค่ข้างล่าง ข้างบนตัดตรง */
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    margin: 0 !important;
+    padding-left: 1.5rem !important; /* คืนระยะห่างเนื้อหาข้างใน */
+    padding-right: 1.5rem !important;
+    border-radius: 0 0 40px 40px !important; /* โค้งแค่ข้างล่าง ข้างบนตัดตรงชิดขอบ */
+    box-sizing: border-box;
 }
 
-/* 2. แก้ขอบเนื้อหาข้างล่างให้เท่ากันเป๊ะทุกหน้า */
+/* 3. ดันเนื้อหาที่เป็นหน้าสีขาวให้ขอบเท่ากับตัว Header */
 main, 
 #shop-content, 
-#page-sub-font > div.px-6, 
-#page-contact > div.px-6 {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
+#page-sub-font > div:nth-child(2), 
+#page-contact > div:nth-child(2) {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
     width: 100%;
     box-sizing: border-box;
 }
