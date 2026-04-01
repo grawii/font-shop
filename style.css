@@ -1,4 +1,4 @@
-/* --- ส่วนพื้นฐานหน้าเว็บ --- */
+/* --- พื้นฐานหน้าเว็บ --- */
 body, html { 
     margin: 0 !important; 
     padding: 0 !important; 
@@ -11,7 +11,7 @@ body { padding-bottom: 100px; }
 .view-page { display: none; }
 .view-page.active { display: block; }
 
-/* --- 1. ส่วนหัว (Header) ให้เต็มจอชิดขอบบน --- */
+/* --- 1. ส่วนหัว (Header) ให้กางเต็มจอ --- */
 header, 
 #page-shop > div:first-child, 
 #page-sub-font > div:first-child, 
@@ -21,21 +21,20 @@ header,
     padding: 60px 1.5rem 40px !important;
     border-radius: 0 0 40px 40px !important; 
     box-sizing: border-box;
-    position: relative;
 }
 
-/* --- 2. ส่วนเนื้อหาให้ขอบเท่ากัน --- */
+/* --- 2. ส่วนเนื้อหาให้ขอบเท่ากันทุกหน้า --- */
 main, #shop-content, #page-sub-font > div:nth-child(2), #page-contact > div:nth-child(2) {
     padding: 20px 1.5rem !important; 
     width: 100%; 
     box-sizing: border-box;
 }
 
-/* --- 3. เมนู Drawer (สั่งให้แอบไปนอกจอทางซ้าย) --- */
+/* --- 3. เมนู Drawer (สั่งให้แอบไปนอกจอ) --- */
 .drawer {
     position: fixed !important; 
     top: 0 !important; 
-    left: -320px !important; /* ดีดออกไปไกลๆ นอกจอ */
+    left: -320px !important; /* ดีดออกไปนอกจอทางซ้าย */
     width: 300px !important; 
     height: 100% !important; 
     background: white !important;
@@ -45,11 +44,7 @@ main, #shop-content, #page-sub-font > div:nth-child(2), #page-contact > div:nth-
     overflow-y: auto;
     display: block !important;
 }
-
-/* เมื่อมีคลาส active ให้เลื่อนเข้ามา */
-.drawer.active { 
-    left: 0 !important; 
-}
+.drawer.active { left: 0 !important; } /* เลื่อนมาเมื่อเปิด */
 
 /* --- 4. ฉากหลังดำ (Overlay) --- */
 .overlay {
@@ -59,30 +54,28 @@ main, #shop-content, #page-sub-font > div:nth-child(2), #page-contact > div:nth-
     background: rgba(0,0,0,0.5);
     display: none;
 }
-.overlay.active { 
-    display: block !important; 
-}
+.overlay.active { display: block !important; }
 
-/* --- 5. ปุ่ม Hamburger เมนู (แบบใหม่ที่เห็นขีดชัด) --- */
+/* --- 5. ปุ่ม Hamburger เมนู --- */
 .fixed.top-5.left-5 {
     top: 20px !important; 
     left: 20px !important; 
-    width: 50px !important; 
-    height: 50px !important;
-    background: rgba(255, 255, 255, 0.7) !important; 
+    width: 52px !important; 
+    height: 52px !important;
+    background: rgba(255, 255, 255, 0.8) !important; 
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.4) !important; 
     display: flex !important;
     align-items: center; 
     justify-content: center; 
-    color: #4A3B6B !important; /* สีขีดม่วงเข้ม */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important; 
+    color: #4A3B6B !important; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important; 
     z-index: 2000 !important;
-    border-radius: 50%;
+    border-radius: 50% !important;
 }
-.fixed.top-5.left-5 i { width: 26px !important; height: 26px !important; }
+.fixed.top-5.left-5 i { width: 28px !important; height: 28px !important; }
 
-/* --- ส่วนเสริมอื่นๆ (Slider, Badge, Animation) --- */
+/* --- ส่วนอื่นๆ (Slider, Badge, Animation) --- */
 .snap-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; }
 .snap-slider::-webkit-scrollbar { display: none; }
 .snap-item { min-width: 100%; scroll-snap-align: start; aspect-ratio: 1 / 1; }
@@ -90,5 +83,7 @@ main, #shop-content, #page-sub-font > div:nth-child(2), #page-contact > div:nth-
 .item-card.selected { border-color: #A488FF; background: rgba(193, 182, 255, 0.2); }
 .badge-custom { position: absolute; top: 12px; left: -28px; color: white; padding: 2px 30px; font-size: 8px; font-weight: bold; transform: rotate(-45deg); z-index: 40; }
 .badge-red { background: #FF4D4D; }
-.submenu { display: none; flex-direction: column; padding-left: 2rem; }
+.submenu { display: none; flex-direction: column; padding-left: 1rem; }
 .submenu.open { display: flex; }
+.animate-float { animation: float 4s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
