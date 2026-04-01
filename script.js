@@ -135,13 +135,22 @@ function viewCategoryByTag(mainTag, subTag = null) {
     function toggleItem(id, cat, name, price, isP) { const idx = cart.findIndex(i => i.id === id); if(idx > -1) cart.splice(idx, 1); else cart.push({id, cat, name, price, isPromo: isP}); document.querySelectorAll(`[data-id="${id}"]`).forEach(el => el.classList.toggle('selected')); updateBottomBar(); }
 // ตัวอย่าง: ใส่ไว้ในฟังก์ชันอัปเดตยอดเงิน
 function updateBottomBar() {
-    const bar = document.getElementById('bottomBar');
-    const total = parseInt(document.getElementById('cartTotal').innerText); // เช็กยอดเงิน
-
-    if (total > 0) {
-        bar.classList.add('show'); // ถ้ามียอดเงิน > 0 ให้โชว์แถบ
+    const r = calculateTotal();
+    const b = document.getElementById('bottomBar');
+    
+    if (cart.length > 0) {
+        // ถ้ามีสินค้า: เอาคลาสที่สั่งให้มันมุดลงดินออก (เพื่อให้มันเด้งขึ้นมา)
+        b.classList.remove('translate-y-full');
+        
+        // อัปเดตตัวเลขยอดเงินและจำนวนรายการ
+        document.getElementById('cartTotal').innerText = r.total;
+        document.getElementById('cartCount').innerText = `เลือก ${cart.length} รายการ`;
+        
+        // บังคับให้มันอยู่บนสุด (กันเหนียว)
+        b.style.zIndex = "9999"; 
     } else {
-        bar.classList.remove('show'); // ถ้าเป็น 0 ให้ซ่อน
+        // ถ้าไม่มีสินค้า: สั่งให้มันมุดลงไปใต้จอเหมือนเดิม
+        b.classList.add('translate-y-full');
     }
 }
     
