@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>องุ่นหวาน Studio⭐️</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Mitr:wght@400;600;700&display=swap" rel="stylesheet">
-	
-<link rel="stylesheet" href="style.css">
-	
+    
+    <link rel="stylesheet" href="style.css">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
@@ -85,7 +85,6 @@
                 <div class="col-span-2 flex justify-center"><button onclick="viewCategoryByTag('อื่น ๆ')" class="flex items-center justify-between p-4 rounded-[25px] bg-white border-2 border-pinky-light shadow-sm w-full max-w-[180px]"><div class="w-10 h-10 rounded-xl bg-[#F0FFE6] flex items-center justify-center text-[#7ED321]"><i data-lucide="paintbrush"></i></div><div class="font-bold text-sm text-brown">อื่นๆ (บรัช,<br>สติ๊กเกอร์แชท,<br>etc.)</div><i data-lucide="chevron-right" class="text-[#7ED321] w-4 h-4"></i></button></div>
             </div>
         </section>
-
         <section class="space-y-4">
            <div class="flex items-center gap-2 px-2 font-bold text-brown text-2xl mb-6 border-b-2 border-pinky-light pb-2">
                 <i data-lucide="image" class="text-pinky-dark"></i> 🔥 Promotion
@@ -179,17 +178,13 @@
 
 <div id="fullPageCategory" class="fixed inset-0 z-[2000] hidden flex items-end justify-center bg-black/50 transition-all">
     <div class="bg-[#F8F4FF] w-full rounded-t-[40px] shadow-2xl relative flex flex-col max-h-[85vh]">
-        
         <div class="flex justify-center items-center p-6 relative">
             <h2 id="fullPageTitle" class="font-mitr font-bold text-[#4A3B6B] text-xl">หัวข้อ</h2>
             <button onclick="closeFullPage()" class="absolute right-6 bg-white w-10 h-10 rounded-full shadow-md text-[#4A3B6B] flex items-center justify-center">
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
         </div>
-
-        <div class="p-6 grid grid-cols-2 gap-4 pb-32 overflow-y-auto" id="fullPageGrid">
-            </div>
-
+        <div class="p-6 grid grid-cols-2 gap-4 pb-32 overflow-y-auto" id="fullPageGrid"></div>
     </div>
 </div>
 
@@ -209,7 +204,9 @@
         </div>
     </div>
 </div>
+
 <script src="products.js"></script>
 <script src="script.js"></script>
+<script>lucide.createIcons();</script>
 </body>
 </html>
