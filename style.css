@@ -5,36 +5,22 @@ body { padding-bottom: 120px; }
 .view-page { display: none; width: 100%; position: relative; z-index: 10; }
 .view-page.active { display: block !important; }
 
-/* --- 2. ระบบอิโมจิลอยกระจาย (คืนค่าเดิม 100% - ปรับความเร็วและเลเยอร์) --- */
+/* --- 2. ระบบอิโมจิลอยกระจาย (แก้ไข: ให้กลับมาโชว์และลอยนุ่มนวล) --- */
 .pt { 
     position: fixed !important; 
-    top: 0 !important; 
-    left: 0 !important; 
-    width: 100% !important; 
-    height: 100% !important;
-    pointer-events: none !important; /* ให้กดทะลุอิโมจิไปกดสินค้าได้ */
-    z-index: -1 !important; /* บังคับให้อยู่หลัง Background (กันโดนพื้นหลังทับ) */
+    pointer-events: none !important; 
+    z-index: 1 !important; /* ดันขึ้นมาให้อยู่เหนือพื้นหลัง แต่ใต้เนื้อหา */
     display: block !important;
 }
 
-/* แอนิเมชั่นลอยจากล่างขึ้นบนแบบนุ่มนวล */
 @keyframes ptUp { 
-    0% { 
-        transform: translateY(110vh) rotate(0deg); 
-        opacity: 0; 
-    } 
-    15% { 
-        opacity: 0.5; /* ค่อยๆ ปรากฏตัว */
-    } 
-    100% { 
-        transform: translateY(-20vh) rotate(360deg); 
-        opacity: 0; 
-    } 
+    0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 
+    15% { opacity: 0.5; } 
+    100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; } 
 }
 
 .pt { 
-    /* ปรับจาก 8s เป็น 15s เพื่อให้ลอยช้าลงและดูละมุนขึ้น */
-    animation: ptUp 15s linear infinite !important; 
+    animation: ptUp 12s linear infinite !important; /* ปรับความเร็วให้พอดี ไม่ช้าไปไม่เร็วไป */
 }
 
 /* --- 3. Header ดีไซน์เดิม --- */
@@ -51,14 +37,24 @@ header, .full-page-header, .view-page > div:first-child {
 /* ปุ่ม Hamburger (3 ขีด) */
 .fixed.top-5.left-5 { top: 15px; left: 15px; z-index: 9000; position: fixed; }
 header button, .full-page-header button { position: absolute; right: 20px; z-index: 5200; }
-/* --- 4. แถบสรุปยอดเงิน (คืนค่าเดิม 100% ไม่ปรับเอง) --- */
+/* --- 4. แถบสรุปยอดเงิน (คืนค่าเดิม 100%) --- */
 #cart-overlay, .cart-summary-fixed, [id*="cart"] {
-    position: fixed !important; bottom: 25px !important; left: 50% !important;
-    transform: translateX(-50%) !important; width: 90% !important; max-width: 420px;
-    z-index: 9999 !important; display: flex !important;
-    background: rgba(255, 255, 255, 0.95) !important;
-    backdrop-filter: blur(10px); border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(164, 136, 255, 0.3); padding: 15px;
+    position: fixed !important; 
+    bottom: 25px !important; 
+    left: 50% !important;
+    transform: translateX(-50%) !important; 
+    width: 90% !important; 
+    max-width: 400px;
+    z-index: 9999 !important; 
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(10px); 
+    border-radius: 30px; /* เพิ่มความโค้งให้ดูละมุนเหมือนเดิม */
+    border: 2px solid #E6E1FF; /* ขอบม่วงอ่อน */
+    box-shadow: 0 10px 25px rgba(164, 136, 255, 0.2); 
+    padding: 12px 20px !important;
 }
 
 /* --- 5. Label แดงคาดมุมสินค้า (คืนชีพของเดิม) --- */
@@ -75,11 +71,15 @@ header button, .full-page-header button { position: absolute; right: 20px; z-ind
 .snap-item { min-width: 100% !important; scroll-snap-align: start !important; aspect-ratio: 1 / 1 !important; }
 
 .col-span-2 h3, #shop-content h3 { border-left: 5px solid #A488FF; padding-left: 12px; margin: 15px 0; }
-/* --- 7. เมนูและหน้าย่อย (ดั้งเดิม) --- */
-.drawer { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: white; z-index: 7000; transition: 0.3s; border-right: 2px solid #C1B6FF; overflow-y: auto; }
-.drawer.active { left: 0; }
-#font-sub { display: none; flex-direction: column; }
-#font-sub.open { display: flex !important; }
-
-#fullPageCategory, #page-sub-font { position: fixed; inset: 0; background: #F8F4FF; z-index: 5500; overflow-y: auto; display: none; }
+/* --- 7. เมนูและหน้าย่อย (แก้ไข: เพิ่มระยะห่างไม่ให้แถบทับ) --- */
+#fullPageCategory, #page-sub-font, #page-shop { 
+    position: fixed; 
+    inset: 0; 
+    background: #F8F4FF; 
+    z-index: 5500; 
+    overflow-y: auto; 
+    display: none; 
+    padding-top: 90px !important; /* ดันเนื้อหาลงมาให้พ้นแถบ Header */
+    box-sizing: border-box;
+}
 #fullPageCategory.active, #page-sub-font.active { display: block !important; }
