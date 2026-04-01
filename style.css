@@ -28,6 +28,9 @@ body { background-color: #F8F4FF; color: #4A3B6B; font-family: 'Kanit', sans-ser
     position: fixed !important; inset: 0 !important; z-index: 5000 !important;
     background: #F8F4FF !important; overflow-y: auto !important;
     padding-top: 100px !important; box-sizing: border-box;
+    display: none;
+    .view-page.active, #fullPageCategory.active { 
+    display: block !important; 
 }
 /* แถบยอดรวมด้างล่าง */
 #bottomBar {
