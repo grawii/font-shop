@@ -1,16 +1,28 @@
-/* --- 1. Base Setup & Reset --- */
+/* --- 1. Base Setup & Layering --- */
 body, html { 
     margin: 0 !important; padding: 0 !important; overflow-x: hidden; 
     background-color: #F8F4FF; color: #4A3B6B; font-family: 'Kanit', sans-serif; 
 }
 body { padding-bottom: 140px; } 
-.view-page { display: none; width: 100%; position: relative; z-index: 10; }
+
+/* แยกหน้า View Page ให้เด็ดขาด */
+.view-page { display: none; width: 100%; position: relative; }
 .view-page.active { display: block !important; }
 
-/* --- 2. Header & Hamburger (แก้จุดที่ 1: ไม่ให้เด้งไปกองข้างบน) --- */
+/* 🎈 แก้จุดที่ 1: อิโมจิลอยกระจายตามเดิม (Z-index 0 เพื่ออยู่หลังสุดทุกหน้า) */
+.pt { 
+    position: fixed !important; top: 0; left: 0; pointer-events: none !important; 
+    z-index: 0 !important; display: block !important;
+}
+@keyframes ptUp { 
+    0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 
+    10% { opacity: 0.6; } 
+    100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; } 
+}
+.pt { animation: ptUp 8s linear infinite !important; }
+/* --- 2. Header ทุกหน้า (เพรียว + ขอบขาว) --- */
 header, .full-page-header, .view-page > div:first-child {
-    width: 100% !important; margin: 0 !important;
-    padding: 25px 1.5rem !important;
+    width: 100% !important; margin: 0 !important; padding: 25px 1.5rem !important;
     border-radius: 0 0 40px 40px !important; 
     display: flex !important; align-items: center !important; justify-content: center !important; 
     min-height: 65px !important;
@@ -19,90 +31,69 @@ header, .full-page-header, .view-page > div:first-child {
     border-bottom: 2px solid #FFFFFF !important; 
 }
 
-.fixed.top-5.left-5 { /* 3 ขีด (Hamburger) */
-    position: fixed !important; top: 15px !important; left: 15px !important; 
-    width: 48px !important; height: 48px !important;
-    background: rgba(255, 255, 255, 0.9) !important; 
-    backdrop-filter: blur(8px); border-radius: 50% !important;
-    display: flex !important; align-items: center; justify-content: center;
-    z-index: 9000 !important; /* ดันให้สูงกว่า Header */
-    border: 1px solid rgba(193, 182, 255, 0.5) !important;
+/* แก้จุดที่ 2: ดันเนื้อหาลงมาไม่ให้ Header ทับชื่อเครือฟอนต์ */
+#page-shop, #page-sub-font, #fullPageCategory, #page-contact {
+    padding-top: 100px !important; box-sizing: border-box;
 }
 
-/* --- 3. หน้าแรก (Home) & หน้าติดต่อเรา --- */
-#page-home header { position: relative !important; padding: 60px 1.5rem 30px !important; background: transparent !important; border: none !important; }
-#page-contact, #page-sub-font, #fullPageGrid { padding-top: 100px !important; box-sizing: border-box; }
-/* --- 4. แก้จุด "อิโมจิไม่ลอย" (ลอยจากล่างขึ้นบนทุกหน้า) --- */
-.pt { 
-    position: fixed !important; bottom: -50px !important; left: 0;
-    pointer-events: none !important; z-index: 1 !important; 
+/* หน้าแรก (Home) ห้ามโดนทับ */
+#page-home header { 
+    position: relative !important; padding: 60px 1.5rem 30px !important; 
+    background: transparent !important; border: none !important; box-shadow: none !important;
 }
-@keyframes ptUp { 
-    0% { transform: translateY(0) rotate(0deg); opacity: 0; } 
-    10% { opacity: 0.6; } 
-    100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; } 
+/* --- 3. แก้จุดที่ 3: ลบขีดซ้ำหน้าชื่อเครือ (ให้เหลืออันเดียวหน้า h3) --- */
+.col-span-2, [class*="col-span"], #shop-content .border-l-4 { 
+    border-left: none !important; 
 }
-.pt { animation: ptUp 8s linear infinite !important; }
 
-/* --- 5. คืนค่าสไลเดอร์สินค้า (ห้ามแยกรูป) --- */
-.snap-slider { display: flex !important; overflow-x: auto !important; scroll-snap-type: x mandatory !important; }
-.snap-slider::-webkit-scrollbar { display: none; }
-.snap-item { min-width: 100% !important; scroll-snap-align: start !important; aspect-ratio: 1 / 1 !important; }
-/* --- 6. ลบขีดม่วงซ้ำซ้อน + ตัดชื่อเครือ 2 บรรทัด --- */
-.col-span-2, [class*="col-span"] { border-left: none !important; } /* ลบขีดนอก */
-
-.col-span-2 h3, #shop-content h3, .full-page-header h1 {
+/* --- 4. แก้จุดที่ 4: ชื่อเครือยาวในหน้า "ดูเพิ่มเติม" ให้ตัดบรรทัดใหม่ --- */
+.col-span-2 h3, #shop-content h3, .full-page-header h1, .full-page-header h2 {
     display: block !important;
-    border-left: 5px solid #A488FF !important; /* ขีดในอันเดียว */
+    border-left: 5px solid #A488FF !important; /* ขีดม่วงอันเดียว */
     padding-left: 12px !important;
     margin: 15px 0 !important;
     word-break: break-word !important; 
     white-space: normal !important;
     line-height: 1.4 !important;
-    padding-right: 60px !important; /* เว้นที่ให้ลูกศรย้อนกลับ */
+    padding-right: 65px !important; /* เว้นที่ให้ปุ่มย้อนกลับ */
+    font-size: 1.2rem !important;
 }
-
-/* ปุ่มย้อนกลับ (ลูกศร) อยู่ขวาทุกหน้า */
-header button, .full-page-header button {
-    position: absolute !important; right: 20px !important; left: auto !important;
-    top: 50% !important; transform: translateY(-50%) !important;
-    z-index: 5200 !important; width: 40px; height: 40px;
-}
-/* --- 7. แถบสรุปยอดเงิน (Cart) ต้องอยู่ล่างสุดเสมอ --- */
+/* --- 5. แก้จุดที่ 5 & 6: คืนชีพแถบยอดรวมเดิม และต้องลอยทุกหน้า --- */
 #cart-overlay, .cart-summary-fixed, [id*="cart"] {
-    position: fixed !important; bottom: 20px !important;
-    left: 50% !important; transform: translateX(-50%) !important;
-    z-index: 9999 !important; width: 90% !important; max-width: 400px;
+    position: fixed !important; bottom: 25px !important; left: 50% !important;
+    transform: translateX(-50%) !important; width: 90% !important; max-width: 420px;
+    z-index: 9999 !important; /* ดันให้สูงกว่าหน้า Full Page */
+    display: flex !important; 
+    
+    /* ดีไซน์เดิมที่คุณองุ่นต้องการ */
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px) !important; border-radius: 20px !important;
+    box-shadow: 0 8px 30px rgba(164, 136, 255, 0.3) !important;
+    padding: 15px !important;
+}
+/* --- 6. ตำแหน่งปุ่มนำทาง --- */
+.fixed.top-5.left-5 { top: 15px !important; left: 15px !important; z-index: 9000 !important; }
+
+header button, .full-page-header button { 
+    position: absolute !important; right: 20px !important; 
+    top: 50% !important; transform: translateY(-50%) !important; 
+    z-index: 5200 !important; 
 }
 
-/* --- 8. คืนดีไซน์ปุ่ม "ดูเพิ่มเติม" และหมวดหมู่แถวเดียว --- */
-button[onclick*="showFullPage"] {
-    all: unset !important; display: inline-flex !important;
-    background: linear-gradient(135deg, #A488FF, #C1B6FF) !important;
-    color: white !important; padding: 10px 24px !important;
-    border-radius: 25px !important; font-weight: bold !important;
-    box-shadow: 0 4px 12px rgba(164, 136, 255, 0.3) !important;
-}
-
-#font-sub { display: none; flex-direction: column !important; padding: 5px 0; }
-#font-sub.open { display: flex !important; }
-/* --- 9. การ์ดสินค้าและลาเบล (ของเดิม 100%) --- */
-.item-card { position: relative !important; overflow: hidden !important; border-radius: 30px !important; border: 2px solid #E6E1FF !important; background: white !important; transition: 0.3s; }
-.item-card.selected { border-color: #A488FF !important; background: rgba(193, 182, 255, 0.1) !important; }
+/* --- 7. ดีไซน์สินค้าดั้งเดิม (ห้ามหาย) --- */
+.item-card { position: relative !important; overflow: hidden !important; border-radius: 30px !important; border: 2px solid #E6E1FF !important; background: white !important; }
 
 .badge-custom, .badge-red { 
     position: absolute !important; top: 12px !important; left: -28px !important; 
-    background: #FF4D4D !important; color: white !important;
-    padding: 2px 30px !important; transform: rotate(-45deg) !important; 
-    z-index: 40 !important; font-size: 10px !important; font-weight: bold !important;
+    background: #FF4D4D !important; transform: rotate(-45deg) !important; 
+    z-index: 40 !important; display: block !important; 
 }
 
-/* เมนู Drawer และ Overlay */
+.snap-slider { display: flex !important; overflow-x: auto !important; scroll-snap-type: x mandatory !important; }
+.snap-item { min-width: 100% !important; scroll-snap-align: start !important; aspect-ratio: 1 / 1 !important; }
+
+/* ระบบเมนู Drawer */
 .drawer { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: white; z-index: 7000; transition: 0.3s; border-right: 2px solid #C1B6FF; overflow-y: auto; }
 .drawer.active { left: 0; }
 .overlay { position: fixed; inset: 0; z-index: 6500; background: rgba(53, 42, 80, 0.3); display: none; backdrop-filter: blur(2px); }
 .overlay.active { display: block !important; }
-
-@keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
-.animate-float { animation: float 4s ease-in-out infinite; }
-#fullPageCategory { position: fixed; inset: 0; background: #F8F4FF; z-index: 5500; overflow-y: auto; display: none; }
