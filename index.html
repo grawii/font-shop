@@ -595,18 +595,18 @@ function viewCategoryByTag(mainTag, subTag = null) {
         let sub = cart.reduce((s, i) => s + i.price, 0); 
         let pAM = cart.filter(i => (i.cat.includes('AM') || i.cat.includes('KT') || i.cat.includes('ST') || i.cat.includes('TAU') || i.cat.includes('Chalihouse') || i.cat.includes('MysissHouse')) && i.isPromo).length;
         let dAM = Math.floor(pAM / 2) * 18; 
-        let pCNJ = cart.filter(i => i.cat.includes('CNJ') && i.isPromo).length; let dCNJ = Math.floor(pCNJ / 2) * 39; 
-        let pMNJ = cart.filter(i => i.cat.includes('MNJ') && i.isPromo).length; let dMNJ = Math.floor(pMNJ / 2) * 49; 
+//ลบโปรCNJ
+//ลบโปรMNJ
         let prnItems = cart.filter(i => i.cat.includes('PRN')).map(i => i.price).sort((a, b) => a - b);
         let dPRN = 0; for(let i = 0; i < Math.floor(prnItems.length / 2); i++) dPRN += prnItems[i];
-        return { total: sub - dAM - dCNJ - dMNJ - dPRN, discAM: dAM, discCNJ: dCNJ, discMNJ: dMNJ, discPRN: dPRN }; 
+        return { total: sub - dAM - 0 - 0 - dPRN, discAM: dAM, discCNJ: 0, discMNJ: 0, discPRN: dPRN }; 
     }
 
     function checkout() { 
         const res = calculateTotal(); let text = "สรุปรายการสั่งซื้อ🤍\n\n" + cart.map(i => `• ${i.cat}: ${i.name} (${i.price}.-)`).join('\n');
         if (res.discAM > 0) text += `\n✨ ส่วนลด AM: -${res.discAM} บาท`;
-        if (res.discCNJ > 0) text += `\n✨ ส่วนลด CNJ: -${res.discCNJ} บาท`;
-        if (res.discMNJ > 0) text += `\n✨ ส่วนลด MNJ: -${res.discMNJ} บาท`;
+//โปรcnj
+//โปรmnj
         if (res.discPRN > 0) text += `\n✨ ส่วนลด PRN (1แถม1): -${res.discPRN} บาท`;
         text += `\n\nยอดสุทธิ: ${res.total} บาท\n--------------------\nขอบคุณที่มาอุดหนุนร้านองุ่นนะคะ⭐️\nรอองุ่นตอบกลับ 5-10 นาทีน้าา🫶🏻☁️`; 
         const t = document.createElement("textarea"); t.value = text; document.body.appendChild(t); t.select(); document.execCommand("copy"); document.body.removeChild(t); 
@@ -621,8 +621,8 @@ function viewCategoryByTag(mainTag, subTag = null) {
         document.getElementById('modalItemsList').innerHTML = h; 
         let pT = "";
         if (r.discAM > 0) pT += `✨ ส่วนลด AM: -฿${r.discAM}<br>`;
-        if (r.discCNJ > 0) pT += `✨ ส่วนลด CNJ: -฿${r.discCNJ}<br>`;
-        if (r.discMNJ > 0) pT += `✨ ส่วนลด MNJ: -฿${r.discMNJ}<br>`;
+//โปรcnj
+//โปรmnj
         if (r.discPRN > 0) pT += `✨ ส่วนลด PRN (1แถม1): -฿${r.discPRN}<br>`;
         document.getElementById('promoNotice').innerHTML = pT; document.getElementById('modalTotalPrice').innerText = r.total; 
         const sm = document.getElementById('summaryModal'); sm.classList.remove('hidden'); sm.classList.add('flex'); lockScroll(true); 
