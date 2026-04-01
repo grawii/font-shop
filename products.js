@@ -233,7 +233,21 @@
                     id: 'stk_03', 
                     name: 'สติ๊กเกอร์พี่จ่าง 03', 
                     price: 59, 
-                    img: ['https://img2.pic.in.th/a799182e121ef3d2b3af2dab163352eb.jpeg','https://img1.pic.in.th/images/522d3ca24054361fa370034de121784e.jpeg'], 
+                    img: ['https://img2.pic.in.th/81c7ff5d2a6943b2a6bcb93bb46b9d8c.jpeg','https://img1.pic.in.th/images/879ffcc0fd9ee11f4a9ccd992eb2471d.jpeg'], 
+                    tags: ['อื่น ๆ'] 
+			    },
+				{ 
+                    id: 'stk_04', 
+                    name: 'สติ๊กเกอร์พี่จ่าง 04', 
+                    price: 59, 
+                    img: ['https://img1.pic.in.th/images/cfc66fd36dcade9c77182d5e0a328b48.jpeg','https://img2.pic.in.th/522d3ca24054361fa370034de121784e.jpeg'], 
+                    tags: ['อื่น ๆ'] 
+			    },
+				{ 
+                    id: 'stk_05', 
+                    name: 'สติ๊กเกอร์พี่จ่าง 05', 
+                    price: 59, 
+                    img: ['https://img2.pic.in.th/a799182e121ef3d2b3af2dab163352eb.jpeg','https://img1.pic.in.th/images/f37dd0d811bddce1ea4fc3598bb70406.jpeg'], 
                     tags: ['อื่น ๆ'] 
                 }
             ] 
