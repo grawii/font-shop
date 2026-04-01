@@ -1,8 +1,8 @@
         body { background-color: #F8F4FF; color: #4A3B6B; font-family: 'Kanit', sans-serif; overflow-x: hidden; padding-bottom: 100px; }
         .view-page { display: none; } .view-page.active { display: block; }
-        .drawer { position: fixed; top: 0; left: 0; z-index: 1000; width: 280px; height: 100vh; background: #F8F4FF; border-right: 4px solid #C1B6FF; transform: translateX(-100%); transition: 0.3s; overflow-y: auto; }
+        .drawer { position: fixed; top: 0; left: 0; z-index: 10005 !important; width: 280px; height: 100vh; background: #F8F4FF; border-right: 4px solid #C1B6FF; transform: translateX(-100%); transition: 0.3s; overflow-y: auto; }
         .drawer.open { transform: translateX(0); }
-        .overlay { position: fixed; inset: 0; z-index: 999; background: rgba(53, 42, 80, 0.3); display: none; }
+        .overlay { position: fixed; inset: 0; z-index: 10004!important; background: rgba(53, 42, 80, 0.3); display: none; }
         .snap-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
         .snap-slider::-webkit-scrollbar { display: none; }
         .snap-item { min-width: 100%; scroll-snap-align: start; aspect-ratio: 1 / 1; }
