@@ -3,11 +3,11 @@ body, html {
     margin: 0 !important; padding: 0 !important; overflow-x: hidden; 
     background-color: #F8F4FF; color: #4A3B6B; font-family: 'Kanit', sans-serif; 
 }
-body { padding-bottom: 120px; } /* เผื่อที่ให้แถบสรุปยอด */
+body { padding-bottom: 140px; } 
 .view-page { display: none; }
 .view-page.active { display: block; }
 
-/* --- 2. Header & Navigation (เพรียว + ขอบขาว) --- */
+/* --- 2. Header & ปุ่มย้อนกลับ (แก้จุดที่ 6: ย้ายไปขวาให้หมด) --- */
 header, .view-page > div:first-child, .full-page-header, #fullPageCategory > div:first-child {
     width: 100% !important; margin: 0 !important;
     padding: 25px 1.5rem !important;
@@ -21,111 +21,103 @@ header, .view-page > div:first-child, .full-page-header, #fullPageCategory > div
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-/* --- 3. แก้ปัญหาแถบสรุปยอด (Cart Overlay) ให้ลอยเด่นทุกหน้า --- */
-#cart-overlay, .cart-summary-fixed {
-    z-index: 9999 !important; /* ดันให้สูงที่สุดเพื่อให้อยู่หน้าหน้าหมวดหมู่ย่อย */
-    position: fixed !important;
-    bottom: 20px !important;
+/* ปุ่มย้อนกลับ (ลูกศร) บังคับอยู่ขวาทุกหน้า เพื่อหลบปุ่ม 3 ขีด */
+header button, .view-page > div:first-child button, .full-page-header button, #fullPageCategory button {
+    position: absolute !important;
+    right: 20px !important; left: auto !important;
+    top: 50% !important; transform: translateY(-50%) !important;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6) !important;
+    display: flex !important; align-items: center; justify-content: center;
+    z-index: 5200 !important;
 }
 
-/* ปุ่ม Hamburger และปุ่มย้อนกลับ */
-.fixed.top-5.left-5 { z-index: 6000 !important; top: 15px !important; left: 15px !important; }
-header button, .full-page-header button {
-    position: absolute !important; right: 20px !important; z-index: 5200 !important;
-    width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 255, 255, 0.6) !important;
-    display: flex !important; align-items: center; justify-content: center;
+/* --- 3. หน้าแรก (Home) แก้จุดที่ 5: ให้สมมาตรเหมือนเดิม --- */
+#page-home header {
+    padding: 60px 1.5rem 40px !important;
+    justify-content: flex-start !important; 
+    position: relative !important; border-bottom: none !important;
+    box-shadow: none !important;
 }
-/* --- 4. แก้ระยะห่างเนื้อหาให้พอดีตา --- */
+#page-home main { padding-top: 20px !important; }
+/* --- 4. ระยะห่างเนื้อหา (มองสบายตา) --- */
 main, .view-page > div:nth-child(2), #shop-content, #fullPageGrid {
-    padding: 95px 1.5rem 20px !important; 
+    padding: 100px 1.5rem 20px !important; 
     width: 100%; box-sizing: border-box;
 }
 
-/* --- 5. 🔥 แก้ชื่อเครือ: ลบขีดซ้ำ + ตัด 2 บรรทัด --- */
-/* 1. ลบขีดที่ซ้อนอยู่บนกล่อง col-span ออกให้หมด */
-.col-span-2, [class*="col-span"] {
-    border-left: none !important;
-}
+/* --- 5. แก้จุดที่ 1 & 2: ลบขีดซ้ำ + ตัดชื่อเครือ 2 บรรทัด --- */
+/* ลบขีดที่เกินมาตรง All Product (ลบ Border-left ที่ติดกับกล่อง) */
+.col-span-2, [class*="col-span"] { border-left: none !important; }
 
-/* 2. ตั้งค่าชื่อเครือ (h3) ให้ตัดบรรทัดใหม่และมีขีดแค่อันเดียว */
-.col-span-2 h3, #shop-content h3 {
-    display: block !important; /* บังคับเป็น Block เพื่อให้เนื้อหาไหลลงบรรทัดใหม่ได้ */
-    border-left: 5px solid #A488FF !important; /* ขีดสีม่วงอันเดียวสวยๆ */
-    padding-left: 12px !important;
-    margin: 20px 0 !important;
-    
-    /* สั่งตัดคำเมื่อยาวเกิน */
-    word-break: break-word !important; 
-    white-space: normal !important; 
-    line-height: 1.4 !important;
-    
-    /* เว้นที่ด้านขวา 60px เพื่อไม่ให้ชื่อไปเบียดหรือทับปุ่มย้อนกลับ */
-    padding-right: 60px !important; 
-    font-size: 1.25rem !important;
-}
-
-/* ตั้งค่าขีดม่วงให้เหลือแค่อันเดียวที่หน้า h3 เท่านั้น */
-.col-span-2 h3, #shop-content h3 {
+/* ชื่อเครือ h3: มีขีดอันเดียว + ตัดบรรทัดใหม่สวยๆ (GRP - / ดึงเมลเอง) */
+.col-span-2 h3, #shop-content h3, .full-page-header h1, .full-page-header h2 {
     display: block !important;
-    border-left: 5px solid #A488FF !important; /* ขีดอันเดียวที่ต้องการ */
+    border-left: 5px solid #A488FF !important;
     padding-left: 12px !important;
-    margin: 20px 0 !important;
-    word-break: break-word !important;
+    margin: 15px 0 !important;
+    word-break: break-word !important; 
+    white-space: normal !important;
     line-height: 1.4 !important;
-    padding-right: 60px !important;
+    padding-right: 65px !important; /* เว้นที่ให้ปุ่มย้อนกลับ */
+    font-size: 1.2rem !important;
 }
-/* --- 6. คืนชีพปุ่ม "ดูเพิ่มเติม" ให้สวยโค้งมน --- */
-button[onclick*="showFullPage"] {
-    all: unset !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    background: linear-gradient(135deg, #A488FF 0%, #C1B6FF 100%) !important;
+
+/* --- 6. แก้จุดที่ 4: แถบสรุปยอดเงิน (Cart) ต้องลอยหน้าสุดทุกหน้า --- */
+#cart-overlay, .cart-summary-fixed, [id*="cart-"] {
+    z-index: 9999 !important; /* ดันให้สูงกว่าหน้า Full Page */
+    position: fixed !important;
+    bottom: 20px !important;
+}
+/* --- 7. แก้จุดที่ 3: คืนหน้าตาการ์ดสินค้า + ลาเบลแดงห้ามหาย --- */
+.item-card { 
+    position: relative !important; 
+    overflow: hidden !important; 
+    border-radius: 30px !important; 
+    border: 2px solid #E6E1FF !important; 
+    background: white !important;
+}
+
+/* 🚩 ลาเบลแดงคาดมุม (ห้ามหายเด็ดขาด) */
+.badge-custom, .promo-badge, .badge-red {
+    position: absolute !important;
+    top: 12px !important;
+    left: -28px !important;
+    background: #FF4D4D !important;
     color: white !important;
-    padding: 10px 24px !important;
-    border-radius: 25px !important;
-    font-size: 14px !important;
+    padding: 2px 30px !important;
+    font-size: 10px !important;
     font-weight: bold !important;
-    cursor: pointer !important;
-    box-shadow: 0 4px 12px rgba(164, 136, 255, 0.3) !important;
+    transform: rotate(-45deg) !important;
+    z-index: 40 !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
+    display: block !important;
 }
-
-/* --- 7. เมนูข้าง (Drawer) แถวเดียวตามเดิม --- */
-.drawer { 
-    position: fixed !important; top: 0 !important; left: -320px !important; 
-    width: 300px !important; height: 100% !important; background: white !important;
-    z-index: 7000 !important; transition: 0.3s; border-right: 2px solid #C1B6FF; overflow-y: auto;
-}
-.drawer.active { left: 0 !important; }
-#font-sub { display: none; flex-direction: column; padding: 5px 0; }
-#font-sub.open { display: flex; }
-.drawer button { width: 100%; display: flex !important; align-items: center; text-align: left; padding: 15px 20px; font-weight: bold; }
-
-.overlay { position: fixed; inset: 0; z-index: 6500; background: rgba(53, 42, 80, 0.3); display: none; backdrop-filter: blur(2px); }
-.overlay.active { display: block !important; }
-/* --- 8. 🎈 ระบบอิโมจิลอย: โชว์ทุกหน้า (รวมหน้าหมวดหมู่ย่อย) --- */
+.item-card.selected { border-color: #A488FF !important; background: rgba(193, 182, 255, 0.1) !important; }
+/* --- 8. 🎈 แก้จุดที่ 4: บังคับอิโมจิลอยโชว์ทุกหน้า (Fixed Layer) --- */
 .pt { 
     position: fixed !important; 
-    pointer-events: none; 
+    pointer-events: none !important; 
     z-index: 1 !important; 
     display: block !important;
     opacity: 0.6;
 }
 @keyframes ptUp { 
     0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 
-    10% { opacity: 1; }
-    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } 
+    10% { opacity: 1; } 100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } 
 }
-.pt { animation: ptUp linear infinite; }
+.pt { animation: ptUp linear infinite !important; }
 
-/* --- 9. ระบบการ์ดสินค้าและแอนิเมชั่น (ห้ามตัด) --- */
-.item-card { border-radius: 30px; border: 2px solid #E6E1FF !important; background: white !important; position: relative; overflow: hidden; }
-.item-card.selected { border-color: #A488FF !important; background: rgba(193, 182, 255, 0.1) !important; }
+/* --- 9. ฟังก์ชันเดิมทั้งหมด (ห้ามตัดบรรทัดเหล่านี้ออก) --- */
+.drawer { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: white; z-index: 7000; transition: 0.3s; border-right: 2px solid #C1B6FF; overflow-y: auto; }
+.drawer.active { left: 0; }
+#font-sub { display: none; flex-direction: column; padding: 5px 0; }
+#font-sub.open { display: flex; }
 .snap-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; }
 .snap-item { min-width: 100%; scroll-snap-align: start; aspect-ratio: 1 / 1; }
-
+#fullPageCategory { position: fixed; inset: 0; background: #F8F4FF; z-index: 5500; overflow-y: auto; display: none; }
+.overlay { position: fixed; inset: 0; z-index: 6500; background: rgba(53, 42, 80, 0.3); display: none; backdrop-filter: blur(2px); }
+.overlay.active { display: block !important; }
+.fixed.top-5.left-5 { z-index: 6000 !important; top: 15px !important; left: 15px !important; }
 @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
 .animate-float { animation: float 4s ease-in-out infinite; }
-
-#fullPageCategory { position: fixed; inset: 0; background: #F8F4FF; z-index: 5500; overflow-y: auto; display: none; }
-body.modal-open { overflow: hidden; position: fixed; width: 100%; }
