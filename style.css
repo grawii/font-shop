@@ -81,3 +81,55 @@ main,
     width: 26px !important;
     height: 26px !important;
 }
+/* --- ส่วนแก้เมนูค้าง --- */
+.drawer {
+    position: fixed !important;
+    top: 0 !important;
+    left: -300px !important; /* บังคับดีดไปเก็บนอกจอทางซ้าย */
+    width: 300px !important;
+    height: 100% !important;
+    background: white !important;
+    z-index: 2000 !important;
+    transition: left 0.3s ease !important;
+    display: block !important; /* ให้มันมีตัวตนแต่แอบอยู่ข้างนอก */
+}
+
+/* เมื่อกดปุ่มแล้วให้เลื่อนเข้ามา */
+.drawer.active {
+    left: 0 !important;
+}
+
+/* ส่วนของพื้นหลังดำเวลาเปิดเมนู */
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1500;
+}
+
+.overlay.active {
+    display: block !important;
+}
+
+/* --- ส่วนแก้ปุ่ม Hamburger ให้สวยและชัด --- */
+.fixed.top-5.left-5 {
+    top: 20px !important;
+    left: 20px !important;
+    width: 50px !important;
+    height: 50px !important;
+    background: rgba(255, 255, 255, 0.6) !important;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    color: #4A3B6B !important; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+    z-index: 1100 !important;
+}
+
+.fixed.top-5.left-5 i {
+    width: 26px !important;
+    height: 26px !important;
+}
