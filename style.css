@@ -59,3 +59,25 @@ main,
     width: 100%;
     box-sizing: border-box;
 }
+/* ปรับแต่งปุ่มเมนู Hamburger ให้ใหญ่และชัดขึ้น */
+.fixed.top-5.left-5 {
+    top: 20px !important;
+    left: 20px !important;
+    width: 50px !important;  /* ขนาดวงกลมใหญ่ขึ้น กดง่าย */
+    height: 50px !important;
+    background: rgba(255, 255, 255, 0.5) !important; /* ขาวใสกำลังดี */
+    backdrop-filter: blur(8px); /* ทำเอฟเฟกต์กระจกฝ้า */
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    color: #4A3B6B !important; /* ⚠️ สีขีดเมนู (ม่วงเข้มแบบที่องุ่นชอบ) */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important; /* ใส่เงาบางๆ ให้ดูมีมิติ */
+    cursor: pointer;
+}
+
+/* ปรับขนาดไอคอนขีดๆ ข้างใน */
+.fixed.top-5.left-5 i {
+    width: 26px !important;
+    height: 26px !important;
+}
