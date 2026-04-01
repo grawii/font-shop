@@ -1,12 +1,11 @@
-/* --- 1. Base & View System (คืนค่าเดิมห้ามหน้าหาย) --- */
+/* --- 1. Base Setup & View System (คืนค่าเดิม) --- */
 body, html { margin: 0; padding: 0; overflow-x: hidden; background-color: #F8F4FF; font-family: 'Kanit', sans-serif; }
-body { padding-bottom: 140px; } 
+body { padding-bottom: 120px; } 
 
-/* คืนชีพหน้าสินค้า/หมวดหมู่ย่อย (จุดที่ 3) */
 .view-page { display: none; width: 100%; position: relative; z-index: 10; }
 .view-page.active { display: block !important; }
 
-/* --- 2. ระบบอิโมจิลอย (คืนค่าเดิม 100% ตามที่ส่งให้ - จุดที่ 1) --- */
+/* --- 2. ระบบอิโมจิลอยกระจาย (คืนค่าเดิม 100% ตามไฟล์แรก) --- */
 .pt { 
     position: fixed !important; top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none !important; z-index: 0 !important; display: block !important;
@@ -25,63 +24,41 @@ header, .full-page-header, .view-page > div:first-child {
     position: fixed; top: 0; left: 0; z-index: 5100; border-bottom: 2px solid #FFFFFF; 
 }
 
-/* แก้จุดที่ 2: หน้าแรกห้ามโดนแถบทับ (คืนค่า position relative) */
-#page-home header { 
-    position: relative !important; 
-    z-index: 5101 !important;
-}
+/* หน้าแรกห้ามโดนทับ (คืนค่า position relative) */
+#page-home header { position: relative !important; z-index: 5101 !important; }
 
-/* แก้จุดที่ 5: หน้าติดต่อเราและหน้าย่อย เว้นระยะไม่ให้แถบทับเนื้อหา */
-#page-contact, #page-shop, #page-sub-font, #fullPageCategory {
-    padding-top: 110px !important; /* ดันช่องทางติดต่อลงมาให้พ้นแถบ */
-    box-sizing: border-box !important;
-}
-/* --- 4. แถบยอดรวม (คืนค่ารูปแบบเดิม 100% ไม่ปรับเอง - จุดที่ 4) --- */
+/* ปุ่ม Hamburger (3 ขีด) */
+.fixed.top-5.left-5 { top: 15px; left: 15px; z-index: 9000; position: fixed; }
+header button, .full-page-header button { position: absolute; right: 20px; z-index: 5200; }
+/* --- 4. แถบสรุปยอดเงิน (คืนค่าเดิม 100% ไม่ปรับเอง) --- */
 #cart-overlay, .cart-summary-fixed, [id*="cart"] {
-    position: fixed !important;
-    bottom: 25px !important; 
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: 90% !important;
-    max-width: 420px;
-    z-index: 9999 !important; /* ลอยหน้าสุดทับทุกอย่าง */
-    display: flex !important;
-    
-    /* ดีไซน์เดิมที่คุณองุ่นส่งมา */
+    position: fixed !important; bottom: 25px !important; left: 50% !important;
+    transform: translateX(-50%) !important; width: 90% !important; max-width: 420px;
+    z-index: 9999 !important; display: flex !important;
     background: rgba(255, 255, 255, 0.95) !important;
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(164, 136, 255, 0.3);
-    padding: 15px;
-}
-/* --- 5. ชื่อเครือ: ลบขีดซ้ำ + ตัดบรรทัด --- */
-.col-span-2, [class*="col-span"], .border-l-4 { border-left: none !important; }
-
-.col-span-2 h3, #shop-content h3, .full-page-header h1 {
-    display: block !important;
-    border-left: 5px solid #A488FF !important; /* ขีดม่วงอันเดียวหน้าชื่อ */
-    padding-left: 12px;
-    margin: 15px 0;
-    word-break: break-word !important; 
+    backdrop-filter: blur(10px); border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(164, 136, 255, 0.3); padding: 15px;
 }
 
-/* --- 6. Label แดงคาดมุมสินค้า (ดั้งเดิม) --- */
+/* --- 5. Label แดงคาดมุมสินค้า (คืนชีพของเดิม) --- */
 .badge-custom, .badge-red { 
     position: absolute !important; top: 12px !important; left: -28px !important; 
     background: #FF4D4D !important; transform: rotate(-45deg) !important; 
     z-index: 40 !important; padding: 2px 30px; 
     font-size: 10px; font-weight: bold; color: white; display: block !important;
 }
-/* --- 7. ปุ่มและเมนู (ดั้งเดิม) --- */
-.fixed.top-5.left-5 { top: 15px; left: 15px; z-index: 9000; position: fixed; }
-header button, .full-page-header button { position: absolute; right: 20px; z-index: 5200; }
+/* --- 6. การ์ดสินค้าและสไลเดอร์ (ดั้งเดิม) --- */
+.item-card { position: relative !important; overflow: hidden !important; border-radius: 30px !important; border: 2px solid #E6E1FF !important; background: white !important; }
 
+.snap-slider { display: flex !important; overflow-x: auto !important; scroll-snap-type: x mandatory !important; }
+.snap-item { min-width: 100% !important; scroll-snap-align: start !important; aspect-ratio: 1 / 1 !important; }
+
+.col-span-2 h3, #shop-content h3 { border-left: 5px solid #A488FF; padding-left: 12px; margin: 15px 0; }
+/* --- 7. เมนูและหน้าย่อย (ดั้งเดิม) --- */
 .drawer { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: white; z-index: 7000; transition: 0.3s; border-right: 2px solid #C1B6FF; overflow-y: auto; }
 .drawer.active { left: 0; }
-
 #font-sub { display: none; flex-direction: column; }
 #font-sub.open { display: flex !important; }
 
-/* สไลเดอร์สินค้า */
-.snap-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; }
-.snap-item { min-width: 100%; scroll-snap-align: start; aspect-ratio: 1 / 1; }
+#fullPageCategory, #page-sub-font { position: fixed; inset: 0; background: #F8F4FF; z-index: 5500; overflow-y: auto; display: none; }
+#fullPageCategory.active, #page-sub-font.active { display: block !important; }
