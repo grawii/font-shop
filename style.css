@@ -24,7 +24,7 @@ header,
     box-sizing: border-box;
     position: relative;
     background: linear-gradient(to right, #E6E1FF, #F8F4FF); /* Gradient พื้นหลังหัวเว็บ */
-    color: white !important;
+    color: #4A3B6B !important; 
 }
 
 main, #shop-content, #page-sub-font > div:nth-child(2), #page-contact > div:nth-child(2) {
