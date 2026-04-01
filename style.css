@@ -1,24 +1,21 @@
 /* --- 1. ตั้งค่าพื้นฐานและล้างขอบขาว --- */
 body, html { 
-    margin: 0 !important; 
-    padding: 0 !important; 
-    overflow-x: hidden; 
-    background-color: #F8F4FF; 
-    color: #4A3B6B; 
-    font-family: 'Kanit', sans-serif; 
+    margin: 0 !important; padding: 0 !important; overflow-x: hidden; 
+    background-color: #F8F4FF; color: #4A3B6B; font-family: 'Kanit', sans-serif; 
     -webkit-tap-highlight-color: transparent;
 }
 body { padding-bottom: 100px; }
 .view-page { display: none; }
 .view-page.active { display: block; }
 
-/* --- 2. ส่วนหัว (Header) ของทุกหน้า (เหมารวม) --- */
+/* --- 2. ส่วนหัว (Header) ของทุกหน้า - เพรียวบาง + Gradient + มีขอบล่าง --- */
 header, 
 .view-page > div:first-child, 
-.full-page-header {
+.full-page-header,
+#fullPageCategory > div:first-child {
     width: 100% !important; 
     margin: 0 !important; 
-    padding: 30px 1.5rem !important;
+    padding: 30px 1.5rem !important; /* ความสูงแถบที่ต้องการ */
     border-radius: 0 0 40px 40px !important; 
     box-sizing: border-box;
     display: flex !important;
@@ -29,21 +26,25 @@ header,
     position: fixed !important; 
     top: 0; left: 0;
     z-index: 5100;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    /* ✨ เพิ่มขอบล่างให้กริบเหมือนหน้า All Product */
+    border-bottom: 2.5px solid #C1B6FF !important; 
+    box-shadow: 0 4px 15px rgba(193, 182, 255, 0.25);
 }
 
+/* ยกเว้นหน้าแรก (Home) ให้มีรูปโปรไฟล์และสูงปกติ */
 #page-home header {
     padding: 60px 1.5rem 40px !important;
     justify-content: flex-start !important; 
     position: relative !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    background: linear-gradient(to right, #E6E1FF, #F8F4FF) !important;
 }
 
-/* --- 3. ปุ่ม Hamburger (เมนู) --- */
+/* --- 3. ปุ่มเมนู Hamburger --- */
 .fixed.top-5.left-5 {
-    top: 15px !important; 
-    left: 15px !important; 
-    width: 45px !important; 
-    height: 45px !important;
+    top: 15px !important; left: 15px !important; 
+    width: 45px !important; height: 45px !important;
     background: rgba(255, 255, 255, 0.8) !important; 
     backdrop-filter: blur(8px);
     border: 1px solid rgba(193, 182, 255, 0.4) !important; 
@@ -53,64 +54,62 @@ header,
     z-index: 6000 !important;
     border-radius: 50% !important;
 }
+.fixed.top-5.left-5 i { width: 24px !important; height: 24px !important; }
 
-/* --- 4. เมนูข้าง (Drawer) --- */
-.drawer {
-    position: fixed !important; top: 0 !important; left: -320px !important; 
-    width: 300px !important; height: 100% !important; background: white !important;
-    z-index: 7000 !important; transition: left 0.3s ease-out !important;
-    border-right: 2px solid #C1B6FF; overflow-y: auto;
-}
-.drawer.active { left: 0 !important; }
-.overlay {
-    position: fixed; inset: 0; z-index: 6500; background: rgba(53, 42, 80, 0.3);
-    display: none; backdrop-filter: blur(2px);
-}
-.overlay.active { display: block !important; }
-
-/* --- 5. จัดระเบียบเนื้อหา (เพิ่มระยะห่างจาก Header) --- */
+/* --- 4. จัดการเนื้อหาไม่ให้ Header ทับ --- */
 main, .view-page > div:nth-child(2), #shop-content, #fullPageGrid {
-    /* ⚠️ ปรับ padding-top เป็น 120px เพื่อให้บรรทัดแรกห่างจากแถบบนพอดีๆ */
-    padding: 120px 1.5rem 20px !important; 
+    padding: 120px 1.5rem 20px !important; /* ดันเนื้อหาลงมาให้พ้นแถบ */
     width: 100%; box-sizing: border-box;
+    position: relative;
+    z-index: 10;
 }
 #page-home main { padding-top: 20px !important; }
-
-/* --- 6. การ์ดสินค้า (สร้างขอบให้ชัดตามรูป All Product) --- */
+/* --- 5. การ์ดสินค้า (Item Card) - ขอบชัดกริบ --- */
 .item-card { 
-    position: relative; 
-    overflow: hidden; 
-    transition: 0.3s; 
-    border-radius: 30px; 
-    /* ⚠️ เพิ่มขอบให้ชัดขึ้นเหมือนหน้า All Product */
-    border: 2px solid #E6E1FF !important; 
+    position: relative; overflow: hidden; transition: 0.3s; 
+    border-radius: 30px; border: 2px solid #E6E1FF !important; 
     background: white !important;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
 }
-.item-card.selected { 
-    border-color: #A488FF !important; 
-    background: rgba(193, 182, 255, 0.15) !important; 
-}
+.item-card.selected { border-color: #A488FF !important; background: rgba(193, 182, 255, 0.1) !important; }
 
-/* --- 7. หน้าหมวดหมู่ย่อยเต็มจอ (Full Page Category) --- */
-#fullPageCategory { 
-    position: fixed; inset: 0; background: #F8F4FF; z-index: 5500; overflow-y: auto; display: none; 
-}
-/* สร้างขอบกั้นระหว่างหมวดหมู่ในหน้าย่อยให้ชัดเจน */
-#fullPageGrid > div.col-span-2 {
-    border-left: 4px solid #A488FF !important; /* เส้นขอบข้างชื่อเครือฟอนต์ */
-    margin-top: 40px !important; /* เว้นระยะห่างระหว่างเครือ */
-}
+/* --- 6. ระบบสไลด์รูปสินค้า (Snap Slider) --- */
+.snap-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; }
+.snap-slider::-webkit-scrollbar { display: none; }
+.snap-item { min-width: 100%; scroll-snap-align: start; aspect-ratio: 1 / 1; }
 
-/* --- 8. ระบบอื่นๆ และแอนิเมชั่น --- */
+/* --- 7. ป้าย Badge และเมนูย่อย --- */
 .badge-custom { position: absolute; top: 12px; left: -28px; color: white; padding: 2px 30px; font-size: 8px; font-weight: bold; transform: rotate(-45deg); z-index: 40; }
 .badge-red { background: #FF4D4D; }
-.snap-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; }
-.snap-item { min-width: 100%; scroll-snap-align: start; aspect-ratio: 1 / 1; }
+
 .submenu { display: none; flex-direction: column; padding-left: 1rem; }
 .submenu.open { display: flex; }
+.menu-arrow { transition: 0.3s; }
+.menu-arrow.rotate { transform: rotate(180deg); }
+
+/* --- 8. 🎈 ระบบอิโมจิลอย (คืนค่า Z-index ให้กลับมาลอยสวยๆ) --- */
+.pt { 
+    position: fixed !important; 
+    pointer-events: none; 
+    z-index: 1 !important; /* อยู่ข้างหลังเนื้อหา */
+}
+@keyframes ptUp { 
+    0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } 
+}
+.pt { animation: ptUp linear infinite; }
+
+/* --- 9. แอนิเมชั่นอื่นๆ --- */
 @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
 .animate-float { animation: float 4s ease-in-out infinite; }
-@keyframes ptUp { 0% { transform: translateY(105vh); opacity: 0; } 100% { transform: translateY(-8vh) rotate(360deg); opacity: 0; } }
-.pt { position: absolute; animation: ptUp linear infinite; opacity: 0; pointer-events: none; }
+
+/* --- 10. ระบบ Drawer (เมนูข้าง) --- */
+.drawer { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: white; z-index: 7000; transition: 0.3s; border-right: 2px solid #C1B6FF; overflow-y: auto; }
+.drawer.active { left: 0; }
+.overlay { position: fixed; inset: 0; z-index: 6500; background: rgba(53, 42, 80, 0.3); display: none; backdrop-filter: blur(2px); }
+.overlay.active { display: block; }
+
+/* --- 11. หน้าหมวดหมู่ย่อย (Full Page) --- */
+#fullPageCategory { position: fixed; inset: 0; background: #F8F4FF; z-index: 5500; overflow-y: auto; display: none; }
 body.modal-open { overflow: hidden; position: fixed; width: 100%; }
