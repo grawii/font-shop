@@ -63,6 +63,17 @@ main, .view-page > div:nth-child(2), #shop-content, #fullPageGrid {
     padding-right: 60px !important; 
     font-size: 1.25rem !important;
 }
+
+/* ตั้งค่าขีดม่วงให้เหลือแค่อันเดียวที่หน้า h3 เท่านั้น */
+.col-span-2 h3, #shop-content h3 {
+    display: block !important;
+    border-left: 5px solid #A488FF !important; /* ขีดอันเดียวที่ต้องการ */
+    padding-left: 12px !important;
+    margin: 20px 0 !important;
+    word-break: break-word !important;
+    line-height: 1.4 !important;
+    padding-right: 60px !important;
+}
 /* --- 6. คืนชีพปุ่ม "ดูเพิ่มเติม" ให้สวยโค้งมน --- */
 button[onclick*="showFullPage"] {
     all: unset !important;
