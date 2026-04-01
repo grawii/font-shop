@@ -1,113 +1,62 @@
 let cart = []; 
-function lockScroll(isLocked) { if (isLocked) document.body.style.overflow = 'hidden'; else document.body.style.overflow = 'auto'; }
-
+function lockScroll(isL) { document.body.style.overflow = isL ? 'hidden' : 'auto'; }
 function toggleDrawer() { 
-    const d = document.getElementById('drawer'); const o = document.getElementById('overlay');
+    const d = document.getElementById('drawer'), o = document.getElementById('overlay');
     if(d.classList.contains('open')) { d.classList.remove('open'); o.style.display = 'none'; lockScroll(false); }
     else { d.classList.add('open'); o.style.display = 'block'; lockScroll(true); }
 }
-
 function closeDrawer() { document.getElementById('drawer').classList.remove('open'); document.getElementById('overlay').style.display = 'none'; lockScroll(false); }
-
-function navTo(pageId) { 
+function navTo(pId) { 
     document.querySelectorAll('.view-page').forEach(p => { p.classList.remove('active'); p.style.display = 'none'; }); 
-    const t = document.getElementById('page-' + pageId); 
+    const t = document.getElementById('page-' + (pId === 'home' || pId === 'shop' ? pId : pId)); 
     if(t) { t.classList.add('active'); t.style.display = 'block'; } 
-    closeDrawer(); closeFullPage(); 
-    window.scrollTo({ top: 0, behavior: 'smooth' }); 
-    if (pageId === 'home') renderHome(); 
-    if (pageId === 'shop') renderShop(); 
+    closeDrawer(); closeFullPage(); window.scrollTo({ top: 0, behavior: 'smooth' }); 
+    if (pId === 'home') renderHome(); if (pId === 'shop') renderShop(); 
 }
-
-function createCardHtml(p, catName) { 
-    const isSel = cart.find(i => i.id === p.id) ? 'selected' : ''; 
-    let badgeHtml = p.badge ? `<div class="badge-custom badge-red">${p.badge.text}</div>` : ''; 
-    let imgContent = Array.isArray(p.img) ? `<div class="snap-slider card-snap-slider h-full w-full">${p.img.map(u => `<div class="snap-item w-full h-full shrink-0"><img src="${u}" class="w-full h-full object-cover"></div>`).join('')}</div>` : `<img src="${p.img}" class="w-full h-full object-cover">`; 
-    return `<div class="item-card bg-white p-3.5 border-2 border-pinky-light shadow-sm transition-all ${isSel}" data-id="${p.id}" onclick="toggleItem('${p.id}','${catName}','${p.name}',${p.price},${p.isPromo || false})">${badgeHtml}<div class="rounded-2xl aspect-square mb-3 overflow-hidden relative">${imgContent}</div><h4 class="font-bold text-[14px] text-brown line-clamp-1 font-mitr">${p.name}</h4><p class="text-[9px] text-brown-light mt-0.5 mb-2 line-clamp-2 leading-tight">${p.detail || ''}</p><div class="flex items-center gap-2 mt-1">${p.oldPrice ? `<span class="text-[11px] line-through text-brown-light">฿${p.oldPrice}</span>` : ''}<span class="bg-pinky-dark text-white text-[12px] px-2 py-0.5 rounded-lg font-bold">฿${p.price}</span></div></div>`; 
+function createCardHtml(p, cN) { 
+    const s = cart.find(i => i.id === p.id) ? 'selected' : ''; 
+    return `<div class="item-card bg-white p-3.5 shadow-sm transition-all ${s}" data-id="${p.id}" onclick="toggleItem('${p.id}','${cN}','${p.name}',${p.price},${p.isPromo || false})"><div class="rounded-2xl aspect-square mb-3 overflow-hidden"><img src="${Array.isArray(p.img) ? p.img[0] : p.img}" class="w-full h-full object-cover"></div><h4 class="font-bold text-[14px] text-brown font-mitr">${p.name}</h4><div class="flex items-center gap-2 mt-1"><span class="bg-pinky-dark text-white text-[12px] px-2 py-0.5 rounded-lg font-bold">฿${p.price}</span></div></div>`; 
 }
-function viewCategoryByTag(mainTag, subTag = null) {
-    let resultsHtml = ''; let foundAny = false;
+function viewCategoryByTag(mT, sT = null) {
+    let html = '', found = false;
     categories.forEach(cat => {
-        const allMatch = cat.products.filter(p => { 
-            let matchMain = (mainTag === 'Recommend') ? p.isRecommend : (mainTag === 'ฟอนต์' ? true : (p.tags && p.tags.some(t => t.includes(mainTag))));
-            const matchSub = !subTag || (p.tags && p.tags.some(t => t.includes(subTag))); 
-            return matchMain && matchSub; 
+        const match = cat.products.filter(p => { 
+            let m = (mT === 'Recommend') ? p.isRecommend : (mT === 'ฟอนต์' ? true : (p.tags && p.tags.includes(mT)));
+            return m && (!sT || (p.tags && p.tags.includes(sT))); 
         });
-        if (allMatch.length > 0) {
-            foundAny = true; 
-            resultsHtml += `<div class="col-span-2 mt-10 mb-4 flex flex-wrap justify-between items-center border-l-4 border-pinky-dark pl-3 font-bold text-brown"><span class="font-mitr text-2xl leading-tight mb-1 pr-2 flex-1 min-w-[200px]">${cat.name}</span><button onclick="viewSubCategory('${cat.id}', '${subTag || ''}')" class="text-[13px] text-pinky-dark border-2 border-pinky-dark px-3 py-1 rounded-full font-bold hover:bg-pinky-dark hover:text-white transition-all whitespace-nowrap mb-1">ดูเพิ่มเติม ✨</button></div><div class="grid grid-cols-2 gap-4 col-span-2">${allMatch.slice(0, 4).map(p => createCardHtml(p, cat.name)).join('')}</div>`;
-        }
+        if (match.length > 0) { found = true; html += `<div class="col-span-2 mt-10 mb-4 border-l-4 border-pinky-dark pl-3 font-bold text-brown text-2xl">${cat.name}</div><div class="grid grid-cols-2 gap-4 col-span-2">${match.slice(0,4).map(p => createCardHtml(p, cat.name)).join('')}</div>`; }
     });
-    document.getElementById('fullPageTitle').innerText = subTag || mainTag;
-    document.getElementById('fullPageGrid').innerHTML = foundAny ? resultsHtml : '<div class="col-span-2 text-center py-20 font-bold text-brown-light">ยังไม่มีสินค้าค่ะ 🍇</div>';
-    const fp = document.getElementById('fullPageCategory'); if(fp) { fp.classList.add('active'); fp.style.display = 'block'; fp.scrollTo(0, 0); lockScroll(true); }
-    closeDrawer(); lucide.createIcons();
+    document.getElementById('fullPageTitle').innerText = sT || mT; document.getElementById('fullPageGrid').innerHTML = found ? html : '<div class="col-span-2 text-center py-20">ยังไม่มีสินค้าค่ะ 🍇</div>';
+    const fp = document.getElementById('fullPageCategory'); fp.classList.add('active'); fp.style.display = 'block'; lockScroll(true); closeDrawer(); lucide.createIcons();
 }
-
-function viewSubCategory(cId, sT) { 
-    const cat = categories.find(c => c.id === cId); const f = cat.products.filter(p => !sT || (p.tags && p.tags.includes(sT))); 
-    document.getElementById('fullPageTitle').innerText = `${cat.name} ${sT ? '- '+sT : ''}`; 
-    document.getElementById('fullPageGrid').innerHTML = f.map(p => createCardHtml(p, cat.name)).join(''); 
-    const fp = document.getElementById('fullPageCategory'); fp.classList.add('active'); fp.style.display = 'block'; fp.scrollTo(0, 0); lockScroll(true); lucide.createIcons(); 
-}
-
 function closeFullPage() { const fp = document.getElementById('fullPageCategory'); if(fp){ fp.classList.remove('active'); fp.style.display = 'none'; } lockScroll(false); }
-
-function renderHome() { 
-    let recs = []; categories.forEach(c => c.products.forEach(p => { if(p.isRecommend) recs.push({p, cName: c.name}); }));
-    document.getElementById('home-recommend').innerHTML = recs.slice(0, 4).map(item => createCardHtml(item.p, item.cName)).join('');
-    if(recs.length > 4) document.getElementById('recommend-more-btn').classList.remove('hidden'); else document.getElementById('recommend-more-btn').classList.add('hidden');
-    lucide.createIcons();
-}
-
-function renderShop() { 
-    let html = ''; categories.forEach(cat => { html += `<div class="space-y-6"><div class="mb-4 border-l-4 border-pinky-dark pl-3"><h3 class="font-mitr font-bold text-2xl text-brown leading-tight">${cat.name}</h3></div>`; subCats.forEach(sub => { const filtered = cat.products.filter(p => p.tags && p.tags.includes(sub)); if (filtered.length > 0) { html += `<div class="flex justify-between items-center mt-8 mb-3"><span class="text-s font-bold text-pinky-dark bg-white px-3 py-1 rounded-full border border-pinky-light">📂 หมวด ${sub}</span><button onclick="viewSubCategory('${cat.id}', '${sub}')" class="text-[12px] text-pinky-dark border-2 border-pinky-dark px-3 py-1 rounded-full font-bold hover:bg-pinky-dark hover:text-white transition-all whitespace-nowrap">ดูเพิ่มเติม ✨</button></div><div class="grid grid-cols-2 gap-4">${filtered.slice(0, 4).map(p => createCardHtml(p, cat.name)).join('')}</div>`; } }); html += `</div><hr class="my-12 border-pinky-light border-dashed">`; }); document.getElementById('shop-content').innerHTML = html; lucide.createIcons(); 
-}
 function calculateTotal() { 
     let sub = cart.reduce((s, i) => s + i.price, 0); 
-    let pAM = cart.filter(i => (i.cat.includes('AM') || i.cat.includes('KT') || i.cat.includes('ST') || i.cat.includes('TAU') || i.cat.includes('Chalihouse') || i.cat.includes('MysissHouse')) && i.isPromo).length;
+    let pAM = cart.filter(i => (i.cat.includes('AM') || i.cat.includes('KT')) && i.isPromo).length;
     let dAM = Math.floor(pAM / 2) * 18; 
-    let prnItems = cart.filter(i => i.cat.includes('PRN')).map(i => i.price).sort((a, b) => a - b);
-    let dPRN = 0; for(let i = 0; i < Math.floor(prnItems.length / 2); i++) dPRN += prnItems[i];
-    return { total: sub - dAM - dPRN, discount: dAM + dPRN, discAM: dAM, discPRN: dPRN }; 
+    return { total: sub - dAM, discount: dAM }; 
 }
-
 function toggleItem(id, cat, name, price, isP) { 
     const idx = cart.findIndex(i => i.id === id); if(idx > -1) cart.splice(idx, 1); else cart.push({id, cat, name, price, isPromo: isP}); 
-    document.querySelectorAll(`[data-id="${id}"]`).forEach(el => el.classList.toggle('selected')); 
-    updateBottomBar(); 
+    document.querySelectorAll(`[data-id="${id}"]`).forEach(el => el.classList.toggle('selected')); updateBottomBar(); 
 }
-
 function updateBottomBar() {
-    const r = calculateTotal(); const b = document.getElementById('bottomBar');
-    const cartCountElem = document.getElementById('cartCount'); const cartTotalElem = document.getElementById('cartTotal');
-    if (cart.length > 0) {
-        b.classList.remove('translate-y-full'); cartTotalElem.innerText = r.total;
-        if (r.discount > 0) cartCountElem.innerHTML = `เลือก ${cart.length} รายการ <span style="color: #FF4D4D; margin-left: 4px;">(ลด ฿${r.discount})</span>`;
-        else cartCountElem.innerText = `เลือก ${cart.length} รายการ`;
-    } else b.classList.add('translate-y-full');
+    const r = calculateTotal(), b = document.getElementById('bottomBar'), c = document.getElementById('cartCount'), t = document.getElementById('cartTotal');
+    if (cart.length > 0) { b.classList.remove('translate-y-full'); t.innerText = r.total; c.innerHTML = `เลือก ${cart.length} รายการ ${r.discount > 0 ? `<span style="color:#FF4D4D">(ลด ฿${r.discount})</span>` : ''}`; } 
+    else b.classList.add('translate-y-full');
 }
-
 function openSummary() { 
     const r = calculateTotal(); let h = ''; cart.forEach(i => h += `<div class="flex justify-between text-sm mb-1"><span>• ${i.name}</span><b>฿${i.price}</b></div>`); 
-    document.getElementById('modalItemsList').innerHTML = h; 
-    let pT = ""; if (r.discAM > 0) pT += `✨ ส่วนลด AM: -฿${r.discAM}<br>`; if (r.discPRN > 0) pT += `✨ ส่วนลด PRN: -฿${r.discPRN}<br>`;
-    const pn = document.getElementById('promoNotice'); if(pT){ pn.innerHTML = pT; pn.classList.remove('hidden'); } else pn.classList.add('hidden');
-    document.getElementById('modalTotalPrice').innerText = r.total; 
+    document.getElementById('modalItemsList').innerHTML = h; document.getElementById('modalTotalPrice').innerText = r.total;
     const sm = document.getElementById('summaryModal'); sm.classList.remove('hidden'); sm.classList.add('flex'); lockScroll(true); 
 }
-
 function closeSummary() { const sm = document.getElementById('summaryModal'); sm.classList.add('hidden'); sm.classList.remove('flex'); lockScroll(false); }
-
 function checkout() { 
-    const res = calculateTotal(); let text = "สรุปรายการสั่งซื้อ🤍\n\n" + cart.map(i => `• ${i.cat}: ${i.name} (${i.price}.-)`).join('\n');
-    if (res.discAM > 0) text += `\n✨ ส่วนลด AM: -${res.discAM} บาท`; if (res.discPRN > 0) text += `\n✨ ส่วนลด PRN: -${res.discPRN} บาท`;
-    text += `\n\nYอดสุทธิ: ${res.total} บาท\nขอบคุณค่ะ⭐️`; 
-    const t = document.createElement("textarea"); t.value = text; document.body.appendChild(t); t.select(); document.execCommand("copy"); document.body.removeChild(t); 
-    alert("คัดลอกแล้ว! กำลังไปที่ LINE..."); window.location.href = "https://line.me/ti/p/@309ranuu"; 
+    const r = calculateTotal(); let text = "สรุปรายการ🤍\n" + cart.map(i => `• ${i.name} (${i.price}.-)`).join('\n') + `\n\nยอดรวม: ${r.total}.-`;
+    const temp = document.createElement("textarea"); temp.value = text; document.body.appendChild(temp); temp.select(); document.execCommand("copy"); document.body.removeChild(temp);
+    alert("คัดลอกรายการสั่งซื้อแล้ว!"); window.location.href = "https://line.me/ti/p/@309ranuu"; 
 }
-
 document.addEventListener('DOMContentLoaded', () => { 
-    renderHome(); lucide.createIcons(); 
-    const P = document.getElementById('pts'); ['⭔','✦','★','♥','🍇'].forEach(e => { for (let j = 0; j < 6; j++) { const d = document.createElement('div'); d.className = 'pt'; d.textContent = e; d.style.cssText = `left:${Math.random()*100}vw;animation-duration:${10+Math.random()*15}s;animation-delay:${-Math.random()*20}s;`; P.appendChild(d); } }); 
+    navTo('home'); lucide.createIcons(); 
+    const P = document.getElementById('pts'); ['✦','★','♥','🍇'].forEach(e => { for (let j = 0; j < 5; j++) { const d = document.createElement('div'); d.className = 'pt'; d.textContent = e; d.style.cssText = `left:${Math.random()*100}vw;animation-duration:${10+Math.random()*10}s;`; P.appendChild(d); } }); 
 });
