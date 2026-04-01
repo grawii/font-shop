@@ -33,6 +33,7 @@
     display: block !important; 
 }
 /* แต่ง Header ให้สวยตามรูปที่วงไว้ */
+/* แถบม่วงโค้งด้านบน (Header) */
 .full-page-header {
     position: fixed !important;
     top: 0; left: 0; right: 0;
@@ -42,11 +43,29 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
-    z-index: 5600 !important; /* ต้องสูงกว่าหน้าเนื้อหา */
+    z-index: 5600 !important; /* อยู่สูงกว่าหน้าเนื้อหา */
     border-radius: 0 0 35px 35px;
     border-bottom: 2px solid #FFFFFF;
     box-shadow: 0 4px 15px rgba(164, 136, 255, 0.2);
-    pointer-events: auto !important; /* สำคัญ: เพื่อให้กดปุ่มย้อนกลับติด */
+    pointer-events: auto !important;
+}
+
+/* แถบยอดรวมด้านล่าง (Bottom Bar) */
+#bottomBar {
+    z-index: 9999 !important; /* ต้องสูงที่สุดเพื่อให้เห็นในทุกหน้า */
+    background: white !important;
+    border-top: 4px solid #C1B6FF !important;
+    transition: transform 0.3s ease-in-out !important;
+}
+
+/* ดันเนื้อหาลงมาหลบแถบม่วง */
+#page-shop, #fullPageCategory, #page-sub-font {
+    padding-top: 100px !important;
+    display: none;
+}
+
+#page-shop.active, #fullPageCategory.active, #page-sub-font.active {
+    display: block !important;
 }
 
 /* แก้ไขระยะห่างเนื้อหาไม่ให้โดนทับ */
