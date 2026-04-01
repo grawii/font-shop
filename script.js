@@ -133,7 +133,17 @@ function viewCategoryByTag(mainTag, subTag = null) {
     }
 
     function toggleItem(id, cat, name, price, isP) { const idx = cart.findIndex(i => i.id === id); if(idx > -1) cart.splice(idx, 1); else cart.push({id, cat, name, price, isPromo: isP}); document.querySelectorAll(`[data-id="${id}"]`).forEach(el => el.classList.toggle('selected')); updateBottomBar(); }
-    function updateBottomBar() { const r = calculateTotal(); const b = document.getElementById('bottomBar'); if (cart.length > 0) { b.classList.remove('translate-y-full'); document.getElementById('cartTotal').innerText = r.total; document.getElementById('cartCount').innerText = `เลือก ${cart.length} รายการ`; } else b.classList.add('translate-y-full'); }
+// ตัวอย่าง: ใส่ไว้ในฟังก์ชันอัปเดตยอดเงิน
+function updateBottomBar() {
+    const bar = document.getElementById('bottomBar');
+    const total = parseInt(document.getElementById('cartTotal').innerText); // เช็กยอดเงิน
+
+    if (total > 0) {
+        bar.classList.add('show'); // ถ้ามียอดเงิน > 0 ให้โชว์แถบ
+    } else {
+        bar.classList.remove('show'); // ถ้าเป็น 0 ให้ซ่อน
+    }
+}
     
     function openSummary() { 
         const r = calculateTotal(); let h = ''; cart.forEach(i => h += `<div class="flex justify-between text-sm"><span>• ${i.name}</span><b>฿${i.price}</b></div>`); 
