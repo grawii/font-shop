@@ -1,26 +1,34 @@
-/* --- 1. Base Setup (ดั้งเดิม) --- */
+/* --- 1. Base Setup (ดั้งเดิม 100%) --- */
 body { background-color: #F8F4FF; color: #4A3B6B; font-family: 'Kanit', sans-serif; overflow-x: hidden; padding-bottom: 100px; }
-.view-page { display: none; } 
-.view-page.active { display: block; }
+.view-page { display: none; } .view-page.active { display: block; }
 
-/* --- 2. ระบบอิโมจิลอยกระจาย (ปรับแก้จุดที่ 1: ให้ลอยกระจายตามเดิม) --- */
+/* --- 2. ระบบอิโมจิ (ซ่อมจุดที่ลอยเบี้ยวไปข้างๆ) --- */
 .pt { 
-    position: fixed !important; /* เปลี่ยนจาก absolute เป็น fixed เพื่อให้ลอยทั่วจอ */
-    top: 0; left: 0; 
-    width: 100%; height: 100%;
+    position: fixed !important; 
+    bottom: -50px !important; 
     pointer-events: none !important; 
-    z-index: 0 !important; /* อยู่หลังเนื้อหาหลัก */
+    z-index: 0 !important; 
     display: block !important;
     opacity: 0; 
-    animation: ptUp 10s linear infinite !important; /* ใช้ความเร็วเอื่อยๆ กำลังดี */
 }
 
+/* แอนิเมชั่น: บังคับให้ลอยขึ้นตรงๆ (Center) และหมุนแค่ตัวอิโมจิ */
 @keyframes ptUp { 
-    0% { transform: translateY(105vh); opacity: 0; } 
-    8% { opacity: 0.45; } 
-    100% { transform: translateY(-8vh) rotate(360deg); opacity: 0; } 
+    0% { 
+        transform: translateY(0) rotate(0deg); 
+        opacity: 0; 
+    } 
+    10% { 
+        opacity: 0.45; 
+    } 
+    100% { 
+        transform: translateY(-115vh) rotate(360deg); 
+        opacity: 0; 
+    } 
 }
-/* --- 3. Drawer & Slider (ดั้งเดิม) --- */
+
+.pt { animation: ptUp 10s linear infinite !important; }
+/* --- 3. Drawer & Slider (ดั้งเดิม 100%) --- */
 .drawer { position: fixed; top: 0; left: 0; z-index: 1000; width: 280px; height: 100vh; background: #F8F4FF; border-right: 4px solid #C1B6FF; transform: translateX(-100%); transition: 0.3s; overflow-y: auto; }
 .drawer.open { transform: translateX(0); }
 .overlay { position: fixed; inset: 0; z-index: 999; background: rgba(53, 42, 80, 0.3); display: none; }
@@ -28,22 +36,16 @@ body { background-color: #F8F4FF; color: #4A3B6B; font-family: 'Kanit', sans-ser
 .snap-slider::-webkit-scrollbar { display: none; }
 .snap-item { min-width: 100%; scroll-snap-align: start; aspect-ratio: 1 / 1; }
 
-/* --- 4. หน้าแยกหมวดหมู่ (ปรับแก้จุดที่ 3: เพิ่มระยะห่างไม่ให้แถบทับ) --- */
-#fullPageCategory { 
+/* --- 4. หน้าแยกหมวดหมู่ (ซ่อมระยะห่างไม่ให้แถบทับ) --- */
+#fullPageCategory, #page-shop, #page-sub-font { 
     position: fixed; inset: 0; background: #F8F4FF; z-index: 2000; 
     overflow-y: auto; display: none; 
-    padding-top: 100px !important; /* เพิ่มจาก 80px เป็น 100px เพื่อหลบ Header */
+    padding-top: 100px !important; /* ดันเนื้อหาลงมา */
     -webkit-overflow-scrolling: touch; 
 }
-
-/* คืนค่าระยะห่างหน้า All Product และหน้าย่อยอื่นๆ */
-#page-shop, #page-sub-font {
-    padding-top: 100px !important;
-}
-
 .full-page-header { position: fixed; top: 0; left: 0; right: 0; height: 70px; background: white; display: flex; align-items: center; padding: 0 20px; z-index: 2100; border-bottom: 2px solid #C1B6FF; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
 body.modal-open { overflow: hidden; position: fixed; width: 100%; }
-/* --- 5. Item Card & Badges (ดั้งเดิม) --- */
+/* --- 5. Item Card & Badges (ดั้งเดิม 100%) --- */
 .item-card { position: relative; overflow: hidden; transition: 0.3s; border-radius: 30px; border: 2px solid #E6E1FF; background: white; }
 .item-card.selected { border-color: #A488FF; background: rgba(193, 182, 255, 0.2); box-shadow: 0 0 15px rgba(164, 136, 255, 0.4); }
 .badge-custom { position: absolute; top: 12px; left: -28px; color: white; padding: 2px 30px; font-size: 8px; font-weight: bold; transform: rotate(-45deg); z-index: 40; pointer-events: none; text-transform: uppercase; }
@@ -57,22 +59,13 @@ body.modal-open { overflow: hidden; position: fixed; width: 100%; }
 @keyframes float { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-10px) rotate(5deg); } }
 .animate-float { animation: float 4s ease-in-out infinite; }
 
-/* --- 6. แถบสรุปยอดเงิน (ปรับแก้จุดที่ 2: คืนดีไซน์เดิม 100% และลอยหน้าสุด) --- */
+/* --- 6. แถบยอดรวม (คืนดีไซน์เดิมม่วงจาง + ลอยทับหน้าย่อย) --- */
 #cart-overlay, .cart-summary-fixed, [id*="cart"] {
-    position: fixed !important;
-    bottom: 25px !important; 
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: 90% !important;
-    max-width: 420px;
-    z-index: 9999 !important; /* ดันให้ลอยทับหน้าดูเพิ่มเติม */
-    display: flex !important;
-    
-    /* ดีไซน์ม่วงจาง ขอบโค้งมน ตามฉบับดั้งเดิม */
+    position: fixed !important; bottom: 25px !important; left: 50% !important;
+    transform: translateX(-50%) !important; width: 90% !important; max-width: 420px;
+    z-index: 9999 !important; display: flex !important;
     background: rgba(255, 255, 255, 0.95) !important;
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(164, 136, 255, 0.3);
-    padding: 15px;
+    backdrop-filter: blur(10px); border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(164, 136, 255, 0.3); padding: 15px;
     border: 1px solid rgba(193, 182, 255, 0.5);
 }
