@@ -169,7 +169,17 @@ function updateBottomBar() {
         const sm = document.getElementById('summaryModal'); sm.classList.remove('hidden'); sm.classList.add('flex'); lockScroll(true); 
     }
     
-    function closeSummary() { document.getElementById('summaryModal').classList.add('hidden'); lockScroll(false); }
+    function closeSummary() {
+    const modal = document.getElementById('summaryModal');
+    if (modal) {
+        // ลบคลาส flex ออก และเติม hidden กลับเข้าไป
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        
+        // คืนค่าการเลื่อนหน้าจอ (ถ้ามีการล็อคไว้)
+        document.body.style.overflow = 'auto';
+    }
+}
     
     // 🔥 ระบบตั้งเวลาเลื่อนอัตโนมัติ (แก้ไขใหม่ให้ทำงานชัวร์)
     function initAutoScroll(id) { 
