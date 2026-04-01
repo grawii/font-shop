@@ -22,32 +22,3 @@
         #fullPageCategory { position: fixed; inset: 0; background: #F8F4FF; z-index: 2000; overflow-y: auto; display: none; padding-top: 80px; -webkit-overflow-scrolling: touch; }
         .full-page-header { position: fixed; top: 0; left: 0; right: 0; height: 70px; background: white; display: flex; align-items: center; padding: 0 20px; z-index: 2100; border-bottom: 2px solid #C1B6FF; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         body.modal-open { overflow: hidden; position: fixed; width: 100%; }
-/* แถบ Header แบบใหม่: Gradient ม่วงอ่อนไปครีม + ขอบขาวหนา */
-.header-gradient-custom {
-    background: linear-gradient(to right, #E6E1FF, #F8F4FF); /* โทนเดียวกับหน้าแรก */
-    padding: 30px 20px;
-    text-align: center;
-    border-bottom: 5px solid white; /* ขอบขาวเพิ่มเหมือนหน้าแรก */
-    border-radius: 0 0 40px 40px; /* โค้งมนด้านล่าง */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    position: relative; /* เพื่อให้ปุ่มย้อนกลับอ้างอิงตำแหน่งได้ */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* ปุ่มย้อนกลับดีไซน์วงกลม วางไว้ฝั่งขวา */
-.btn-back-circle {
-    position: absolute;
-    right: 20px;
-    background: white;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #4A3B6B;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    cursor: pointer;
-}
