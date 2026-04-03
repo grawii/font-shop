@@ -28,12 +28,12 @@ body { background-color: #F8F4FF; color: #4A3B6B; font-family: 'Kanit', sans-ser
     overflow-y: auto; 
     display: none; 
     /* ปรับ padding-top ให้พอดีกับความสูง header ใหม่ */
-    padding-top: 100px; 
+    padding-top: 0px; 
     -webkit-overflow-scrolling: touch; 
 }
 
 .full-page-header { 
-    position: fixed; 
+    position: sticky; 
     top: 0; 
     left: 0; 
     right: 0; 
