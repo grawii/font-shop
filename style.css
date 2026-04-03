@@ -19,6 +19,25 @@ body { background-color: #F8F4FF; color: #4A3B6B; font-family: 'Kanit', sans-ser
         @keyframes ptUp { 0% { transform: translateY(105vh); opacity: 0; } 8% { opacity: 0.45; } 100% { transform: translateY(-8vh) rotate(360deg); opacity: 0; } }
         .pt { position: absolute; animation: ptUp linear infinite; opacity: 0; }
 
-        #fullPageCategory { position: fixed; inset: 0; background: #F8F4FF; z-index: 2000; overflow-y: auto; display: none; padding-top: 80px; -webkit-overflow-scrolling: touch; }
-        .full-page-header { position: fixed; top: 0; left: 0; right: 0; height: 70px; background: white; display: flex; align-items: center; padding: 0 20px; z-index: 2100; border-bottom: 2px solid #C1B6FF; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+       /* ค้นหาส่วนนี้ใน style.css แล้วแก้ตามนี้ครับ */
+#fullPageCategory { 
+    position: fixed; 
+    inset: 0; 
+    background: #F8F4FF; 
+    z-index: 2000; 
+    overflow-y: auto; 
+    display: none; 
+    /* ปรับ padding-top ให้พอดีกับความสูง header ใหม่ */
+    padding-top: 100px; 
+    -webkit-overflow-scrolling: touch; 
+}
+
+.full-page-header { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    /* ลบ height และ background เดิมออก เพราะเราใช้ Tailwind ใน HTML คุมแทนแล้ว */
+    z-index: 2100; 
+}
         body.modal-open { overflow: hidden; position: fixed; width: 100%; }
