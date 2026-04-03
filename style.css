@@ -1,36 +1,27 @@
 body { background-color: #F8F4FF; color: #4A3B6B; font-family: 'Kanit', sans-serif; overflow-x: hidden; padding-bottom: 100px; }
-        .view-page { display: none; } .view-page.active { display: block; }
-        .drawer { position: fixed; top: 0; left: 0; z-index: 1000; width: 280px; height: 100vh; background: #F8F4FF; border-right: 4px solid #C1B6FF; transform: translateX(-100%); transition: 0.3s; overflow-y: auto; }
-        .drawer.open { transform: translateX(0); }
-        .overlay { position: fixed; inset: 0; z-index: 999; background: rgba(53, 42, 80, 0.3); display: none; }
-        .snap-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
-        .snap-slider::-webkit-scrollbar { display: none; }
-        .snap-item { min-width: 100%; scroll-snap-align: start; aspect-ratio: 1 / 1; }
-        .item-card { position: relative; overflow: hidden; transition: 0.3s; border-radius: 30px; border: 2px solid #E6E1FF; background: white; }
-        .item-card.selected { border-color: #A488FF; background: rgba(193, 182, 255, 0.2); box-shadow: 0 0 15px rgba(164, 136, 255, 0.4); }
-        .badge-custom { position: absolute; top: 12px; left: -28px; color: white; padding: 2px 30px; font-size: 8px; font-weight: bold; transform: rotate(-45deg); z-index: 40; pointer-events: none; text-transform: uppercase; }
-        .badge-red { background: #FF4D4D; }
-        .submenu { display: none; flex-direction: column; padding-left: 2rem; background: rgba(193, 182, 255, 0.1); }
-        .submenu.open { display: flex; }
-        .menu-arrow { transition: 0.3s; }
-        .menu-arrow.rotate { transform: rotate(180deg); }
-        @keyframes float { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-10px) rotate(5deg); } }
-        .animate-float { animation: float 4s ease-in-out infinite; }
-        @keyframes ptUp { 0% { transform: translateY(105vh); opacity: 0; } 8% { opacity: 0.45; } 100% { transform: translateY(-8vh) rotate(360deg); opacity: 0; } }
-        .pt { position: absolute; animation: ptUp linear infinite; opacity: 0; }
+.view-page { display: none; } .view-page.active { display: block; }
+.drawer { position: fixed; top: 0; left: 0; z-index: 1000; width: 280px; height: 100vh; background: #F8F4FF; border-right: 4px solid #C1B6FF; transform: translateX(-100%); transition: 0.3s; overflow-y: auto; }
+.drawer.open { transform: translateX(0); }
+.overlay { position: fixed; inset: 0; z-index: 999; background: rgba(53, 42, 80, 0.3); display: none; }
+.snap-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+.snap-slider::-webkit-scrollbar { display: none; }
+.snap-item { min-width: 100%; scroll-snap-align: start; aspect-ratio: 1 / 1; }
+.item-card { position: relative; overflow: hidden; transition: 0.3s; border-radius: 30px; border: 2px solid #E6E1FF; background: white; }
+.item-card.selected { border-color: #A488FF; background: rgba(193, 182, 255, 0.2); box-shadow: 0 0 15px rgba(164, 136, 255, 0.4); }
+.badge-custom { position: absolute; top: 12px; left: -28px; color: white; padding: 2px 30px; font-size: 8px; font-weight: bold; transform: rotate(-45deg); z-index: 40; pointer-events: none; text-transform: uppercase; }
+.badge-red { background: #FF4D4D; }
+.submenu { display: none; flex-direction: column; padding-left: 2rem; background: rgba(193, 182, 255, 0.1); }
+.submenu.open { display: flex; }
+.menu-arrow { transition: 0.3s; }
+.menu-arrow.rotate { transform: rotate(180deg); }
+@keyframes float { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-10px) rotate(5deg); } }
+.animate-float { animation: float 4s ease-in-out infinite; }
+@keyframes ptUp { 0% { transform: translateY(105vh); opacity: 0; } 8% { opacity: 0.45; } 100% { transform: translateY(-8vh) rotate(360deg); opacity: 0; } }
+.pt { position: absolute; animation: ptUp linear infinite; opacity: 0; }
 
-       /* ค้นหาส่วนนี้ใน style.css แล้วแก้ตามนี้ครับ */
-#fullPageCategory { 
-    position: fixed; 
-    inset: 0; 
-    background: #F8F4FF; 
-    z-index: 2000; 
-    overflow-y: auto; 
-    display: none; 
-    /* ปรับ padding-top ให้พอดีกับความสูง header ใหม่ */
-    padding-top: 0px; 
-    -webkit-overflow-scrolling: touch; 
-}
+#fullPageCategory { position: fixed; inset: 0; background: #F8F4FF; z-index: 2000; overflow-y: auto; display: none; padding-top: 0; -webkit-overflow-scrolling: touch; }
+.full-page-header { position: sticky; top: 0; left: 0; right: 0; z-index: 2100; }
+body.modal-open { overflow: hidden; position: fixed; width: 100%; }
 
 .full-page-header { 
     position: sticky; 
