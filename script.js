@@ -150,17 +150,33 @@ function viewCategoryByTag(mainTag, subTag = null) {
 }
     function updateBottomBar() { const r = calculateTotal(); const b = document.getElementById('bottomBar'); if (cart.length > 0) { b.classList.remove('translate-y-full'); document.getElementById('cartTotal').innerText = r.total; document.getElementById('cartCount').innerText = `เลือก ${cart.length} รายการ`; } else b.classList.add('translate-y-full'); }
     
-    function openSummary() { 
-        const r = calculateTotal(); let h = ''; cart.forEach(i => h += `<div class="flex justify-between text-sm"><span>• ${i.name}</span><b>฿${i.price}</b></div>`); 
-        document.getElementById('modalItemsList').innerHTML = h; 
-        let pT = "";
-        if (r.discAM > 0) pT += `✨ ส่วนลด AM: -฿${r.discAM}<br>`;
-//โปรcnj
-//โปรmnj
-        if (r.discPRN > 0) pT += `✨ ส่วนลด PRN (1แถม1): -฿${r.discPRN}<br>`;
-        document.getElementById('promoNotice').innerHTML = pT; document.getElementById('modalTotalPrice').innerText = r.total; 
-        const sm = document.getElementById('summaryModal'); sm.classList.remove('hidden'); sm.classList.add('flex'); lockScroll(true); 
-    }
+function openSummary() { 
+    const r = calculateTotal(); 
+    let h = ''; 
+    cart.forEach(i => {
+        // เพิ่มปุ่มกากบาท (X) ในบรรทัดสินค้า
+        h += `
+        <div class="flex justify-between items-center text-sm mb-2">
+            <div class="flex items-center gap-2">
+                <button onclick="removeItem('${i.id}')" class="w-5 h-5 flex items-center justify-center bg-red-100 text-red-500 rounded-full text-[10px] font-bold">✕</button>
+                <span>• ${i.name}</span>
+            </div>
+            <b class="text-brown">฿${i.price}</b>
+        </div>`;
+    }); 
+    document.getElementById('modalItemsList').innerHTML = h; 
+    
+    // ส่วนที่เหลือ (promoNotice, modalTotalPrice) คงเดิมไว้ครับ...
+    let pT = "";
+    if (r.discAM > 0) pT += `✨ ส่วนลด AM: -฿${r.discAM}<br>`;
+    if (r.discPRN > 0) pT += `✨ ส่วนลด PRN (1แถม1): -฿${r.discPRN}<br>`;
+    document.getElementById('promoNotice').innerHTML = pT; 
+    document.getElementById('modalTotalPrice').innerText = r.total; 
+    const sm = document.getElementById('summaryModal'); 
+    sm.classList.remove('hidden'); 
+    sm.classList.add('flex'); 
+    lockScroll(true); 
+}
     
     function closeSummary() { document.getElementById('summaryModal').classList.add('hidden'); lockScroll(false); }
     
