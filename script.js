@@ -62,7 +62,7 @@ function renderShop() {
     let html = ''; 
     categories.forEach(cat => { 
         html += `<div class="space-y-6"><div class="mb-4 border-l-4 border-pinky-dark pl-3"><h3 class="font-mitr font-bold text-2xl text-brown leading-tight">${cat.name}</h3></div>`; 
-        const subCats = ['ฟอนต์หัวข้อ', 'เนื้อหา', 'อิโมจิ', 'ลายน้ำ', 'BG', 'ของตกแต่ง', 'อื่น ๆ'];
+        const subCats = ['ฟอนต์หัวข้อ', 'ฟอนต์เนื้อหา', 'ฟอนต์อิโมจิ', 'ลายน้ำ', 'BG', 'ไฟล์ตกแต่ง', 'อื่น ๆ'];
         subCats.forEach(sub => { 
             const filtered = cat.products.filter(p => p.tags && p.tags.includes(sub)); 
             if (filtered.length > 0) {
