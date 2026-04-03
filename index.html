@@ -169,11 +169,14 @@
 </div>
 
 <div id="fullPageCategory">
-    <div class="full-page-header bg-pinky flex items-center justify-center relative shadow-lg rounded-b-[40px] border-b-4 border-white h-[80px] w-full">
-        <button onclick="closeFullPage()" class="absolute left-6 top-1/2 -translate-y-1/2 p-2 text-pinky-dark bg-cream rounded-full">
+    <div class="full-page-header bg-pinky flex items-center justify-center relative shadow-lg rounded-b-[40px] border-b-4 border-white min-h-[90px] py-4 w-full">
+        
+        <button onclick="closeFullPage()" class="absolute left-4 top-1/2 -translate-y-1/2 p-2 text-pinky-dark bg-cream rounded-full z-10">
             <i data-lucide="arrow-left"></i>
         </button>
-        <h2 id="fullPageTitle" class="font-mitr font-bold text-white text-[18px] tracking-wide leading-none"></h2>
+
+        <h2 id="fullPageTitle" class="font-mitr font-bold text-white text-[16px] tracking-wide leading-tight text-center px-16 break-words">
+            </h2>
     </div>
     
     <div class="p-6 pt-8 grid grid-cols-2 gap-4 pb-32" id="fullPageGrid"></div>
