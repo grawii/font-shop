@@ -133,6 +133,21 @@ function viewCategoryByTag(mainTag, subTag = null) {
     }
 
     function toggleItem(id, cat, name, price, isP) { const idx = cart.findIndex(i => i.id === id); if(idx > -1) cart.splice(idx, 1); else cart.push({id, cat, name, price, isPromo: isP}); document.querySelectorAll(`[data-id="${id}"]`).forEach(el => el.classList.toggle('selected')); updateBottomBar(); }
+  function removeItem(id) {
+    const idx = cart.findIndex(i => i.id === id);
+    if (idx > -1) {
+        cart.splice(idx, 1);
+        // สั่งปลดคลาส selected ที่การ์ดสินค้าด้วย
+        document.querySelectorAll(`[data-id="${id}"]`).forEach(el => el.classList.remove('selected'));
+        // อัปเดตแถบด้านล่าง
+        updateBottomBar();
+        // อัปเดตหน้าสรุปยอดใหม่ทันที
+        openSummary();
+        
+        // ถ้าลบจนสินค้าหมด ให้ปิด Modal อัตโนมัติ
+        if (cart.length === 0) closeSummary();
+    }
+}
     function updateBottomBar() { const r = calculateTotal(); const b = document.getElementById('bottomBar'); if (cart.length > 0) { b.classList.remove('translate-y-full'); document.getElementById('cartTotal').innerText = r.total; document.getElementById('cartCount').innerText = `เลือก ${cart.length} รายการ`; } else b.classList.add('translate-y-full'); }
     
     function openSummary() { 
