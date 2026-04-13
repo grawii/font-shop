@@ -1,5 +1,3 @@
-ไหนอ่ะ หาไม่เจอ
-
 let cart = []; 
 
 function lockScroll(isLocked) { if (isLocked) document.body.classList.add('modal-open'); else document.body.classList.remove('modal-open'); }
