@@ -1,3 +1,5 @@
+ไหนอ่ะ หาไม่เจอ
+
 let cart = []; 
 
 function lockScroll(isLocked) { if (isLocked) document.body.classList.add('modal-open'); else document.body.classList.remove('modal-open'); }
@@ -63,23 +65,10 @@ function renderShop() {
     categories.forEach(cat => { 
         html += `<div class="space-y-6"><div class="mb-4 border-l-4 border-pinky-dark pl-3"><h3 class="font-mitr font-bold text-2xl text-brown leading-tight">${cat.name}</h3></div>`; 
         const subCats = ['ฟอนต์หัวข้อ', 'ฟอนต์เนื้อหา', 'ฟอนต์อิโมจิ', 'ลายน้ำ', 'BG', 'ไฟล์ตกแต่ง', 'อื่น ๆ'];
-        
         subCats.forEach(sub => { 
             const filtered = cat.products.filter(p => p.tags && p.tags.includes(sub)); 
             if (filtered.length > 0) {
-                // ✨ แก้ตรงนี้: ใช้ .slice(0, 4) เพื่อโชว์แค่ 4 รูปแรก
-                const displayItems = filtered.slice(0, 4);
-                // ✨ เช็กว่ามีมากกว่า 4 ไหม เพื่อแสดงปุ่มดูเพิ่มเติม
-                const hasMore = filtered.length > 4;
-
-                html += `
-                    <div class="flex justify-between items-center mt-8 mb-3">
-                        <span class="text-s font-bold text-pinky-dark bg-white px-3 py-1 rounded-full border border-pinky-light">📂 หมวด ${sub}</span>
-                        ${hasMore ? `<button onclick="viewSubCategory('${cat.id}', '${sub}')" class="text-[12px] text-pinky-dark border-2 border-pinky-dark px-3 py-1 rounded-full font-bold hover:bg-pinky-dark hover:text-white transition-all whitespace-nowrap">ดูเพิ่มเติม ✨</button>` : ''}
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        ${displayItems.map(p => createCardHtml(p, cat.name)).join('')}
-                    </div>`; 
+                html += `<div class="flex justify-between items-center mt-8 mb-3"><span class="text-s font-bold text-pinky-dark bg-white px-3 py-1 rounded-full border border-pinky-light">📂 หมวด ${sub}</span><button onclick="viewSubCategory('${cat.id}', '${sub}')" class="text-[12px] text-pinky-dark border-2 border-pinky-dark px-3 py-1 rounded-full font-bold hover:bg-pinky-dark hover:text-white transition-all whitespace-nowrap">ดูเพิ่มเติม ✨</button></div><div class="grid grid-cols-2 gap-4">${filtered.slice(0, 4).map(p => createCardHtml(p, cat.name)).join('')}</div>`; 
             }
         }); 
         html += `</div><hr class="my-12 border-pinky-light border-dashed">`; 
